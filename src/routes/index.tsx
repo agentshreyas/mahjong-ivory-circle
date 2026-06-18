@@ -18,7 +18,7 @@ function Index() {
   return (
     <div className="relative flex h-full flex-col bg-[var(--ivory)]">
       {/* GG hero */}
-      <div className="relative h-[58%] w-full overflow-hidden">
+      <div className="relative h-[50%] w-full overflow-hidden">
         <img
           src={heroSplash}
           alt="Gaurav Gupta couture — tile motif"
@@ -30,7 +30,7 @@ function Index() {
         </div>
       </div>
 
-      <div className="-mt-10 flex flex-1 flex-col items-center px-7 text-center">
+      <div className="flex flex-1 flex-col items-center px-7 pt-5 text-center">
         <p className="text-[10px] uppercase tracking-[0.32em] text-[var(--gold)]">HSBC × Gaurav Gupta</p>
         <h1 className="mt-3 font-display text-[36px] font-medium leading-[1.05] text-[var(--ink)]">
           The Mahjong<br />Circle
