@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { PhoneFrame } from "@/components/app/phone-frame";
+import { VoiceProvider } from "@/components/app/voice-context";
+import { VoiceOverlay } from "@/components/app/voice-overlay";
 
 function NotFoundComponent() {
   return (
@@ -124,8 +127,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <VoiceProvider>
+        <PhoneFrame>
+          <Outlet />
+          <VoiceOverlay />
+        </PhoneFrame>
+      </VoiceProvider>
     </QueryClientProvider>
   );
 }
