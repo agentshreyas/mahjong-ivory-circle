@@ -1,4 +1,4 @@
-import { Link, useRouter } from "@tanstack/react-router";
+import { Link, useRouter, useRouterState } from "@tanstack/react-router";
 import { ChevronLeft, Mic } from "lucide-react";
 import { useVoice } from "./voice-context";
 
@@ -12,6 +12,8 @@ interface Props {
 export function TopBar({ title, eyebrow, back, transparent }: Props) {
   const router = useRouter();
   const { setOpen } = useVoice();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const hideVoice = pathname === "/" || pathname === "/register";
   return (
     <header
       className={`sticky top-0 z-20 flex items-center justify-between px-5 pt-3 pb-3 ${
@@ -47,14 +49,16 @@ export function TopBar({ title, eyebrow, back, transparent }: Props) {
           )
         )}
       </div>
-      <button
-        onClick={() => setOpen(true)}
-        className="relative grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[var(--hsbc)] text-[var(--ivory)] shadow-[0_6px_18px_-6px_rgba(219,0,17,0.55)] ring-2 ring-[var(--hsbc)]/15 transition active:bg-[var(--hsbc-pressed)]"
-        aria-label="Voice search"
-      >
-        <Mic size={17} strokeWidth={2} />
-        <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-[var(--gold)] ring-2 ring-[var(--ivory)]" />
-      </button>
+      {!hideVoice && (
+        <button
+          onClick={() => setOpen(true)}
+          className="relative grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[var(--hsbc)] text-[var(--ivory)] shadow-[0_6px_18px_-6px_rgba(219,0,17,0.55)] ring-2 ring-[var(--hsbc)]/15 transition active:bg-[var(--hsbc-pressed)]"
+          aria-label="Voice search"
+        >
+          <Mic size={17} strokeWidth={2} />
+          <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-[var(--gold)] ring-2 ring-[var(--ivory)]" />
+        </button>
+      )}
     </header>
   );
 }

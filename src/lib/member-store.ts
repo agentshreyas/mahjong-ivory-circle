@@ -26,7 +26,7 @@ const defaults: Member = {
   styles: ["Cantonese"],
   primaryStyle: "Cantonese",
   skill: "Intermediate",
-  guest: false,
+  guest: true,
   notifications: { editorial: true, events: true, system: true },
 };
 
