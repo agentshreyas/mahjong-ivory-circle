@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { TopBar } from "@/components/app/top-bar";
-import { Heart, MessageCircle, Bookmark, Share } from "lucide-react";
+import { Heart, MessageCircle, Bookmark, Share, ChevronRight } from "lucide-react";
 import articleHero from "@/assets/article-hero.jpg";
+import ggBanner from "@/assets/gg-banner.jpg";
 
 export const Route = createFileRoute("/article")({
   head: () => ({ meta: [{ title: "A short history of the bamboo tile" }] }),
@@ -60,7 +61,27 @@ function Article() {
 
           <div className="gold-rule my-10" />
 
-          <p className="text-center text-[12px] uppercase tracking-[0.22em] text-[var(--taupe)]">
+          {/* Mahjong collection callout */}
+          <Link
+            to="/collection"
+            className="block overflow-hidden rounded-3xl border border-[var(--gold)]/40"
+          >
+            <div className="relative h-40 w-full overflow-hidden">
+              <img src={ggBanner} alt="" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-4">
+                <p className="text-[9px] uppercase tracking-[0.24em] text-[var(--gold)]">The Mahjong Collection</p>
+                <p className="mt-1 font-display text-[18px] leading-tight text-[var(--ivory)]">
+                  Gaurav Gupta's tile motif — the capsule for the Circle.
+                </p>
+                <span className="mt-2 inline-flex items-center gap-1 text-[11px] text-[var(--ivory)]/85">
+                  View the collection <ChevronRight size={12} />
+                </span>
+              </div>
+            </div>
+          </Link>
+
+          <p className="mt-8 text-center text-[12px] uppercase tracking-[0.22em] text-[var(--taupe)]">
             Continue reading
           </p>
         </div>
