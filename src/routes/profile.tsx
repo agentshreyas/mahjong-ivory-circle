@@ -10,17 +10,23 @@ export const Route = createFileRoute("/profile")({
   component: Profile,
 });
 
+const CITIES = ["Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Kolkata", "Chennai", "Pune"];
+
 function Profile() {
   const navigate = useNavigate();
   const member = useMember();
   const [editing, setEditing] = useState(false);
   const [mobile, setMobile] = useState(member.mobile);
   const [email, setEmail] = useState(member.email);
+  const [name, setName] = useState(member.name);
+  const [city, setCity] = useState(member.city);
 
   useEffect(() => {
     setMobile(member.mobile);
     setEmail(member.email);
-  }, [member.mobile, member.email]);
+    setName(member.name);
+    setCity(member.city);
+  }, [member.mobile, member.email, member.name, member.city]);
 
   if (member.guest) {
     return (
@@ -95,7 +101,7 @@ function Profile() {
             <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Personal details</p>
             <button
               onClick={() => {
-                if (editing) writeMember({ mobile, email });
+                if (editing) writeMember({ mobile, email, name, city });
                 setEditing(!editing);
               }}
               className="flex items-center gap-1 text-[11px] text-[var(--ink)] underline underline-offset-2"
@@ -104,6 +110,33 @@ function Profile() {
             </button>
           </div>
           <div className="mt-3 space-y-3">
+            <div>
+              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">Name</label>
+              {editing ? (
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="mt-1 w-full border-0 border-b border-[var(--hairline)] bg-transparent pb-1 text-[14px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
+                />
+              ) : (
+                <p className="mt-1 text-[14px] text-[var(--ink)]">{member.name || "—"}</p>
+              )}
+            </div>
+            <div>
+              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">City</label>
+              {editing ? (
+                <select
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  className="mt-1 w-full appearance-none border-0 border-b border-[var(--hairline)] bg-transparent pb-1 text-[14px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
+                >
+                  <option value="">Select your city</option>
+                  {CITIES.map((c) => <option key={c}>{c}</option>)}
+                </select>
+              ) : (
+                <p className="mt-1 text-[14px] text-[var(--ink)]">{member.city || "—"}</p>
+              )}
+            </div>
             <div>
               <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">Mobile</label>
               {editing ? (
