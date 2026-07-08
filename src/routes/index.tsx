@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import heroSplash from "@/assets/hero-splash.jpg";
 import { writeMember } from "@/lib/member-store";
 
@@ -43,13 +43,12 @@ function Index() {
         </p>
 
         <div className="mt-auto w-full space-y-3 pb-8 pt-8">
-          <Link
-            to="/register"
-            onClick={() => writeMember({ guest: false })}
+          <button
+            onClick={() => navigate({ to: "/register" })}
             className="block w-full rounded-2xl bg-[var(--hsbc)] py-3.5 text-center text-[14px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_8px_24px_-8px_rgba(219,0,17,0.45)] transition active:bg-[var(--hsbc-pressed)]"
           >
             Get Started
-          </Link>
+          </button>
           <button
             onClick={() => {
               writeMember({ guest: true });

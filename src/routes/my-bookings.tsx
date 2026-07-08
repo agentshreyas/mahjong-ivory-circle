@@ -1,7 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { TopBar } from "@/components/app/top-bar";
 import { CalendarDays, MapPin } from "lucide-react";
 import { useBookings } from "@/lib/bookings-store";
+import { useMember } from "@/lib/member-store";
 
 export const Route = createFileRoute("/my-bookings")({
   head: () => ({ meta: [{ title: "My Bookings · HSBC Mahjong Circle" }] }),
@@ -9,7 +10,30 @@ export const Route = createFileRoute("/my-bookings")({
 });
 
 function MyBookings() {
+  const navigate = useNavigate();
+  const member = useMember();
   const bookings = useBookings();
+  if (member.guest) {
+    return (
+      <div className="flex h-full flex-col bg-[var(--ivory)]">
+        <TopBar back title="My bookings" />
+        <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
+          <p className="font-display text-[22px] leading-tight text-[var(--ink)]">
+            Sign up to book &amp; view.
+          </p>
+          <p className="mt-3 text-[13px] leading-relaxed text-[var(--taupe)]">
+            Bookings are reserved for members of the Circle.
+          </p>
+          <button
+            onClick={() => navigate({ to: "/register" })}
+            className="mt-6 w-full max-w-[240px] rounded-2xl bg-[var(--hsbc)] py-3 text-[13px] font-medium text-[var(--ivory)] active:bg-[var(--hsbc-pressed)]"
+          >
+            Join the Circle
+          </button>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="flex h-full flex-col bg-[var(--ivory)]">
       <TopBar back title="My bookings" />

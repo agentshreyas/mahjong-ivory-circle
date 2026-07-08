@@ -1,10 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { TopBar } from "@/components/app/top-bar";
 import { CalendarDays, MapPin, Users, Share2, Check } from "lucide-react";
 import event1 from "@/assets/event-1.jpg";
 import avatar1 from "@/assets/avatar-1.jpg";
 import { useEffect, useState } from "react";
 import { toggleBooking, isBooked } from "@/lib/bookings-store";
+import { useMember } from "@/lib/member-store";
 
 export const Route = createFileRoute("/event-detail")({
   head: () => ({ meta: [{ title: "An evening at Khotachiwadi" }] }),
@@ -20,6 +21,8 @@ const EVENT = {
 };
 
 function EventDetail() {
+  const navigate = useNavigate();
+  const member = useMember();
   const [rsvp, setRsvp] = useState(false);
   const [shared, setShared] = useState(false);
   useEffect(() => setRsvp(isBooked(EVENT.id)), []);
@@ -100,6 +103,10 @@ function EventDetail() {
 
           <button
             onClick={() => {
+              if (member.guest) {
+                navigate({ to: "/register" });
+                return;
+              }
               toggleBooking({ id: EVENT.id, title: EVENT.title, date: EVENT.date, venue: EVENT.venue, img: EVENT.img });
               setRsvp(!rsvp);
             }}
@@ -109,7 +116,7 @@ function EventDetail() {
                 : "bg-[var(--hsbc)] text-[var(--ivory)] shadow-[0_8px_24px_-8px_rgba(219,0,17,0.4)] active:bg-[var(--hsbc-pressed)]"
             }`}
           >
-            {rsvp ? "Your seat is booked" : "Book your seat"}
+            {member.guest ? "Sign up to book" : rsvp ? "Your seat is booked" : "Book your seat"}
           </button>
           {rsvp ? (
             <p className="mt-3 text-center text-[12px] text-[var(--taupe)]">

@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TopBar } from "@/components/app/top-bar";
 import { Check } from "lucide-react";
 import { writeMember } from "@/lib/member-store";
@@ -23,27 +23,21 @@ const CITIES = ["Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Kolkata", "Chennai
 
 function Register() {
   const navigate = useNavigate();
-  const [step, setStep] = useState<"form" | "otp" | "preferences">("form");
-  const [name, setName] = useState("");
-  const [city, setCity] = useState("");
+  const [step, setStep] = useState<"phone" | "otp" | "profile">("phone");
   const [mobile, setMobile] = useState("");
-  const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [otp, setOtp] = useState<string[]>(Array(6).fill(""));
   const [resendIn, setResendIn] = useState(30);
   const otpRefs = useRef<Array<HTMLInputElement | null>>([]);
 
-  const [interests, setInterests] = useState<string[]>(["History & Heritage", "Events Near Me"]);
-  const [styles, setStyles] = useState<string[]>(["Cantonese"]);
-  const [primaryStyle, setPrimaryStyle] = useState("Cantonese");
   const [skill, setSkill] = useState("Casual");
+  const [interests, setInterests] = useState<string[]>(["History & Heritage", "Events Near Me"]);
+  const [style, setStyle] = useState("Cantonese");
+  const [city, setCity] = useState("");
+  const [name, setName] = useState("");
 
   const mobileValid = /^[6-9]\d{9}$/.test(mobile.replace(/\s+/g, ""));
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const canSendCode = useMemo(
-    () => name.trim().length >= 2 && !!city && mobileValid && emailValid && consent,
-    [name, city, mobileValid, emailValid, consent],
-  );
+  const canSendCode = mobileValid && consent;
   const otpValid = otp.every((c) => /\d/.test(c));
 
   useEffect(() => {
@@ -54,9 +48,24 @@ function Register() {
   }, [step]);
 
   const stepTitles: Record<typeof step, string> = {
-    form: "Join the Circle",
+    phone: "Join the Circle",
     otp: "Enter your code",
-    preferences: "A little about you",
+    profile: "A little about you",
+  };
+
+  const finish = (opts: { skipOptional?: boolean } = {}) => {
+    writeMember({
+      name: opts.skipOptional ? "" : name.trim(),
+      city: opts.skipOptional ? "" : city,
+      mobile: `+91 ${mobile.replace(/(\d{5})(\d{5})/, "$1 $2")}`,
+      email: "",
+      interests,
+      styles: style ? [style] : [],
+      primaryStyle: style,
+      skill,
+      guest: false,
+    });
+    navigate({ to: "/home" });
   };
 
   return (
@@ -65,11 +74,11 @@ function Register() {
 
       <div className="flex-1 overflow-y-auto px-6 pb-10">
         <div className="mb-6 flex items-center gap-2">
-          {(["form", "otp", "preferences"] as const).map((s, i) => (
+          {(["phone", "otp", "profile"] as const).map((s, i) => (
             <div
               key={s}
               className={`h-[2px] flex-1 rounded-full ${
-                ["form", "otp", "preferences"].indexOf(step) >= i
+                ["phone", "otp", "profile"].indexOf(step) >= i
                   ? "bg-[var(--hsbc)]"
                   : "bg-[var(--hairline)]"
               }`}
@@ -77,29 +86,17 @@ function Register() {
           ))}
         </div>
 
-        {step === "form" && (
+        {step === "phone" && (
           <>
             <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 1 of 3</p>
             <h2 className="mt-1 font-display text-[26px] leading-tight text-[var(--ink)]">
-              A few quiet details.
+              Your mobile number.
             </h2>
             <p className="mt-2 text-[13px] text-[var(--taupe)]">
-              We'll send a one‑time code to verify it's you. Sign up only — the Circle is invitation-led and has no separate sign-in.
+              We'll send a one‑time code to verify it's you. Nothing more required to enter.
             </p>
 
             <div className="mt-7 space-y-5">
-              <Field label="Full name" value={name} onChange={setName} placeholder="Your name" />
-              <div>
-                <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">City</label>
-                <select
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  className="mt-2 w-full appearance-none border-0 border-b border-[var(--hairline)] bg-transparent pb-2 font-display text-[18px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
-                >
-                  <option value="">Select your city</option>
-                  {CITIES.map((c) => <option key={c}>{c}</option>)}
-                </select>
-              </div>
               <div>
                 <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">Mobile number</label>
                 <div className="mt-2 flex items-center gap-2 border-b border-[var(--hairline)] pb-2 focus-within:border-[var(--gold)]">
@@ -117,10 +114,6 @@ function Register() {
                   <p className="mt-1 text-[11px] text-[var(--hsbc)]">Enter a valid 10-digit Indian mobile.</p>
                 )}
               </div>
-              <Field label="Email" value={email} onChange={setEmail} placeholder="you@example.com" type="email" />
-              {!!email && !emailValid && (
-                <p className="-mt-3 text-[11px] text-[var(--hsbc)]">Enter a valid email.</p>
-              )}
             </div>
 
             <label className="mt-6 flex items-start gap-3 text-[12px] text-[var(--taupe)]">
@@ -134,8 +127,8 @@ function Register() {
                 {consent && <Check size={11} className="text-[var(--ivory)]" />}
               </button>
               <span>
-                I agree to the Circle's house rules and to occasional dispatches about events,
-                editorials and the Gaurav Gupta collection.
+                I agree to the Circle's Terms &amp; Privacy and to occasional dispatches about
+                events, editorials and the Gaurav Gupta collection.
               </span>
             </label>
 
@@ -152,7 +145,7 @@ function Register() {
             </button>
             {!canSendCode && (
               <p className="mt-2 text-center text-[11px] text-[var(--taupe)]">
-                Complete every field and tick the consent to continue.
+                Enter a valid mobile and tick the consent to continue.
               </p>
             )}
           </>
@@ -213,7 +206,7 @@ function Register() {
 
             <button
               disabled={!otpValid}
-              onClick={() => setStep("preferences")}
+              onClick={() => setStep("profile")}
               className={`mt-8 w-full rounded-2xl py-3.5 text-[14px] font-medium ${
                 otpValid
                   ? "bg-[var(--hsbc)] text-[var(--ivory)] active:bg-[var(--hsbc-pressed)]"
@@ -225,52 +218,17 @@ function Register() {
           </>
         )}
 
-        {step === "preferences" && (
+        {step === "profile" && (
           <>
             <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 3 of 3</p>
             <h2 className="mt-1 font-display text-[26px] leading-tight text-[var(--ink)]">
-              Style, skill & interests.
+              A little about you.
             </h2>
             <p className="mt-2 text-[13px] text-[var(--taupe)]">
-              So we may recommend the right rooms, reads and tables. All optional — you can skip.
+              So we may recommend the right rooms, reads and tables.
             </p>
 
-            <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[var(--taupe)]">
-              Styles you play · tap once to select, again to mark primary
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {STYLES.map((s) => {
-                const active = styles.includes(s);
-                const isPrimary = primaryStyle === s;
-                return (
-                  <button
-                    key={s}
-                    onClick={() => {
-                      if (!active) {
-                        setStyles([...styles, s]);
-                        if (!primaryStyle) setPrimaryStyle(s);
-                      } else if (!isPrimary) {
-                        setPrimaryStyle(s);
-                      } else {
-                        setStyles(styles.filter((x) => x !== s));
-                        if (isPrimary) setPrimaryStyle(styles.filter((x) => x !== s)[0] ?? "");
-                      }
-                    }}
-                    className={`rounded-full border px-3.5 py-1.5 text-[12px] transition ${
-                      isPrimary
-                        ? "border-[var(--gold)] bg-[var(--gold)]/15 text-[var(--ink)]"
-                        : active
-                          ? "border-[var(--ink)] bg-[var(--ink)] text-[var(--ivory)]"
-                          : "border-[var(--hairline)] bg-[var(--sand)]/60 text-[var(--ink)]"
-                    }`}
-                  >
-                    {isPrimary && "★ "}{s}
-                  </button>
-                );
-              })}
-            </div>
-
-            <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[var(--taupe)]">Your skill</p>
+            <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[var(--taupe)]">Skill level</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {SKILLS.map((s) => (
                 <button
@@ -309,41 +267,76 @@ function Register() {
               })}
             </div>
 
+            <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[var(--taupe)]">Playing style</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {STYLES.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setStyle(s === style ? "" : s)}
+                  className={`rounded-full border px-3.5 py-1.5 text-[12px] transition ${
+                    style === s
+                      ? "border-[var(--ink)] bg-[var(--ink)] text-[var(--ivory)]"
+                      : "border-[var(--hairline)] bg-[var(--sand)]/60 text-[var(--ink)]"
+                  }`}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-6">
+              <div className="flex items-baseline justify-between">
+                <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">
+                  City <span className="text-[var(--taupe)]/70">· optional</span>
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setCity("")}
+                  className="text-[11px] text-[var(--taupe)] underline underline-offset-2"
+                >
+                  Skip
+                </button>
+              </div>
+              <select
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="mt-2 w-full appearance-none border-0 border-b border-[var(--hairline)] bg-transparent pb-2 font-display text-[18px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
+              >
+                <option value="">Select your city</option>
+                {CITIES.map((c) => <option key={c}>{c}</option>)}
+              </select>
+            </div>
+
+            <div className="mt-6">
+              <div className="flex items-baseline justify-between">
+                <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">
+                  Name <span className="text-[var(--taupe)]/70">· optional</span>
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setName("")}
+                  className="text-[11px] text-[var(--taupe)] underline underline-offset-2"
+                >
+                  Skip
+                </button>
+              </div>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your name"
+                className="mt-2 w-full border-0 border-b border-[var(--hairline)] bg-transparent pb-2 font-display text-[18px] text-[var(--ink)] placeholder:text-[var(--taupe)]/60 focus:border-[var(--gold)] focus:outline-none"
+              />
+            </div>
+
             <div className="mt-9 flex gap-3">
               <button
-                onClick={() => {
-                  writeMember({
-                    name: name.trim(),
-                    city,
-                    mobile: `+91 ${mobile.replace(/(\d{5})(\d{5})/, "$1 $2")}`,
-                    email,
-                    interests: [],
-                    styles: [],
-                    primaryStyle: "",
-                    skill: "",
-                    guest: false,
-                  });
-                  navigate({ to: "/home" });
-                }}
+                onClick={() => finish({ skipOptional: true })}
                 className="flex-1 rounded-2xl border border-[var(--ink)]/15 py-3.5 text-[14px] font-medium text-[var(--ink)] active:bg-[var(--sand)]"
               >
-                Skip
+                Skip all
               </button>
               <button
-                onClick={() => {
-                  writeMember({
-                    name: name.trim(),
-                    city,
-                    mobile: `+91 ${mobile.replace(/(\d{5})(\d{5})/, "$1 $2")}`,
-                    email,
-                    interests,
-                    styles,
-                    primaryStyle,
-                    skill,
-                    guest: false,
-                  });
-                  navigate({ to: "/home" });
-                }}
+                onClick={() => finish()}
                 className="flex-1 rounded-2xl bg-[var(--hsbc)] py-3.5 text-[14px] font-medium text-[var(--ivory)] active:bg-[var(--hsbc-pressed)]"
               >
                 Enter the Circle
@@ -356,29 +349,3 @@ function Register() {
   );
 }
 
-function Field({
-  label,
-  placeholder,
-  value,
-  onChange,
-  type = "text",
-}: {
-  label: string;
-  placeholder: string;
-  value: string;
-  onChange: (v: string) => void;
-  type?: string;
-}) {
-  return (
-    <div>
-      <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">{label}</label>
-      <input
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
-        className="mt-2 w-full border-0 border-b border-[var(--hairline)] bg-transparent pb-2 font-display text-[18px] text-[var(--ink)] placeholder:text-[var(--taupe)]/60 focus:border-[var(--gold)] focus:outline-none"
-      />
-    </div>
-  );
-}
