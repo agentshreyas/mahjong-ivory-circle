@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Screen } from "@/components/app/screen";
-import { Play, Clock, Bookmark, CalendarDays, MapPin, ChevronRight } from "lucide-react";
+import { Play, Bookmark, MapPin, ChevronRight } from "lucide-react";
 import feedTiles from "@/assets/feed-tiles.jpg";
 import feedGathering from "@/assets/feed-gathering.jpg";
 import ggBanner from "@/assets/gg-banner.jpg";
