@@ -74,7 +74,11 @@ function Home() {
       </section>
 
       {/* 3. HSBC Circle teaser */}
-      <section className="mx-5 mt-6 overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--ink)] text-[var(--ivory)]">
+      <Link
+        to="/events"
+        search={{ tab: "hsbc" }}
+        className="mx-5 mt-6 block overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--ink)] text-[var(--ivory)]"
+      >
         <div className="p-5">
           <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">HSBC Premier</p>
           <h3 className="mt-2 font-display text-[20px] leading-tight">
@@ -83,11 +87,11 @@ function Home() {
           <p className="mt-2 text-[12.5px] leading-relaxed text-[var(--ivory)]/70">
             Concierge, global privileges and invitations to Circle-only tables.
           </p>
-          <button className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--ivory)]/40 px-4 py-2 text-[12px] text-[var(--ivory)]">
-            Explore HSBC Premier <ChevronRight size={13} />
-          </button>
+          <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--ivory)]/40 px-4 py-2 text-[12px] text-[var(--ivory)]">
+            See HSBC hosted events <ChevronRight size={13} />
+          </span>
         </div>
-      </section>
+      </Link>
 
       {/* 4. Magazine feed */}
       <div className="mt-7 px-5">
