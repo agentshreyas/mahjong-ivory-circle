@@ -23,7 +23,7 @@ const CITIES = ["Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Kolkata", "Chennai
 
 function Register() {
   const navigate = useNavigate();
-  const [step, setStep] = useState<"phone" | "otp" | "profile">("phone");
+  const [step, setStep] = useState<"phone" | "otp" | "prefs" | "details">("phone");
   const [mobile, setMobile] = useState("");
   const [consent, setConsent] = useState(false);
   const [otp, setOtp] = useState<string[]>(Array(6).fill(""));
@@ -50,19 +50,20 @@ function Register() {
   const stepTitles: Record<typeof step, string> = {
     phone: "Join the Circle",
     otp: "Enter your code",
-    profile: "A little about you",
+    prefs: "Your preferences",
+    details: "A little about you",
   };
 
-  const finish = (opts: { skipOptional?: boolean } = {}) => {
+  const finish = (opts: { skipDetails?: boolean; skipPrefs?: boolean } = {}) => {
     writeMember({
-      name: opts.skipOptional ? "" : name.trim(),
-      city: opts.skipOptional ? "" : city,
+      name: opts.skipDetails ? "" : name.trim(),
+      city: opts.skipDetails ? "" : city,
       mobile: `+91 ${mobile.replace(/(\d{5})(\d{5})/, "$1 $2")}`,
       email: "",
-      interests,
-      styles: style ? [style] : [],
-      primaryStyle: style,
-      skill,
+      interests: opts.skipPrefs ? [] : interests,
+      styles: opts.skipPrefs ? [] : style ? [style] : [],
+      primaryStyle: opts.skipPrefs ? "" : style,
+      skill: opts.skipPrefs ? "" : skill,
       guest: false,
     });
     navigate({ to: "/home" });
@@ -74,11 +75,11 @@ function Register() {
 
       <div className="flex-1 overflow-y-auto px-6 pb-10">
         <div className="mb-6 flex items-center gap-2">
-          {(["phone", "otp", "profile"] as const).map((s, i) => (
+          {(["phone", "otp", "prefs", "details"] as const).map((s, i) => (
             <div
               key={s}
               className={`h-[2px] flex-1 rounded-full ${
-                ["phone", "otp", "profile"].indexOf(step) >= i
+                ["phone", "otp", "prefs", "details"].indexOf(step) >= i
                   ? "bg-[var(--hsbc)]"
                   : "bg-[var(--hairline)]"
               }`}
@@ -88,7 +89,7 @@ function Register() {
 
         {step === "phone" && (
           <>
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 1 of 3</p>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 1 of 4</p>
             <h2 className="mt-1 font-display text-[26px] leading-tight text-[var(--ink)]">
               Your mobile number.
             </h2>
@@ -153,7 +154,7 @@ function Register() {
 
         {step === "otp" && (
           <>
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 2 of 3</p>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 2 of 4</p>
             <h2 className="mt-1 font-display text-[26px] leading-tight text-[var(--ink)]">
               Enter your code.
             </h2>
@@ -206,7 +207,7 @@ function Register() {
 
             <button
               disabled={!otpValid}
-              onClick={() => setStep("profile")}
+              onClick={() => setStep("prefs")}
               className={`mt-8 w-full rounded-2xl py-3.5 text-[14px] font-medium ${
                 otpValid
                   ? "bg-[var(--hsbc)] text-[var(--ivory)] active:bg-[var(--hsbc-pressed)]"
@@ -218,11 +219,11 @@ function Register() {
           </>
         )}
 
-        {step === "profile" && (
+        {step === "prefs" && (
           <>
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 3 of 3</p>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 3 of 4</p>
             <h2 className="mt-1 font-display text-[26px] leading-tight text-[var(--ink)]">
-              A little about you.
+              Your preferences.
             </h2>
             <p className="mt-2 text-[13px] text-[var(--taupe)]">
               So we may recommend the right rooms, reads and tables.
@@ -284,6 +285,33 @@ function Register() {
               ))}
             </div>
 
+            <div className="mt-9 flex gap-3">
+              <button
+                onClick={() => { setSkill(""); setInterests([]); setStyle(""); setStep("details"); }}
+                className="flex-1 rounded-2xl border border-[var(--ink)]/15 py-3.5 text-[14px] font-medium text-[var(--ink)] active:bg-[var(--sand)]"
+              >
+                Skip
+              </button>
+              <button
+                onClick={() => setStep("details")}
+                className="flex-1 rounded-2xl bg-[var(--hsbc)] py-3.5 text-[14px] font-medium text-[var(--ivory)] active:bg-[var(--hsbc-pressed)]"
+              >
+                Continue
+              </button>
+            </div>
+          </>
+        )}
+
+        {step === "details" && (
+          <>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 4 of 4</p>
+            <h2 className="mt-1 font-display text-[26px] leading-tight text-[var(--ink)]">
+              A little about you.
+            </h2>
+            <p className="mt-2 text-[13px] text-[var(--taupe)]">
+              Optional — helps us address you and find tables nearby.
+            </p>
+
             <div className="mt-6">
               <div className="flex items-baseline justify-between">
                 <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">
@@ -330,10 +358,10 @@ function Register() {
 
             <div className="mt-9 flex gap-3">
               <button
-                onClick={() => finish({ skipOptional: true })}
+                onClick={() => finish({ skipDetails: true })}
                 className="flex-1 rounded-2xl border border-[var(--ink)]/15 py-3.5 text-[14px] font-medium text-[var(--ink)] active:bg-[var(--sand)]"
               >
-                Skip all
+                Skip
               </button>
               <button
                 onClick={() => finish()}
