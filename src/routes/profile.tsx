@@ -1,17 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Screen } from "@/components/app/screen";
-import { Settings } from "lucide-react";
+import { BellRing, BookmarkCheck, ChevronRight, Pencil, Sparkles } from "lucide-react";
 import profileMe from "@/assets/profile-me.jpg";
-import community1 from "@/assets/community-1.jpg";
-import community2 from "@/assets/community-2.jpg";
-import community3 from "@/assets/community-3.jpg";
-import event1 from "@/assets/event-1.jpg";
-import event2 from "@/assets/event-2.jpg";
-import avatar1 from "@/assets/avatar-1.jpg";
-import avatar2 from "@/assets/avatar-2.jpg";
-import avatar3 from "@/assets/avatar-3.jpg";
-import avatar4 from "@/assets/avatar-4.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useMember, writeMember } from "@/lib/member-store";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({ meta: [{ title: "Profile · HSBC Mahjong Circle" }] }),
@@ -19,96 +11,160 @@ export const Route = createFileRoute("/profile")({
 });
 
 function Profile() {
-  const [tab, setTab] = useState<"posts" | "events" | "friends">("posts");
+  const navigate = useNavigate();
+  const member = useMember();
+  const [editing, setEditing] = useState(false);
+  const [mobile, setMobile] = useState(member.mobile);
+  const [email, setEmail] = useState(member.email);
+
+  useEffect(() => {
+    setMobile(member.mobile);
+    setEmail(member.email);
+  }, [member.mobile, member.email]);
+
+  if (member.guest) {
+    return (
+      <Screen>
+        <div className="flex flex-1 flex-col items-center justify-center px-8 py-16 text-center">
+          <div className="grid h-14 w-14 place-items-center rounded-full bg-[var(--sand)] text-[var(--gold)]">
+            <Sparkles size={22} />
+          </div>
+          <h1 className="mt-5 font-display text-[24px] leading-tight text-[var(--ink)]">
+            Sign up to see your profile.
+          </h1>
+          <p className="mt-3 text-[13px] leading-relaxed text-[var(--taupe)]">
+            Guests may browse the Circle, but profiles are reserved for members.
+          </p>
+          <button
+            onClick={() => {
+              writeMember({ guest: false });
+              navigate({ to: "/register" });
+            }}
+            className="mt-7 w-full max-w-[260px] rounded-2xl bg-[var(--hsbc)] py-3.5 text-[14px] font-medium text-[var(--ivory)] active:bg-[var(--hsbc-pressed)]"
+          >
+            Join the Circle
+          </button>
+        </div>
+      </Screen>
+    );
+  }
+
   return (
     <Screen>
-      <div className="relative px-6 pt-2">
-        <button className="absolute right-5 top-2 grid h-9 w-9 place-items-center rounded-full border border-[var(--hairline)] text-[var(--taupe)]">
-          <Settings size={15} strokeWidth={1.5} />
-        </button>
-
+      <div className="px-6 pt-2">
         <div className="flex flex-col items-center pt-2 text-center">
           <div className="rounded-full border border-[var(--gold)]/60 p-1">
             <img src={profileMe} alt="" className="h-24 w-24 rounded-full object-cover" />
           </div>
-          <h1 className="mt-4 font-display text-[24px] leading-tight text-[var(--ink)]">Aanya Bhatia</h1>
-          <p className="mt-1 text-[12px] text-[var(--taupe)]">Mumbai · Member since 2024</p>
+          <h1 className="mt-4 font-display text-[24px] leading-tight text-[var(--ink)]">{member.name || "—"}</h1>
+          <p className="mt-1 text-[12px] text-[var(--taupe)]">
+            {member.city || "City"} · Member since {member.memberSince}
+          </p>
 
-          <div className="mt-4 flex flex-wrap justify-center gap-2">
-            {["History & Heritage", "Events Near Me", "Etiquette"].map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-[var(--hairline)] bg-[var(--sand)]/60 px-3 py-1 text-[11px] text-[var(--ink)]"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
+          {(member.styles.length > 0 || member.skill) && (
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
+              {member.styles.map((s) => {
+                const primary = s === member.primaryStyle;
+                return (
+                  <span
+                    key={s}
+                    className={`rounded-full border px-3 py-1 text-[11px] ${
+                      primary
+                        ? "border-[var(--gold)] bg-[var(--gold)]/15 text-[var(--ink)]"
+                        : "border-[var(--hairline)] bg-[var(--sand)]/60 text-[var(--ink)]"
+                    }`}
+                  >
+                    {primary && "★ "}{s}
+                  </span>
+                );
+              })}
+              {member.skill && (
+                <span className="rounded-full border border-[var(--hairline)] bg-[var(--ivory)] px-3 py-1 text-[11px] text-[var(--taupe)]">
+                  Skill · {member.skill}
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="gold-rule my-6" />
 
-        <div className="flex justify-center gap-1 text-[12px]">
-          {(["posts", "events", "friends"] as const).map((t) => (
+        {/* Personal details */}
+        <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-4">
+          <div className="flex items-center justify-between">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Personal details</p>
             <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`rounded-full px-4 py-1.5 capitalize transition ${
-                tab === t
-                  ? "bg-[var(--ink)] text-[var(--ivory)]"
-                  : "text-[var(--taupe)]"
-              }`}
+              onClick={() => {
+                if (editing) writeMember({ mobile, email });
+                setEditing(!editing);
+              }}
+              className="flex items-center gap-1 text-[11px] text-[var(--ink)] underline underline-offset-2"
             >
-              {t}
+              {editing ? "Save" : (<><Pencil size={11} /> Edit</>)}
             </button>
-          ))}
+          </div>
+          <div className="mt-3 space-y-3">
+            <div>
+              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">Mobile</label>
+              {editing ? (
+                <input
+                  value={mobile}
+                  onChange={(e) => setMobile(e.target.value)}
+                  className="mt-1 w-full border-0 border-b border-[var(--hairline)] bg-transparent pb-1 text-[14px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
+                />
+              ) : (
+                <p className="mt-1 text-[14px] text-[var(--ink)]">{member.mobile}</p>
+              )}
+            </div>
+            <div>
+              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">Email</label>
+              {editing ? (
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-1 w-full border-0 border-b border-[var(--hairline)] bg-transparent pb-1 text-[14px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
+                />
+              ) : (
+                <p className="mt-1 text-[14px] text-[var(--ink)]">{member.email}</p>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div className="px-5 py-6">
-        {tab === "posts" && (
-          <div className="grid grid-cols-3 gap-1.5">
-            {[community1, community2, community3, event1, event2, community1].map((src, i) => (
-              <div key={i} className="aspect-square overflow-hidden rounded-lg">
-                <img src={src} alt="" loading="lazy" className="h-full w-full object-cover" />
-              </div>
-            ))}
-          </div>
-        )}
+        {/* Quick links */}
+        <div className="mt-4 divide-y divide-[var(--hairline)] rounded-2xl border border-[var(--hairline)] bg-[var(--ivory)]">
+          <Link to="/my-bookings" className="flex items-center justify-between px-4 py-3.5">
+            <span className="flex items-center gap-3 text-[13.5px] text-[var(--ink)]">
+              <BookmarkCheck size={16} className="text-[var(--gold)]" /> My bookings
+            </span>
+            <ChevronRight size={16} className="text-[var(--taupe)]" />
+          </Link>
+          <Link to="/notifications" className="flex items-center justify-between px-4 py-3.5">
+            <span className="flex items-center gap-3 text-[13.5px] text-[var(--ink)]">
+              <BellRing size={16} className="text-[var(--gold)]" /> Manage notifications
+            </span>
+            <ChevronRight size={16} className="text-[var(--taupe)]" />
+          </Link>
+        </div>
 
-        {tab === "events" && (
-          <div className="space-y-3">
-            {[
-              { img: event1, title: "An evening at Khotachiwadi", date: "Sat · 22 Jun" },
-              { img: event2, title: "The Delhi Long Table", date: "Wed · 26 Jun" },
-            ].map((e) => (
-              <div key={e.title} className="flex gap-3 rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-2">
-                <img src={e.img} alt="" className="h-16 w-16 shrink-0 rounded-xl object-cover" />
-                <div className="min-w-0 flex-1 py-1">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--gold)]">{e.date}</p>
-                  <p className="mt-1 truncate font-display text-[14px] text-[var(--ink)]">{e.title}</p>
-                  <p className="mt-0.5 text-[11px] text-[var(--jade)]">Seat held</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {tab === "friends" && (
-          <div className="grid grid-cols-4 gap-3 text-center">
-            {[
-              { img: avatar1, name: "Aarti" },
-              { img: avatar2, name: "Vikram" },
-              { img: avatar3, name: "Naina" },
-              { img: avatar4, name: "Sushila" },
-            ].map((f) => (
-              <div key={f.name}>
-                <img src={f.img} alt="" className="mx-auto h-14 w-14 rounded-full object-cover" />
-                <p className="mt-1.5 text-[11px] text-[var(--ink)]">{f.name}</p>
-              </div>
-            ))}
-          </div>
-        )}
+        {/* HSBC Premier click-out */}
+        <a
+          href="https://www.hsbc.co.in/premier/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 mb-8 block overflow-hidden rounded-2xl border border-[var(--hsbc)]/25 bg-[var(--ink)] p-5 text-[var(--ivory)]"
+        >
+          <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">HSBC Premier</p>
+          <p className="mt-2 font-display text-[18px] leading-snug">
+            Start your HSBC Premier journey.
+          </p>
+          <p className="mt-1 text-[12px] leading-relaxed text-[var(--ivory)]/70">
+            Global privileges, concierge and Circle-only invitations.
+          </p>
+          <span className="mt-3 inline-flex items-center gap-1 text-[12px] text-[var(--ivory)]">
+            Learn more <ChevronRight size={13} />
+          </span>
+        </a>
       </div>
     </Screen>
   );

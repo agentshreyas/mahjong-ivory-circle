@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as MyBookingsRouteImport } from './routes/my-bookings'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as EventsRouteImport } from './routes/events'
@@ -27,6 +28,11 @@ const RegisterRoute = RegisterRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MyBookingsRoute = MyBookingsRouteImport.update({
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
   '/my-bookings': typeof MyBookingsRoute
+  '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
   '/my-bookings': typeof MyBookingsRoute
+  '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
   '/my-bookings': typeof MyBookingsRoute
+  '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/home'
     | '/my-bookings'
+    | '/notifications'
     | '/profile'
     | '/register'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/home'
     | '/my-bookings'
+    | '/notifications'
     | '/profile'
     | '/register'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/home'
     | '/my-bookings'
+    | '/notifications'
     | '/profile'
     | '/register'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   HomeRoute: typeof HomeRoute
   MyBookingsRoute: typeof MyBookingsRoute
+  NotificationsRoute: typeof NotificationsRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
 }
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/my-bookings': {
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   HomeRoute: HomeRoute,
   MyBookingsRoute: MyBookingsRoute,
+  NotificationsRoute: NotificationsRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
 }
