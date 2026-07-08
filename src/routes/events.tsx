@@ -10,6 +10,13 @@ import { useMember } from "@/lib/member-store";
 
 export const Route = createFileRoute("/events")({
   head: () => ({ meta: [{ title: "Events · HSBC Mahjong Circle" }] }),
+  validateSearch: (s: Record<string, unknown>) => ({
+    tab: (s.tab === "hsbc" || s.tab === "mine" || s.tab === "all" ? s.tab : undefined) as
+      | "all"
+      | "hsbc"
+      | "mine"
+      | undefined,
+  }),
   component: Events,
 });
 
@@ -60,7 +67,8 @@ function Events() {
   const member = useMember();
   const bookings = useBookings();
   const cities = ["All cities", ...Array.from(new Set(events.map((e) => e.city)))];
-  const [tab, setTab] = useState<"all" | "hsbc" | "mine">("all");
+  const search = Route.useSearch();
+  const [tab, setTab] = useState<"all" | "hsbc" | "mine">(search.tab ?? "all");
   const [city, setCity] = useState<string>(member.city && cities.includes(member.city) ? member.city : "All cities");
 
   const filtered = events.filter((e) => (city === "All cities" ? true : e.city === city));
