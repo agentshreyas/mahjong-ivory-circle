@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Screen } from "@/components/app/screen";
-import { Play, Clock, Bookmark } from "lucide-react";
+import { Play, Bookmark, MapPin, ChevronRight } from "lucide-react";
 import feedTiles from "@/assets/feed-tiles.jpg";
 import feedGathering from "@/assets/feed-gathering.jpg";
 import ggBanner from "@/assets/gg-banner.jpg";
 import community1 from "@/assets/community-1.jpg";
+import event1 from "@/assets/event-1.jpg";
+import event2 from "@/assets/event-2.jpg";
+import { useMember } from "@/lib/member-store";
 
 export const Route = createFileRoute("/home")({
   head: () => ({ meta: [{ title: "Home · HSBC Mahjong Circle" }] }),
@@ -12,38 +15,21 @@ export const Route = createFileRoute("/home")({
 });
 
 function Home() {
+  const member = useMember();
+  const firstName = (member.name || "there").split(" ")[0];
+  const city = member.city || "Mumbai";
   return (
     <Screen>
       <div className="px-5 pt-2 pb-6">
         <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Thursday · Monsoon edition</p>
         <h1 className="mt-1 font-display text-[28px] font-medium leading-tight text-[var(--ink)]">
-          Good evening, Aanya.
+          Good evening, {firstName}.
         </h1>
         <p className="mt-1 text-[13px] text-[var(--taupe)]">A short edit chosen for you tonight.</p>
       </div>
 
-      {/* This Week in Mahjong */}
-      <section className="mx-5 mb-6 overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--sand)]">
-        <div className="relative h-44 w-full overflow-hidden">
-          <img src={feedGathering} alt="" loading="lazy" className="h-full w-full object-cover" />
-          <span className="absolute left-3 top-3 rounded-full bg-[var(--ivory)]/85 px-2.5 py-1 text-[9px] uppercase tracking-[0.2em] text-[var(--ink)]">
-            This Week in Mahjong
-          </span>
-        </div>
-        <div className="p-4">
-          <h3 className="font-display text-[19px] leading-snug text-[var(--ink)]">
-            Six drawing rooms quietly returned to the table this week.
-          </h3>
-          <div className="mt-3 flex items-center gap-3 text-[11px] text-[var(--taupe)]">
-            <span className="flex items-center gap-1.5"><Clock size={12} /> 3 min read</span>
-            <span className="h-1 w-1 rounded-full bg-[var(--hairline)]" />
-            <span>Editor's letter</span>
-          </div>
-        </div>
-      </section>
-
-      {/* GG featured banner */}
-      <Link to="/collection" className="mx-5 mb-7 block overflow-hidden rounded-3xl border border-[var(--gold)]/40">
+      {/* 1. Gaurav Gupta banner (top) → Collection */}
+      <Link to="/collection" className="mx-5 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40">
         <div className="relative h-48 w-full overflow-hidden">
           <img src={ggBanner} alt="Gaurav Gupta capsule" loading="lazy" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
@@ -52,19 +38,71 @@ function Home() {
             <p className="mt-1 font-display text-[20px] leading-tight text-[var(--ivory)]">
               Gaurav Gupta for the Circle
             </p>
+            <p className="mt-1 flex items-center gap-1 text-[11px] text-[var(--ivory)]/80">
+              View the Collection <ChevronRight size={12} />
+            </p>
           </div>
         </div>
       </Link>
 
-      <div className="px-5">
+      {/* 2. Upcoming events in your city */}
+      <section className="px-5">
         <div className="flex items-end justify-between">
-          <h2 className="font-display text-[18px] text-[var(--ink)]">For your evening</h2>
+          <h2 className="font-display text-[18px] text-[var(--ink)]">Upcoming in {city}</h2>
+          <Link to="/events" className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]">All events</Link>
+        </div>
+        <div className="gold-rule mt-2" />
+        <div className="mt-4 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {[
+            { img: event1, title: "An evening at Khotachiwadi", date: "Sat · 22 Jun · 7pm", venue: `${city}` },
+            { img: event2, title: "The Long Table", date: "Wed · 26 Jun · 6:30pm", venue: `${city}` },
+          ].map((e) => (
+            <Link key={e.title} to="/event-detail" className="w-[240px] shrink-0 overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/50">
+              <img src={e.img} alt="" className="h-28 w-full object-cover" />
+              <div className="p-3">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">{e.date}</p>
+                <p className="mt-1 font-display text-[14px] leading-tight text-[var(--ink)]">{e.title}</p>
+                <p className="mt-1 flex items-center gap-1 text-[11px] text-[var(--taupe)]"><MapPin size={11} /> {e.venue}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. HSBC Circle teaser */}
+      <section className="mx-5 mt-6 overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--ink)] text-[var(--ivory)]">
+        <div className="p-5">
+          <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">HSBC Premier</p>
+          <h3 className="mt-2 font-display text-[20px] leading-tight">
+            A quieter side of banking, for the Circle.
+          </h3>
+          <p className="mt-2 text-[12.5px] leading-relaxed text-[var(--ivory)]/70">
+            Concierge, global privileges and invitations to Circle-only tables.
+          </p>
+          <button className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--ivory)]/40 px-4 py-2 text-[12px] text-[var(--ivory)]">
+            Explore HSBC Premier <ChevronRight size={13} />
+          </button>
+        </div>
+      </section>
+
+      {/* 4. Magazine feed */}
+      <div className="mt-7 px-5">
+        <div className="flex items-end justify-between">
+          <h2 className="font-display text-[18px] text-[var(--ink)]">The Magazine</h2>
           <button className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]">Filter</button>
         </div>
         <div className="gold-rule mt-2" />
       </div>
-
       <div className="space-y-6 px-5 pb-6 pt-5">
+        <Link to="/article" className="block">
+          <FeedArticle
+            img={community1}
+            kind="Heritage"
+            time="6 min read"
+            title="A short history of the bamboo tile — from Shanghai parlours to Bombay verandas"
+            author="Niharika Sen"
+          />
+        </Link>
         <FeedVideo
           img={feedTiles}
           kind="Short film"
@@ -74,11 +112,11 @@ function Home() {
         />
         <Link to="/article" className="block">
           <FeedArticle
-            img={community1}
-            kind="Heritage"
-            time="6 min read"
-            title="A short history of the bamboo tile — from Shanghai parlours to Bombay verandas"
-            author="Niharika Sen"
+            img={feedGathering}
+            kind="Editor's letter"
+            time="3 min read"
+            title="Six drawing rooms quietly returned to the table this week"
+            author="Editorial"
           />
         </Link>
         <FeedVideo

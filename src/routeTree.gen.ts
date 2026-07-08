@@ -11,11 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as MyBookingsRouteImport } from './routes/my-bookings'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as EventDetailRouteImport } from './routes/event-detail'
-import { Route as CreatePostRouteImport } from './routes/create-post'
-import { Route as CommunityRouteImport } from './routes/community'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
@@ -28,6 +28,16 @@ const RegisterRoute = RegisterRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyBookingsRoute = MyBookingsRouteImport.update({
+  id: '/my-bookings',
+  path: '/my-bookings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -43,16 +53,6 @@ const EventsRoute = EventsRouteImport.update({
 const EventDetailRoute = EventDetailRouteImport.update({
   id: '/event-detail',
   path: '/event-detail',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CreatePostRoute = CreatePostRouteImport.update({
-  id: '/create-post',
-  path: '/create-post',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommunityRoute = CommunityRouteImport.update({
-  id: '/community',
-  path: '/community',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CollectionRoute = CollectionRouteImport.update({
@@ -75,11 +75,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
-  '/community': typeof CommunityRoute
-  '/create-post': typeof CreatePostRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
+  '/my-bookings': typeof MyBookingsRoute
+  '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -87,11 +87,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
-  '/community': typeof CommunityRoute
-  '/create-post': typeof CreatePostRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
+  '/my-bookings': typeof MyBookingsRoute
+  '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -100,11 +100,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
-  '/community': typeof CommunityRoute
-  '/create-post': typeof CreatePostRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
+  '/my-bookings': typeof MyBookingsRoute
+  '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -114,11 +114,11 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/collection'
-    | '/community'
-    | '/create-post'
     | '/event-detail'
     | '/events'
     | '/home'
+    | '/my-bookings'
+    | '/notifications'
     | '/profile'
     | '/register'
   fileRoutesByTo: FileRoutesByTo
@@ -126,11 +126,11 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/collection'
-    | '/community'
-    | '/create-post'
     | '/event-detail'
     | '/events'
     | '/home'
+    | '/my-bookings'
+    | '/notifications'
     | '/profile'
     | '/register'
   id:
@@ -138,11 +138,11 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/collection'
-    | '/community'
-    | '/create-post'
     | '/event-detail'
     | '/events'
     | '/home'
+    | '/my-bookings'
+    | '/notifications'
     | '/profile'
     | '/register'
   fileRoutesById: FileRoutesById
@@ -151,11 +151,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticleRoute: typeof ArticleRoute
   CollectionRoute: typeof CollectionRoute
-  CommunityRoute: typeof CommunityRoute
-  CreatePostRoute: typeof CreatePostRoute
   EventDetailRoute: typeof EventDetailRoute
   EventsRoute: typeof EventsRoute
   HomeRoute: typeof HomeRoute
+  MyBookingsRoute: typeof MyBookingsRoute
+  NotificationsRoute: typeof NotificationsRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
 }
@@ -174,6 +174,20 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-bookings': {
+      id: '/my-bookings'
+      path: '/my-bookings'
+      fullPath: '/my-bookings'
+      preLoaderRoute: typeof MyBookingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home': {
@@ -195,20 +209,6 @@ declare module '@tanstack/react-router' {
       path: '/event-detail'
       fullPath: '/event-detail'
       preLoaderRoute: typeof EventDetailRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/create-post': {
-      id: '/create-post'
-      path: '/create-post'
-      fullPath: '/create-post'
-      preLoaderRoute: typeof CreatePostRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/community': {
-      id: '/community'
-      path: '/community'
-      fullPath: '/community'
-      preLoaderRoute: typeof CommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/collection': {
@@ -239,11 +239,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticleRoute: ArticleRoute,
   CollectionRoute: CollectionRoute,
-  CommunityRoute: CommunityRoute,
-  CreatePostRoute: CreatePostRoute,
   EventDetailRoute: EventDetailRoute,
   EventsRoute: EventsRoute,
   HomeRoute: HomeRoute,
+  MyBookingsRoute: MyBookingsRoute,
+  NotificationsRoute: NotificationsRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
 }

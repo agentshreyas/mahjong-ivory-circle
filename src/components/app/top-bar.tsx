@@ -27,14 +27,8 @@ export function TopBar({ title, eyebrow, back, transparent }: Props) {
           >
             <ChevronLeft size={20} />
           </button>
-        ) : (
-          <Link to="/home" className="shrink-0">
-            <span className="font-display text-[15px] font-medium tracking-tight text-[var(--ink)]">
-              HSBC <span className="text-[var(--hsbc)]">·</span> Mahjong Circle
-            </span>
-          </Link>
-        )}
-        {title && (
+        ) : null}
+        {title ? (
           <div className="min-w-0">
             {eyebrow && (
               <p className="truncate text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
@@ -43,14 +37,23 @@ export function TopBar({ title, eyebrow, back, transparent }: Props) {
             )}
             <h1 className="truncate font-display text-[17px] font-medium text-[var(--ink)]">{title}</h1>
           </div>
+        ) : (
+          !back && (
+            <Link to="/home" className="shrink-0">
+              <span className="font-display text-[16px] font-medium tracking-tight text-[var(--ink)]">
+                Mahjong Circle
+              </span>
+            </Link>
+          )
         )}
       </div>
       <button
         onClick={() => setOpen(true)}
-        className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[var(--hairline)] bg-[var(--ivory)] text-[var(--ink)] shadow-sm transition hover:bg-[var(--sand)]"
+        className="relative grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[var(--hsbc)] text-[var(--ivory)] shadow-[0_6px_18px_-6px_rgba(219,0,17,0.55)] ring-2 ring-[var(--hsbc)]/15 transition active:bg-[var(--hsbc-pressed)]"
         aria-label="Voice search"
       >
-        <Mic size={16} strokeWidth={1.75} />
+        <Mic size={17} strokeWidth={2} />
+        <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-[var(--gold)] ring-2 ring-[var(--ivory)]" />
       </button>
     </header>
   );
