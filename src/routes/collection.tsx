@@ -12,31 +12,31 @@ function Collection() {
   return (
     <Screen hideTop={false} eyebrow="" title="">
       {/* Branding header */}
-      <section className="px-8 pt-8 pb-12">
-        <div className="mx-auto flex max-w-[320px] items-center justify-between">
-          <span className="font-display text-[19px] font-normal leading-none tracking-tight text-[var(--ink)]">
+      <section className="px-6 pt-6 pb-8">
+        <div className="mx-auto flex max-w-[280px] items-center justify-center gap-4">
+          <span className="font-display text-[16px] font-normal leading-none tracking-tight text-[var(--ink)]">
             Gaurav Gupta
           </span>
           <InfinityIcon
-            size={20}
+            size={16}
             strokeWidth={1.25}
-            className="text-[var(--gold)]"
+            className="shrink-0 text-[var(--gold)]"
             aria-hidden
           />
-          <span className="font-display text-[19px] font-normal leading-none tracking-tight text-[var(--hsbc)]">
-            HSBC
+          <span className="font-display text-[16px] font-normal leading-none tracking-tight text-[var(--hsbc)]">
+            HSBC India
           </span>
         </div>
 
-        <div className="mt-10 flex justify-center">
-          <span className="border border-[var(--hairline)] px-3 py-1 text-[9px] uppercase tracking-[0.32em] text-[var(--taupe)]">
+        <div className="mt-5 flex justify-center">
+          <span className="text-[9px] uppercase tracking-[0.28em] text-[var(--taupe)]">
             A capsule for the Circle
           </span>
         </div>
 
-        <div className="mx-auto mt-10 h-px w-10 bg-[var(--hairline)]" />
+        <div className="mx-auto mt-5 h-px w-8 bg-[var(--hairline)]" />
 
-        <p className="mx-auto mt-10 max-w-[280px] text-center text-[14px] leading-[1.7] text-[var(--taupe)]/90">
+        <p className="mx-auto mt-5 max-w-[260px] text-center text-[13px] leading-[1.65] text-[var(--taupe)]/90">
           Two Mahjong boxes, made to order. Each celebrates the geometry of the tile —
           one ceremonial, one made to travel.
         </p>
