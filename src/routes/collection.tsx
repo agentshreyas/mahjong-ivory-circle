@@ -12,35 +12,35 @@ function Collection() {
   return (
     <Screen hideTop={false} eyebrow="" title="">
       {/* Branding header */}
-      <div className="px-6 pt-1 pb-5">
-        <div className="flex items-center justify-center gap-3">
-          <span className="font-display text-[22px] font-medium tracking-tight text-[var(--ink)]">
+      <section className="px-8 pt-8 pb-12">
+        <div className="mx-auto flex max-w-[320px] items-center justify-between">
+          <span className="font-display text-[19px] font-normal leading-none tracking-tight text-[var(--ink)]">
             Gaurav Gupta
           </span>
-          <span
+          <InfinityIcon
+            size={20}
+            strokeWidth={1.25}
+            className="text-[var(--gold)]"
             aria-hidden
-            className="grid h-7 w-7 place-items-center rounded-full border border-[var(--gold)]/60 text-[var(--gold)]"
-          >
-            <InfinityIcon size={14} strokeWidth={1.75} />
-          </span>
-          <span className="font-display text-[22px] font-medium tracking-tight text-[var(--hsbc)]">
+          />
+          <span className="font-display text-[19px] font-normal leading-none tracking-tight text-[var(--hsbc)]">
             HSBC
           </span>
         </div>
 
-        <div className="mt-3 flex justify-center">
-          <span className="rounded-full border border-[var(--hairline)] bg-[var(--sand)]/60 px-2.5 py-0.5 text-[9px] uppercase tracking-[0.2em] text-[var(--taupe)]">
+        <div className="mt-10 flex justify-center">
+          <span className="border border-[var(--hairline)] px-3 py-1 text-[9px] uppercase tracking-[0.32em] text-[var(--taupe)]">
             A capsule for the Circle
           </span>
         </div>
 
-        <div className="gold-rule mx-auto my-5 w-24" />
+        <div className="mx-auto mt-10 h-px w-10 bg-[var(--hairline)]" />
 
-        <p className="text-center text-[13px] leading-relaxed text-[var(--taupe)]">
+        <p className="mx-auto mt-10 max-w-[280px] text-center text-[14px] leading-[1.7] text-[var(--taupe)]/90">
           Two Mahjong boxes, made to order. Each celebrates the geometry of the tile —
           one ceremonial, one made to travel.
         </p>
-      </div>
+      </section>
 
       {/* Product cards */}
       <div className="space-y-8 px-5 pb-6">
