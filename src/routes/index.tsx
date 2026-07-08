@@ -26,8 +26,8 @@ function Index() {
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--ivory)]" />
-        <div className="absolute left-4 top-4 rounded-full border border-[var(--ivory)]/40 bg-black/20 px-2.5 py-1 text-[9px] uppercase tracking-[0.22em] text-[var(--ivory)]/90 backdrop-blur">
-          By Invitation
+        <div className="absolute left-4 top-4 grid h-9 w-9 place-items-center rounded-md border border-[var(--ivory)]/50 bg-[var(--ivory)]/90 text-[20px] leading-none text-[var(--hsbc)] shadow-sm backdrop-blur">
+          🀄
         </div>
       </div>
 
