@@ -341,9 +341,9 @@ function Register() {
             <div className="mt-9 flex gap-3">
               <button
                 onClick={() => finish({ skipDetails: true })}
-                className="flex-1 rounded-2xl border border-[var(--ink)]/15 py-3.5 text-[14px] font-medium text-[var(--ink)] active:bg-[var(--sand)]"
+                className="flex-1 rounded-2xl bg-[var(--hsbc)]/70 py-3.5 text-[14px] font-medium text-[var(--ivory)] active:bg-[var(--hsbc)]/80"
               >
-                Skip
+                Skip and enter
               </button>
               <button
                 onClick={() => finish()}
