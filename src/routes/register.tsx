@@ -89,7 +89,6 @@ function Register() {
 
         {step === "phone" && (
           <>
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 1 of 4</p>
             <h2 className="mt-1 font-display text-[26px] leading-tight text-[var(--ink)]">
               Your mobile number.
             </h2>
@@ -154,7 +153,6 @@ function Register() {
 
         {step === "otp" && (
           <>
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 2 of 4</p>
             <h2 className="mt-1 font-display text-[26px] leading-tight text-[var(--ink)]">
               Enter your code.
             </h2>
@@ -221,7 +219,6 @@ function Register() {
 
         {step === "prefs" && (
           <>
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 3 of 4</p>
             <h2 className="mt-1 font-display text-[26px] leading-tight text-[var(--ink)]">
               Your preferences.
             </h2>
@@ -304,7 +301,6 @@ function Register() {
 
         {step === "details" && (
           <>
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Step 4 of 4</p>
             <h2 className="mt-1 font-display text-[26px] leading-tight text-[var(--ink)]">
               A little about you.
             </h2>
