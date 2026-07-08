@@ -97,7 +97,6 @@ function Home() {
       <div className="mt-7 px-5">
         <div className="flex items-end justify-between">
           <h2 className="font-display text-[18px] text-[var(--ink)]">The Magazine</h2>
-          <button className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]">Filter</button>
         </div>
         <div className="gold-rule mt-2" />
       </div>
