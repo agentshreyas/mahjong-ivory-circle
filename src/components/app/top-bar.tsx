@@ -27,17 +27,8 @@ export function TopBar({ title, eyebrow, back, transparent }: Props) {
           >
             <ChevronLeft size={20} />
           </button>
-        ) : (
-          <Link to="/home" className="shrink-0">
-            <span className="font-display text-[15px] font-medium tracking-tight text-[var(--ink)]">
-              Mahjong Circle
-            </span>
-          </Link>
-        )}
-        {title && !back && (
-          <div className="min-w-0" />
-        )}
-        {title && back && (
+        ) : null}
+        {title ? (
           <div className="min-w-0">
             {eyebrow && (
               <p className="truncate text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
@@ -46,6 +37,14 @@ export function TopBar({ title, eyebrow, back, transparent }: Props) {
             )}
             <h1 className="truncate font-display text-[17px] font-medium text-[var(--ink)]">{title}</h1>
           </div>
+        ) : (
+          !back && (
+            <Link to="/home" className="shrink-0">
+              <span className="font-display text-[16px] font-medium tracking-tight text-[var(--ink)]">
+                Mahjong Circle
+              </span>
+            </Link>
+          )
         )}
       </div>
       <button
