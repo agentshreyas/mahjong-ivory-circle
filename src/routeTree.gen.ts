@@ -14,8 +14,6 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as EventDetailRouteImport } from './routes/event-detail'
-import { Route as CreatePostRouteImport } from './routes/create-post'
-import { Route as CommunityRouteImport } from './routes/community'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
@@ -45,16 +43,6 @@ const EventDetailRoute = EventDetailRouteImport.update({
   path: '/event-detail',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CreatePostRoute = CreatePostRouteImport.update({
-  id: '/create-post',
-  path: '/create-post',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommunityRoute = CommunityRouteImport.update({
-  id: '/community',
-  path: '/community',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CollectionRoute = CollectionRouteImport.update({
   id: '/collection',
   path: '/collection',
@@ -75,8 +63,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
-  '/community': typeof CommunityRoute
-  '/create-post': typeof CreatePostRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
@@ -87,8 +73,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
-  '/community': typeof CommunityRoute
-  '/create-post': typeof CreatePostRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
@@ -100,8 +84,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
-  '/community': typeof CommunityRoute
-  '/create-post': typeof CreatePostRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
@@ -114,8 +96,6 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/collection'
-    | '/community'
-    | '/create-post'
     | '/event-detail'
     | '/events'
     | '/home'
@@ -126,8 +106,6 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/collection'
-    | '/community'
-    | '/create-post'
     | '/event-detail'
     | '/events'
     | '/home'
@@ -138,8 +116,6 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/collection'
-    | '/community'
-    | '/create-post'
     | '/event-detail'
     | '/events'
     | '/home'
@@ -151,8 +127,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticleRoute: typeof ArticleRoute
   CollectionRoute: typeof CollectionRoute
-  CommunityRoute: typeof CommunityRoute
-  CreatePostRoute: typeof CreatePostRoute
   EventDetailRoute: typeof EventDetailRoute
   EventsRoute: typeof EventsRoute
   HomeRoute: typeof HomeRoute
@@ -197,20 +171,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventDetailRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/create-post': {
-      id: '/create-post'
-      path: '/create-post'
-      fullPath: '/create-post'
-      preLoaderRoute: typeof CreatePostRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/community': {
-      id: '/community'
-      path: '/community'
-      fullPath: '/community'
-      preLoaderRoute: typeof CommunityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/collection': {
       id: '/collection'
       path: '/collection'
@@ -239,8 +199,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticleRoute: ArticleRoute,
   CollectionRoute: CollectionRoute,
-  CommunityRoute: CommunityRoute,
-  CreatePostRoute: CreatePostRoute,
   EventDetailRoute: EventDetailRoute,
   EventsRoute: EventsRoute,
   HomeRoute: HomeRoute,
