@@ -313,18 +313,9 @@ function Register() {
             </p>
 
             <div className="mt-6">
-              <div className="flex items-baseline justify-between">
-                <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">
-                  City <span className="text-[var(--taupe)]/70">· optional</span>
-                </label>
-                <button
-                  type="button"
-                  onClick={() => setCity("")}
-                  className="text-[11px] text-[var(--taupe)] underline underline-offset-2"
-                >
-                  Skip
-                </button>
-              </div>
+              <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">
+                City <span className="text-[var(--taupe)]/70">· optional</span>
+              </label>
               <select
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
@@ -336,18 +327,9 @@ function Register() {
             </div>
 
             <div className="mt-6">
-              <div className="flex items-baseline justify-between">
-                <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">
-                  Name <span className="text-[var(--taupe)]/70">· optional</span>
-                </label>
-                <button
-                  type="button"
-                  onClick={() => setName("")}
-                  className="text-[11px] text-[var(--taupe)] underline underline-offset-2"
-                >
-                  Skip
-                </button>
-              </div>
+              <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">
+                Name <span className="text-[var(--taupe)]/70">· optional</span>
+              </label>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
