@@ -17,7 +17,9 @@ export const Route = createFileRoute("/home")({
 function Home() {
   const member = useMember();
   const firstName = (member.name || "there").split(" ")[0];
-  const city = member.city || "Mumbai";
+  const hasCity = !member.guest && !!member.city;
+  const city = member.city;
+  const cities = ["Mumbai", "Delhi", "Bengaluru"];
   return (
     <Screen>
       <div className="px-5 pt-2 pb-6">
@@ -48,14 +50,16 @@ function Home() {
       {/* 2. Upcoming events in your city */}
       <section className="px-5">
         <div className="flex items-end justify-between">
-          <h2 className="font-display text-[18px] text-[var(--ink)]">Upcoming in {city}</h2>
+          <h2 className="font-display text-[18px] text-[var(--ink)]">
+            {hasCity ? `Upcoming in ${city}` : "Upcoming events"}
+          </h2>
           <Link to="/events" className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]">All events</Link>
         </div>
         <div className="gold-rule mt-2" />
         <div className="mt-4 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[
-            { img: event1, title: "An evening at Khotachiwadi", date: "Sat · 22 Jun · 7pm", venue: `${city}` },
-            { img: event2, title: "The Long Table", date: "Wed · 26 Jun · 6:30pm", venue: `${city}` },
+            { img: event1, title: "An evening at Khotachiwadi", date: "Sat · 22 Jun · 7pm", venue: hasCity ? city : cities[0] },
+            { img: event2, title: "The Long Table", date: "Wed · 26 Jun · 6:30pm", venue: hasCity ? city : cities[1] },
           ].map((e) => (
             <Link key={e.title} to="/event-detail" className="w-[240px] shrink-0 overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/50">
               <img src={e.img} alt="" className="h-28 w-full object-cover" />
