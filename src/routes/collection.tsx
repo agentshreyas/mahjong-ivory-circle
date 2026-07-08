@@ -46,7 +46,7 @@ function Collection() {
       </div>
 
       <div className="space-y-8 px-5 pb-6">
-        {looks.map((l, i) => (
+        {looks.map((l) => (
           <article key={l.name}>
             <div className="relative overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--sand)]/50">
               <img src={l.img} alt={l.name} loading="lazy" className="aspect-[3/4] w-full object-cover" />
