@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import heroSplash from "@/assets/hero-splash.jpg";
+import mahjongMark from "@/assets/mahjong-mark.png";
 import { writeMember } from "@/lib/member-store";
 
 export const Route = createFileRoute("/")({
@@ -26,9 +27,13 @@ function Index() {
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--ivory)]" />
-        <div className="absolute left-4 top-4 grid h-9 w-9 place-items-center rounded-md border border-[var(--ivory)]/50 bg-[var(--ivory)]/90 text-[20px] leading-none text-[var(--hsbc)] shadow-sm backdrop-blur">
-          🀄
-        </div>
+        <img
+          src={mahjongMark}
+          alt="Mahjong tile"
+          width={512}
+          height={512}
+          className="absolute left-4 top-4 h-11 w-11 object-contain drop-shadow-md"
+        />
       </div>
 
       <div className="flex flex-1 flex-col items-center px-7 pt-5 text-center">
