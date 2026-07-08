@@ -3,7 +3,7 @@ import { Screen } from "@/components/app/screen";
 import { ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { z } from "zod";
-import { getProduct, products } from "@/lib/products";
+import { getProduct, products, type Product } from "@/lib/products";
 
 const searchSchema = z.object({ id: z.string().optional() });
 
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/product")({
 
 function ProductPage() {
   const { id } = Route.useSearch();
-  const product = (id && getProduct(id)) || products[0];
+  const product: Product = (id && getProduct(id)) || products[0];
   const [idx, setIdx] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
 
