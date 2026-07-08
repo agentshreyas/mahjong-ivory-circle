@@ -5,7 +5,9 @@ export function PhoneFrame({ children }: { children: ReactNode }) {
     <div className="min-h-screen w-full bg-[#1f1a16] py-6 sm:py-10 flex items-start justify-center">
       <div className="relative w-[390px] max-w-full">
         {/* Phone shell */}
-        <div className="relative mx-auto h-[844px] w-[390px] max-w-full overflow-hidden rounded-[44px] border-[10px] border-[#0e0a08] bg-[var(--ivory)] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
+        <div className="relative mx-auto h-[844px] w-[390px] max-w-full overflow-hidden rounded-[44px] border-[10px] border-[#0e0a08] bg-black shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
+          {/* Status bar strip (black behind the dynamic island) */}
+          <div className="absolute inset-x-0 top-0 z-20 h-[34px] w-full bg-black" />
           {/* Dynamic island */}
           <div className="pointer-events-none absolute left-1/2 top-2 z-30 h-[26px] w-[110px] -translate-x-1/2 rounded-full bg-black" />
           {/* Status bar spacer */}
