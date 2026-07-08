@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import heroSplash from "@/assets/hero-splash.jpg";
+import { writeMember } from "@/lib/member-store";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -15,6 +15,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const navigate = useNavigate();
   return (
     <div className="relative flex h-full flex-col bg-[var(--ivory)]">
       {/* GG hero */}
@@ -44,16 +45,20 @@ function Index() {
         <div className="mt-auto w-full space-y-3 pb-8 pt-8">
           <Link
             to="/register"
+            onClick={() => writeMember({ guest: false })}
             className="block w-full rounded-2xl bg-[var(--hsbc)] py-3.5 text-center text-[14px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_8px_24px_-8px_rgba(219,0,17,0.45)] transition active:bg-[var(--hsbc-pressed)]"
           >
             Get Started
           </Link>
-          <Link
-            to="/home"
+          <button
+            onClick={() => {
+              writeMember({ guest: true });
+              navigate({ to: "/home" });
+            }}
             className="block w-full rounded-2xl border border-[var(--ink)]/15 bg-transparent py-3.5 text-center text-[14px] font-medium text-[var(--ink)] transition active:bg-[var(--sand)]"
           >
             Explore as Guest
-          </Link>
+          </button>
           <p className="pt-2 text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">
             No bank login required
           </p>
