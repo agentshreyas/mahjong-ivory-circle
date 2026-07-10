@@ -23,7 +23,7 @@ export function BottomNav() {
         <Link
           to="/premier"
           aria-label="HSBC Premier"
-          className={`flex flex-1 flex-col items-center gap-1 py-1 ${
+          className={`flex flex-1 flex-col items-center gap-1 rounded-full border-2 border-[var(--hsbc)] py-1 ${
             premierActive ? "brightness-110" : ""
           }`}
         >
