@@ -37,7 +37,7 @@ export function BottomNav() {
               premierActive ? "text-[var(--hsbc)] font-medium" : "text-[var(--hsbc)]/80"
             }`}
           >
-            HSBC Premier
+            PREMIER
           </span>
         </Link>
 
