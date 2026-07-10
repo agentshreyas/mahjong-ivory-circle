@@ -22,12 +22,20 @@ export function BottomNav() {
         <Link
           to="/premier"
           aria-label="HSBC Premier"
-          className={`relative -mt-8 flex h-14 w-14 flex-col items-center justify-center rounded-full bg-[var(--hsbc)] text-[var(--ivory)] shadow-[0_10px_24px_-6px_rgba(219,0,17,0.55)] ring-4 ring-[var(--ivory)] transition active:scale-95 ${
+          className={`flex flex-1 flex-col items-center gap-1 py-1 ${
             premierActive ? "brightness-110" : ""
           }`}
         >
-          <Crown size={20} strokeWidth={2} />
-          <span className="mt-0.5 text-[8px] font-semibold uppercase tracking-[0.14em]">
+          <Crown
+            size={20}
+            strokeWidth={premierActive ? 2 : 1.75}
+            className="text-[var(--hsbc)]"
+          />
+          <span
+            className={`text-[10px] tracking-wide ${
+              premierActive ? "text-[var(--hsbc)] font-medium" : "text-[var(--hsbc)]/80"
+            }`}
+          >
             Premier
           </span>
         </Link>
