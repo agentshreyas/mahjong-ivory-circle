@@ -1,21 +1,19 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, CalendarDays, Sparkles, User } from "lucide-react";
 
-// HSBC hexagon mark: red hexagon with a white hourglass cut-out.
-function HsbcMark({ size = 20 }: { size?: number }) {
+// HSBC hexagon mark: red rectangle with a white horizontal hourglass ("bowtie") cut-out.
+function HsbcMark({ size = 22 }: { size?: number }) {
   return (
     <svg
       width={size}
-      height={size}
-      viewBox="0 0 100 100"
+      height={(size * 2) / 3}
+      viewBox="0 0 120 80"
       aria-hidden="true"
       focusable="false"
     >
-      <polygon points="50,0 100,50 50,100 0,50" fill="#DB0011" />
-      <polygon points="50,0 100,50 50,50" fill="#ffffff" />
-      <polygon points="50,50 100,50 50,100" fill="#DB0011" />
-      <polygon points="0,50 50,50 50,100" fill="#ffffff" />
-      <polygon points="0,50 50,0 50,50" fill="#DB0011" />
+      <rect width="120" height="80" fill="#DB0011" />
+      <polygon points="0,0 60,40 0,80" fill="#ffffff" />
+      <polygon points="120,0 60,40 120,80" fill="#ffffff" />
     </svg>
   );
 }
