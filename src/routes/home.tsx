@@ -25,7 +25,7 @@ function Home() {
       <div className="px-5 pt-2 pb-6">
         <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Thursday · Monsoon edition</p>
         <h1 className="mt-1 font-display text-[28px] font-medium leading-tight text-[var(--ink)]">
-          Good evening, {firstName}.
+          Welcome to Mahjong Circle, {firstName}.
         </h1>
         <p className="mt-1 text-[13px] text-[var(--taupe)]">A short edit chosen for you tonight.</p>
       </div>
