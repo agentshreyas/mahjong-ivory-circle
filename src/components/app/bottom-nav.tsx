@@ -1,5 +1,24 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, CalendarDays, Sparkles, User, Crown } from "lucide-react";
+import { Home, CalendarDays, Sparkles, User } from "lucide-react";
+
+// HSBC hexagon mark: red hexagon with a white hourglass cut-out.
+function HsbcMark({ size = 20 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <polygon points="50,0 100,50 50,100 0,50" fill="#DB0011" />
+      <polygon points="50,0 100,50 50,50" fill="#ffffff" />
+      <polygon points="50,50 100,50 50,100" fill="#DB0011" />
+      <polygon points="0,50 50,50 50,100" fill="#ffffff" />
+      <polygon points="0,50 50,0 50,50" fill="#DB0011" />
+    </svg>
+  );
+}
 
 const leftTabs = [
   { to: "/home", label: "Home", icon: Home },
@@ -26,11 +45,7 @@ export function BottomNav() {
             premierActive ? "brightness-110" : ""
           }`}
         >
-          <Crown
-            size={20}
-            strokeWidth={premierActive ? 2 : 1.75}
-            className="text-[var(--hsbc)]"
-          />
+          <HsbcMark size={20} />
           <span
             className={`text-[10px] tracking-wide ${
               premierActive ? "text-[var(--hsbc)] font-medium" : "text-[var(--hsbc)]/80"
