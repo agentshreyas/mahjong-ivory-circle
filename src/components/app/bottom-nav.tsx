@@ -11,7 +11,7 @@ const tabs = [
 export function BottomNav() {
   const path = useRouterState({ select: (s) => s.location.pathname });
   return (
-    <nav className="sticky bottom-0 z-20 border-t border-[var(--hairline)] bg-[var(--ivory)]/95 px-2 pb-3 pt-2 backdrop-blur">
+    <nav className="sticky bottom-4 z-20 border-t border-[var(--hairline)] bg-[var(--ivory)]/95 px-2 pb-2 pt-2 backdrop-blur">
       <div className="flex items-stretch justify-between">
         {tabs.map((t) => {
           const active = path === t.to || path.startsWith(t.to + "/");
