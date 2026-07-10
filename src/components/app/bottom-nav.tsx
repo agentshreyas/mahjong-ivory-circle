@@ -30,7 +30,7 @@ export function BottomNav() {
           <img
             src={hsbcLogo.url}
             alt="HSBC"
-            className="h-4 w-auto"
+            className="h-7 w-auto"
           />
           <span
             className={`text-[10px] tracking-wide ${
