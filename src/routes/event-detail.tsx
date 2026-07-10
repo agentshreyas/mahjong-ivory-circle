@@ -116,7 +116,7 @@ function EventDetail() {
                 : "bg-[var(--hsbc)] text-[var(--ivory)] shadow-[0_8px_24px_-8px_rgba(219,0,17,0.4)] active:bg-[var(--hsbc-pressed)]"
             }`}
           >
-            {member.guest ? "Sign up to express interest" : rsvp ? "Interest registered" : "Express interest"}
+            {member.guest ? "Sign up to join waitlist" : rsvp ? "Waitlist joined" : "Join the Waitlist"}
           </button>
           {rsvp ? (
             <p className="mt-3 text-center text-[12px] text-[var(--taupe)]">
