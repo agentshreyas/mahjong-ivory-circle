@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, CalendarDays, Sparkles, User } from "lucide-react";
-import hsbcLogo from "@/assets/hsbc-logo.png";
+import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
 
 const leftTabs = [
   { to: "/home", label: "Home", icon: Home },
@@ -27,7 +27,11 @@ export function BottomNav() {
             premierActive ? "brightness-110" : ""
           }`}
         >
-          <img src={hsbcLogo} alt="HSBC" className="h-7 w-auto" />
+          <img
+            src={hsbcLogo.url}
+            alt="HSBC"
+            className="h-7 w-auto"
+          />
           <span
             className={`text-[10px] tracking-wide ${
               premierActive ? "text-[var(--hsbc)] font-medium" : "text-[var(--hsbc)]/80"
