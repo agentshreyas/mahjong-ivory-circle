@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Screen } from "@/components/app/screen";
 import { BellRing, BookmarkCheck, ChevronRight, Pencil, Sparkles } from "lucide-react";
-import profileMe from "@/assets/profile-me.jpg";
+import profileMe from "@/assets/profile-avatar.webp.asset.json";
 import { useEffect, useState } from "react";
 import { useMember, writeMember } from "@/lib/member-store";
 
@@ -60,7 +60,7 @@ function Profile() {
       <div className="px-6 pt-2">
         <div className="flex flex-col items-center pt-2 text-center">
           <div className="rounded-full border border-[var(--gold)]/60 p-1">
-            <img src={profileMe} alt="" className="h-24 w-24 rounded-full object-cover" />
+            <img src={profileMe.url} alt="" className="h-24 w-24 rounded-full object-cover" />
           </div>
           <h1 className="mt-4 font-display text-[24px] leading-tight text-[var(--ink)]">{member.name || "—"}</h1>
           <p className="mt-1 text-[12px] text-[var(--taupe)]">
