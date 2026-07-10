@@ -1,22 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, CalendarDays, Sparkles, User } from "lucide-react";
-
-// HSBC hexagon mark: red rectangle with a white horizontal hourglass ("bowtie") cut-out.
-function HsbcMark({ size = 22 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={(size * 2) / 3}
-      viewBox="0 0 120 80"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <rect width="120" height="80" fill="#DB0011" />
-      <polygon points="0,0 60,40 0,80" fill="#ffffff" />
-      <polygon points="120,0 60,40 120,80" fill="#ffffff" />
-    </svg>
-  );
-}
+import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
 
 const leftTabs = [
   { to: "/home", label: "Home", icon: Home },
@@ -43,13 +27,17 @@ export function BottomNav() {
             premierActive ? "brightness-110" : ""
           }`}
         >
-          <HsbcMark size={20} />
+          <img
+            src={hsbcLogo.url}
+            alt="HSBC"
+            className="h-4 w-auto"
+          />
           <span
             className={`text-[10px] tracking-wide ${
               premierActive ? "text-[var(--hsbc)] font-medium" : "text-[var(--hsbc)]/80"
             }`}
           >
-            Premier
+            HSBC Premier
           </span>
         </Link>
 
