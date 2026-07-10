@@ -44,7 +44,7 @@ function Index() {
             onClick={() => navigate({ to: "/register" })}
             className="block w-full rounded-2xl bg-[var(--hsbc)] py-3.5 text-center text-[14px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_8px_24px_-8px_rgba(219,0,17,0.45)] transition active:bg-[var(--hsbc-pressed)]"
           >
-            Get Started
+            Enter the Circle
           </button>
           <button
             onClick={() => {
