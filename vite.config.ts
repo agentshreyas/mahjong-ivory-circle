@@ -8,6 +8,13 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
+    // Prerender the marketing site to static HTML files for Hostinger shared hosting.
+    prerender: {
+      enabled: true,
+      crawlLinks: true,
+      concurrency: 4,
+      failOnError: true,
+    },
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
