@@ -1,73 +1,43 @@
-# Mahjong Circle — Landing Page
+Create a clean, standalone GitHub repository containing only the Mahjong Circle marketing site: landing, privacy, terms, and a simplified contact page.
 
-A single, quiet, couture-grade marketing page that sits at a new public route (so the existing in-app `/` flow stays intact). Same palette and typography as the app: ivory canvas, HSBC red accent, gold hairline rules, Fraunces display + Manrope body.
+### What we'll do
 
-## Route & structure
+1. **Simplify the contact page**
+   - Remove the "Office" and "Privacy" cards (as requested).
+   - Keep only the "Write" email and "Reply time" cards.
 
-- New route: `src/routes/landing.tsx` at URL `/landing` (keeps app entry `/` untouched).
-- Sub-routes for legal:
-  - `src/routes/privacy.tsx` → `/privacy`
-  - `src/routes/terms.tsx` → `/terms`
-  - `src/routes/contact.tsx` → `/contact`
-- Each route sets its own `head()` (title, description, og:title, og:description).
-- No bottom tab bar / phone frame here — this is a real responsive web page, not the prototype shell.
+2. **Strip the project to marketing-only routes**
+   - Keep: `/landing`, `/privacy`, `/terms`, `/contact`.
+   - Remove all in-app routes: `/home`, `/index`, `/events`, `/event-detail`, `/collection`, `/product`, `/premier`, `/my-bookings`, `/notifications`, `/profile`, `/register`, `/article`.
+   - Remove or repurpose the `index.tsx` route so `/` redirects to `/landing` (or becomes the landing page).
 
-## Sections (top → bottom)
+3. **Clean up app-only code**
+   - Remove the mobile app shell: `PhoneFrame`, `BottomNav`, `TopBar`, `Screen`, `VoiceProvider`, `VoiceOverlay`.
+   - Remove unused stores and data: `bookings-store.ts`, `member-store.ts`, `products.ts`, `error-capture.ts`, `error-page.ts`.
+   - Keep `waitlist-store.ts` and `utils.ts` as needed.
+   - Simplify `src/routes/__root.tsx` to remove the app shell and always render the marketing layout.
 
-1. **Hero / Teaser**
-   - Eyebrow: "HSBC Presents"
-   - Headline: "The Mahjong Circle"
-   - Sub: one line — "A private members' circle for connoisseurs of the game."
-   - Gold rule + a single primary CTA: "Request an invitation" → scrolls to waitlist.
-   - Reuses `hero-splash.jpg` as a muted background.
+4. **Fix landing page internal links**
+   - The landing page currently links to `/events`, `/collection`, and `/premier`. These will be removed.
+   - Replace them with soft, non-routing CTAs or anchor links so the page still reads correctly.
 
-2. **The Ethos** (3 short pillars, icon + one line each)
-   - Quiet Rooms · Considered Company · Couture Collection.
+5. **Build verification**
+   - Run the local build to ensure the stripped project compiles cleanly before any external push.
 
-3. **Exclusivity / By Invitation Only**
-   - Short manifesto paragraph making clear membership is invite-only, curated, and capped.
-   - Small factlets: "Membership capped · Vetted by the Circle · No bank login required".
+6. **Push to GitHub**
+   - Connect the Lovable project to GitHub via the in-editor GitHub integration (Plus menu → GitHub → Connect project).
+   - Two-way sync will push the cleaned marketing site to the GitHub repository.
 
-4. **Waitlist form**
-   - Fields: Full name, Email, City, Referred by (optional), short "Why you'd like to join" (optional textarea).
-   - Submit is a front-end-only stub (writes to `localStorage` via a small store, shows a confirmation state). No backend in this plan.
-   - Fine print: "Applications reviewed monthly. We'll only reach out if there's a fit."
+### Important trade-off to confirm
 
-5. **What members experience** (light preview)
-   - Three cards: Salons & Tournaments · The Collection · Premier privileges. Each links into the existing app routes (`/events`, `/collection`, `/premier`) for people already inside.
+Stripping the project will remove the in-app experiences (events, collection, premier, bookings, profile, etc.) from this Lovable project. If you want the full app to remain, you should create a separate Lovable project for the marketing site and connect that one to GitHub instead. Otherwise, the app pages will be gone once this plan is implemented.
 
-6. **Press / trust strip** (optional, subtle)
-   - "In partnership with HSBC Premier" lockup with the HSBC logo. No fake press logos.
+### Deliverable
 
-7. **FAQ** (4 items, accordion)
-   - How do I get invited? · Is there a fee? · Where are events held? · How is my data used? (links to /privacy).
+A GitHub repository with a minimal, clean TanStack Start site that contains only:
+- Landing page (`/landing` or `/`)
+- Privacy Policy (`/privacy`)
+- Terms of Use (`/terms`)
+- Contact (`/contact`)
 
-8. **Footer**
-   - Left: "Mahjong Circle — a Nexaar Pvt Ltd initiative, in partnership with HSBC Premier."
-   - Links: Privacy Policy · Terms of Use · Contact Us.
-   - Contact block: email `hello@nexaar.co` (placeholder), registered office line (placeholder), copyright.
-
-## Legal pages (drafts, clearly marked "Draft")
-
-- **Privacy Policy** — Nexaar Pvt Ltd as data controller. Sections: what we collect (waitlist form data, basic analytics), how we use it (review applications, contact you), lawful basis, retention, sharing (HSBC only where relevant to Premier privileges, with consent), your rights (access, deletion, correction), cookies, contact for privacy queries. Marked "Draft — pending legal review".
-- **Terms of Use** — eligibility (18+, invitation only), acceptable use, intellectual property, membership at Nexaar's discretion, disclaimers, limitation of liability, governing law (India / Mumbai jurisdiction, placeholder), changes to terms. Marked "Draft — pending legal review".
-- **Contact Us** — email, registered office placeholder, response-time note, form-less (mailto link).
-
-## What else I'd recommend adding
-
-- **Referral / "Nominate a member"** micro-CTA on the exclusivity section — reinforces the invite-only tone and gives existing members a role.
-- **Founding Members note** — a single line acknowledging the first cohort, adds scarcity/prestige.
-- **Anti-spam & data-use microcopy** directly under the waitlist form (one sentence + link to /privacy) — required feel for a premium brand and helps with trust.
-- **Reduced-motion & responsive care** — no autoplaying video, mobile-first spacing that still reads well on desktop.
-
-## Technical notes
-
-- Pure frontend; no schema, no server functions. Waitlist submit → optimistic UI + `localStorage`.
-- Palette uses existing tokens in `src/styles.css` (`--ivory`, `--ink`, `--gold`, `--hsbc`, `--hairline`, `--taupe`).
-- Each new route file adds distinct `head()` metadata. `og:image` only on `/landing` (hero image), not on legal pages.
-- Landing page is not linked from the in-app bottom nav; it's reached directly at `/landing` and cross-links into the app.
-
-## Open questions before I build
-
-1. Should the landing page take over `/` (replacing the current app entry), or live at `/landing` while the app entry stays as-is? Default in this plan: **`/landing`**, leave `/` alone.
-2. Contact email + registered office address for Nexaar Pvt Ltd — placeholders used unless you provide real values.
+Ready to be deployed or pointed to `mahjongcircle.in`.

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Mail, MapPin, Clock } from "lucide-react";
+import { Mail, Clock } from "lucide-react";
 import { SiteFooter } from "./landing";
 import { LegalHeader } from "./privacy";
 
@@ -7,9 +7,9 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Mahjong Circle" },
-      { name: "description", content: "Reach the Mahjong Circle team at Nexaar Pvt Ltd." },
+      { name: "description", content: "Reach the Mahjong Circle concierge." },
       { property: "og:title", content: "Contact — Mahjong Circle" },
-      { property: "og:description", content: "Reach the Mahjong Circle team at Nexaar Pvt Ltd." },
+      { property: "og:description", content: "Reach the Mahjong Circle concierge." },
     ],
   }),
   component: Contact,
@@ -33,8 +33,6 @@ function Contact() {
         <div className="mt-12 grid gap-4 md:grid-cols-2">
           <Card icon={Mail} title="Write" body="concierge@mahjongcircle.in" href="mailto:concierge@mahjongcircle.in" />
           <Card icon={Clock} title="Reply time" body="Within two working days" />
-          <Card icon={MapPin} title="Office" body="Nexaar Pvt Ltd, Mumbai, India" />
-          <Card icon={Mail} title="Privacy" body="privacy@nexaar.co" href="mailto:privacy@nexaar.co" />
         </div>
 
         <div className="mt-14 rounded-3xl border border-[var(--hairline)] bg-white/60 p-8 text-center">
