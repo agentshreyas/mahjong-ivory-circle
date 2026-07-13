@@ -15,6 +15,7 @@ import { Route as ProductRouteImport } from './routes/product'
 import { Route as PremierRouteImport } from './routes/premier'
 import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as MyBookingsRouteImport } from './routes/my-bookings'
+import { Route as LandingRouteImport } from './routes/landing'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as EventDetailRouteImport } from './routes/event-detail'
@@ -50,6 +51,11 @@ const NotificationsRoute = NotificationsRouteImport.update({
 const MyBookingsRoute = MyBookingsRouteImport.update({
   id: '/my-bookings',
   path: '/my-bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingRoute = LandingRouteImport.update({
+  id: '/landing',
+  path: '/landing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
+  '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
   '/premier': typeof PremierRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
+  '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
   '/premier': typeof PremierRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
+  '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
   '/premier': typeof PremierRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/event-detail'
     | '/events'
     | '/home'
+    | '/landing'
     | '/my-bookings'
     | '/notifications'
     | '/premier'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/event-detail'
     | '/events'
     | '/home'
+    | '/landing'
     | '/my-bookings'
     | '/notifications'
     | '/premier'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/event-detail'
     | '/events'
     | '/home'
+    | '/landing'
     | '/my-bookings'
     | '/notifications'
     | '/premier'
@@ -178,6 +190,7 @@ export interface RootRouteChildren {
   EventDetailRoute: typeof EventDetailRoute
   EventsRoute: typeof EventsRoute
   HomeRoute: typeof HomeRoute
+  LandingRoute: typeof LandingRoute
   MyBookingsRoute: typeof MyBookingsRoute
   NotificationsRoute: typeof NotificationsRoute
   PremierRoute: typeof PremierRoute
@@ -228,6 +241,13 @@ declare module '@tanstack/react-router' {
       path: '/my-bookings'
       fullPath: '/my-bookings'
       preLoaderRoute: typeof MyBookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing': {
+      id: '/landing'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home': {
@@ -282,6 +302,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventDetailRoute: EventDetailRoute,
   EventsRoute: EventsRoute,
   HomeRoute: HomeRoute,
+  LandingRoute: LandingRoute,
   MyBookingsRoute: MyBookingsRoute,
   NotificationsRoute: NotificationsRoute,
   PremierRoute: PremierRoute,
