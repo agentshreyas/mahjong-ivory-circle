@@ -23,21 +23,21 @@ export function BottomNav() {
         <Link
           to="/premier"
           aria-label="HSBC Premier"
-          className={`flex flex-1 flex-col items-center gap-1 py-1 ${
+          className={`flex flex-1 flex-row items-center justify-center gap-1 py-1 ${
             premierActive ? "brightness-110" : ""
           }`}
         >
           <img
             src={hsbcLogo.url}
             alt="HSBC"
-            className="h-6 w-auto"
+            className="h-5 w-auto"
           />
           <span
             className={`text-[10px] tracking-wide ${
               premierActive ? "text-[var(--hsbc)] font-medium" : "text-[var(--hsbc)]/80"
             }`}
           >
-            PREMIER
+            hsbc-premier
           </span>
         </Link>
 
