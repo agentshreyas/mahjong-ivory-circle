@@ -16,4 +16,8 @@ export default defineConfig({
       failOnError: true,
     },
   },
+  // Use a Node preset for the prerender preview server instead of the Cloudflare preset.
+  nitro: {
+    preset: "node-server",
+  },
 });
