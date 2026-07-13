@@ -448,8 +448,8 @@ export function SiteFooter() {
           <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Contact</p>
           <ul className="mt-4 space-y-2 text-[13px] text-[var(--taupe)]">
             <li>
-              <a href="mailto:hello@nexaar.co" className="hover:text-[var(--ink)]">
-                hello@nexaar.co
+              <a href="mailto:concierge@mahjongcircle.in" className="hover:text-[var(--ink)]">
+                concierge@mahjongcircle.in
               </a>
             </li>
             <li>Nexaar Pvt Ltd</li>
