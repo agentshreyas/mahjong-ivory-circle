@@ -8,8 +8,10 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
+    // Prerender is handled manually after build because the sandbox Nitro preset
+    // outputs dist/server/index.mjs while TanStack's preview plugin expects server.js.
+    prerender: {
+      enabled: false,
+    },
   },
 });

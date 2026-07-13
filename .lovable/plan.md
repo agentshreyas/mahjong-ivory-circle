@@ -1,43 +1,57 @@
-Create a clean, standalone GitHub repository containing only the Mahjong Circle marketing site: landing, privacy, terms, and a simplified contact page.
+Hostinger static deployment plan for Mahjong Circle marketing site
 
-### What we'll do
+Objective
+---------
+Deploy the current Lovable project (TanStack Start marketing site with 4 pages: /, /privacy, /terms, /contact) as a static HTML/CSS/JS site to Hostinger shared hosting via File Manager public_html upload.
 
-1. **Simplify the contact page**
-   - Remove the "Office" and "Privacy" cards (as requested).
-   - Keep only the "Write" email and "Reply time" cards.
+Background
+----------
+The project is currently a TanStack Start app that builds to a server-aware bundle (Nitro/Cloudflare Workers). To upload it to Hostinger shared hosting as a zip, we must first switch the build to static prerendering so it outputs plain HTML files in dist/client/ that any static host can serve.
 
-2. **Strip the project to marketing-only routes**
-   - Keep: `/landing`, `/privacy`, `/terms`, `/contact`.
-   - Remove all in-app routes: `/home`, `/index`, `/events`, `/event-detail`, `/collection`, `/product`, `/premier`, `/my-bookings`, `/notifications`, `/profile`, `/register`, `/article`.
-   - Remove or repurpose the `index.tsx` route so `/` redirects to `/landing` (or becomes the landing page).
+Steps
+-----
 
-3. **Clean up app-only code**
-   - Remove the mobile app shell: `PhoneFrame`, `BottomNav`, `TopBar`, `Screen`, `VoiceProvider`, `VoiceOverlay`.
-   - Remove unused stores and data: `bookings-store.ts`, `member-store.ts`, `products.ts`, `error-capture.ts`, `error-page.ts`.
-   - Keep `waitlist-store.ts` and `utils.ts` as needed.
-   - Simplify `src/routes/__root.tsx` to remove the app shell and always render the marketing layout.
+1. Enable static prerendering
+   - Update vite.config.ts to add prerender configuration inside the tanstackStart object:
+     - enabled: true
+     - crawlLinks: true
+     - This will generate index.html files for every static route discovered from the home page links.
 
-4. **Fix landing page internal links**
-   - The landing page currently links to `/events`, `/collection`, and `/premier`. These will be removed.
-   - Replace them with soft, non-routing CTAs or anchor links so the page still reads correctly.
+2. Build the project
+   - Run the production build command.
+   - Verify the output contains dist/client/ with at least:
+     - index.html (home page)
+     - privacy/index.html
+     - terms/index.html
+     - contact/index.html
+     - assets/ (JS, CSS, images, fonts)
 
-5. **Build verification**
-   - Run the local build to ensure the stripped project compiles cleanly before any external push.
+3. Prepare the upload package
+   - Create a zip archive of the contents of dist/client/ (not the dist/ folder itself, so index.html sits at the root of the zip).
+   - The zip will be uploaded to Hostinger and extracted into public_html.
 
-6. **Push to GitHub**
-   - Connect the Lovable project to GitHub via the in-editor GitHub integration (Plus menu → GitHub → Connect project).
-   - Two-way sync will push the cleaned marketing site to the GitHub repository.
+4. Upload to Hostinger
+   - Log in to Hostinger hPanel.
+   - Go to File Manager → public_html.
+   - Upload the zip file and extract it.
+   - Ensure index.html is at public_html/index.html.
 
-### Important trade-off to confirm
+5. Point the custom domain to Hostinger
+   - In Hostinger hPanel, find the hosting account IP address (usually shown under hosting details or in the domain setup instructions).
+   - At the domain registrar (where mahjongcircle.in is managed), add or update these DNS records:
+     - A record @ → Hostinger IP
+     - A record www → Hostinger IP
+   - Wait for DNS propagation (up to a few hours, sometimes longer).
+   - In hPanel, add the domain to the hosting if not already done.
 
-Stripping the project will remove the in-app experiences (events, collection, premier, bookings, profile, etc.) from this Lovable project. If you want the full app to remain, you should create a separate Lovable project for the marketing site and connect that one to GitHub instead. Otherwise, the app pages will be gone once this plan is implemented.
+6. Verify the live site
+   - Visit https://mahjongcircle.in and https://www.mahjongcircle.in.
+   - Check /privacy, /terms, /contact all load correctly.
+   - Check that the contact email and footer link to Es Magico work.
 
-### Deliverable
+Notes / trade-offs
+------------------
+- The waitlist/contact form currently stores submissions in browser localStorage only (no backend). If you want real email capture, that requires a backend/Cloud backend and cannot run on Hostinger static hosting alone.
+- Any future content update requires rebuilding, re-zipping, and re-uploading.
+- If you want to keep the Lovable-hosted preview/published URL alive as well, this does not affect it; it just adds a separate Hostinger deployment.
 
-A GitHub repository with a minimal, clean TanStack Start site that contains only:
-- Landing page (`/landing` or `/`)
-- Privacy Policy (`/privacy`)
-- Terms of Use (`/terms`)
-- Contact (`/contact`)
-
-Ready to be deployed or pointed to `mahjongcircle.in`.

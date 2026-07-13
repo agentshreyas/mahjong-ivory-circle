@@ -3,7 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
-import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
+import hsbcLogo from "@/assets/hsbc-logo.png";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
 
 export const Route = createFileRoute("/")({
@@ -24,11 +24,11 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       {
         property: "og:url",
-        content: "https://mahjong-ivory-circle.lovable.app/",
+        content: "https://mahjongcircle.in/",
       },
     ],
     links: [
-      { rel: "canonical", href: "https://mahjong-ivory-circle.lovable.app/" },
+      { rel: "canonical", href: "https://mahjongcircle.in/" },
     ],
   }),
   component: LandingPage,
@@ -379,7 +379,7 @@ function PartnerStrip() {
         <span className="text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)]">
           In partnership with
         </span>
-        <img src={hsbcLogo.url} alt="HSBC Premier" className="h-6 w-auto" />
+        <img src={hsbcLogo} alt="HSBC Premier" className="h-6 w-auto" />
         <span className="hidden text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)] md:inline">
           · Premier
         </span>
