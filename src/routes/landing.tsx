@@ -460,7 +460,17 @@ export function SiteFooter() {
       <div className="border-t border-[var(--hairline)]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-[11px] uppercase tracking-[0.22em] text-[var(--taupe)] md:flex-row">
           <span>© {new Date().getFullYear()} Nexaar Pvt Ltd. All rights reserved.</span>
-          <span>By invitation only</span>
+          <div className="flex flex-col items-center gap-1 md:flex-row md:gap-6">
+            <span>By invitation only</span>
+            <a
+              href="https://www.esmagico.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[var(--ink)]"
+            >
+              Crafted by Es Magico
+            </a>
+          </div>
         </div>
       </div>
     </footer>
