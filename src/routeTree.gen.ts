@@ -21,6 +21,7 @@ import { Route as LandingRouteImport } from './routes/landing'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as EventDetailRouteImport } from './routes/event-detail'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
@@ -85,6 +86,11 @@ const EventDetailRoute = EventDetailRouteImport.update({
   path: '/event-detail',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CollectionRoute = CollectionRouteImport.update({
   id: '/collection',
   path: '/collection',
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
+  '/contact': typeof ContactRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
+  '/contact': typeof ContactRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
+  '/contact': typeof ContactRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/collection'
+    | '/contact'
     | '/event-detail'
     | '/events'
     | '/home'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/collection'
+    | '/contact'
     | '/event-detail'
     | '/events'
     | '/home'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/collection'
+    | '/contact'
     | '/event-detail'
     | '/events'
     | '/home'
@@ -211,6 +223,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticleRoute: typeof ArticleRoute
   CollectionRoute: typeof CollectionRoute
+  ContactRoute: typeof ContactRoute
   EventDetailRoute: typeof EventDetailRoute
   EventsRoute: typeof EventsRoute
   HomeRoute: typeof HomeRoute
@@ -311,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventDetailRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/collection': {
       id: '/collection'
       path: '/collection'
@@ -339,6 +359,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticleRoute: ArticleRoute,
   CollectionRoute: CollectionRoute,
+  ContactRoute: ContactRoute,
   EventDetailRoute: EventDetailRoute,
   EventsRoute: EventsRoute,
   HomeRoute: HomeRoute,
