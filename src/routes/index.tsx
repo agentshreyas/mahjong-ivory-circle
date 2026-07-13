@@ -379,7 +379,7 @@ function PartnerStrip() {
         <span className="text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)]">
           In partnership with
         </span>
-        <img src={hsbcLogo.url} alt="HSBC Premier" className="h-6 w-auto" />
+        <img src={hsbcLogo} alt="HSBC Premier" className="h-6 w-auto" />
         <span className="hidden text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)] md:inline">
           · Premier
         </span>
