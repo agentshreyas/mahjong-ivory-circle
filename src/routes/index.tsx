@@ -24,11 +24,11 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       {
         property: "og:url",
-        content: "https://mahjong-ivory-circle.lovable.app/",
+        content: "https://mahjongcircle.in/",
       },
     ],
     links: [
-      { rel: "canonical", href: "https://mahjong-ivory-circle.lovable.app/" },
+      { rel: "canonical", href: "https://mahjongcircle.in/" },
     ],
   }),
   component: LandingPage,
