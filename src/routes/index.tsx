@@ -24,11 +24,11 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       {
         property: "og:url",
-        content: "https://mahjong-ivory-circle.lovable.app/landing",
+        content: "https://mahjong-ivory-circle.lovable.app/",
       },
     ],
     links: [
-      { rel: "canonical", href: "https://mahjong-ivory-circle.lovable.app/landing" },
+      { rel: "canonical", href: "https://mahjong-ivory-circle.lovable.app/" },
     ],
   }),
   component: LandingPage,
@@ -62,7 +62,7 @@ function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--hairline)] bg-[var(--ivory)]/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link to="/landing" className="font-display text-[17px] font-medium tracking-tight">
+        <Link to="/" className="font-display text-[17px] font-medium tracking-tight">
           Mahjong Circle
         </Link>
         <nav className="hidden items-center gap-8 text-[13px] text-[var(--taupe)] md:flex">
@@ -339,9 +339,9 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 const preview = [
-  { icon: CalendarDays, title: "Salons & Tournaments", body: "Intimate evenings in landmark rooms.", to: "/events" as const },
-  { icon: Sparkles, title: "The Collection", body: "A couture capsule celebrating the tile.", to: "/collection" as const },
-  { icon: Crown, title: "Premier Privileges", body: "Curated benefits for HSBC Premier members.", to: "/premier" as const },
+  { icon: CalendarDays, title: "Salons & Tournaments", body: "Intimate evenings in landmark rooms." },
+  { icon: Sparkles, title: "The Collection", body: "A couture capsule celebrating the tile." },
+  { icon: Crown, title: "Premier Privileges", body: "Curated benefits for HSBC Premier members." },
 ];
 
 function Preview() {
@@ -357,18 +357,14 @@ function Preview() {
         {preview.map((p) => {
           const Icon = p.icon;
           return (
-            <Link
+            <div
               key={p.title}
-              to={p.to}
-              className="group rounded-3xl border border-[var(--hairline)] bg-white/60 p-8 transition hover:border-[var(--gold)]/50"
+              className="rounded-3xl border border-[var(--hairline)] bg-white/60 p-8 transition hover:border-[var(--gold)]/50"
             >
               <Icon size={20} strokeWidth={1.5} className="text-[var(--hsbc)]" />
               <h3 className="mt-5 font-display text-[18px]">{p.title}</h3>
               <p className="mt-2 text-[13px] leading-relaxed text-[var(--taupe)]">{p.body}</p>
-              <span className="mt-5 inline-block text-[11px] uppercase tracking-[0.22em] text-[var(--taupe)] group-hover:text-[var(--ink)]">
-                Preview →
-              </span>
-            </Link>
+            </div>
           );
         })}
       </div>
