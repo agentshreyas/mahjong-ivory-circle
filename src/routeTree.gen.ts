@@ -9,19 +9,28 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProductRouteImport } from './routes/product'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PremierRouteImport } from './routes/premier'
 import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as MyBookingsRouteImport } from './routes/my-bookings'
+import { Route as LandingRouteImport } from './routes/landing'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as EventDetailRouteImport } from './routes/event-detail'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
@@ -35,6 +44,11 @@ const ProfileRoute = ProfileRouteImport.update({
 const ProductRoute = ProductRouteImport.update({
   id: '/product',
   path: '/product',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PremierRoute = PremierRouteImport.update({
@@ -52,6 +66,11 @@ const MyBookingsRoute = MyBookingsRouteImport.update({
   path: '/my-bookings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LandingRoute = LandingRouteImport.update({
+  id: '/landing',
+  path: '/landing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -65,6 +84,11 @@ const EventsRoute = EventsRouteImport.update({
 const EventDetailRoute = EventDetailRouteImport.update({
   id: '/event-detail',
   path: '/event-detail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CollectionRoute = CollectionRouteImport.update({
@@ -87,44 +111,56 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
+  '/contact': typeof ContactRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
+  '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
   '/premier': typeof PremierRoute
+  '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
+  '/contact': typeof ContactRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
+  '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
   '/premier': typeof PremierRoute
+  '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
+  '/contact': typeof ContactRoute
   '/event-detail': typeof EventDetailRoute
   '/events': typeof EventsRoute
   '/home': typeof HomeRoute
+  '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
   '/premier': typeof PremierRoute
+  '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -132,62 +168,85 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/collection'
+    | '/contact'
     | '/event-detail'
     | '/events'
     | '/home'
+    | '/landing'
     | '/my-bookings'
     | '/notifications'
     | '/premier'
+    | '/privacy'
     | '/product'
     | '/profile'
     | '/register'
+    | '/terms'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/article'
     | '/collection'
+    | '/contact'
     | '/event-detail'
     | '/events'
     | '/home'
+    | '/landing'
     | '/my-bookings'
     | '/notifications'
     | '/premier'
+    | '/privacy'
     | '/product'
     | '/profile'
     | '/register'
+    | '/terms'
   id:
     | '__root__'
     | '/'
     | '/article'
     | '/collection'
+    | '/contact'
     | '/event-detail'
     | '/events'
     | '/home'
+    | '/landing'
     | '/my-bookings'
     | '/notifications'
     | '/premier'
+    | '/privacy'
     | '/product'
     | '/profile'
     | '/register'
+    | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticleRoute: typeof ArticleRoute
   CollectionRoute: typeof CollectionRoute
+  ContactRoute: typeof ContactRoute
   EventDetailRoute: typeof EventDetailRoute
   EventsRoute: typeof EventsRoute
   HomeRoute: typeof HomeRoute
+  LandingRoute: typeof LandingRoute
   MyBookingsRoute: typeof MyBookingsRoute
   NotificationsRoute: typeof NotificationsRoute
   PremierRoute: typeof PremierRoute
+  PrivacyRoute: typeof PrivacyRoute
   ProductRoute: typeof ProductRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/register': {
       id: '/register'
       path: '/register'
@@ -207,6 +266,13 @@ declare module '@tanstack/react-router' {
       path: '/product'
       fullPath: '/product'
       preLoaderRoute: typeof ProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/premier': {
@@ -230,6 +296,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MyBookingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/landing': {
+      id: '/landing'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/home': {
       id: '/home'
       path: '/home'
@@ -249,6 +322,13 @@ declare module '@tanstack/react-router' {
       path: '/event-detail'
       fullPath: '/event-detail'
       preLoaderRoute: typeof EventDetailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/collection': {
@@ -279,15 +359,19 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticleRoute: ArticleRoute,
   CollectionRoute: CollectionRoute,
+  ContactRoute: ContactRoute,
   EventDetailRoute: EventDetailRoute,
   EventsRoute: EventsRoute,
   HomeRoute: HomeRoute,
+  LandingRoute: LandingRoute,
   MyBookingsRoute: MyBookingsRoute,
   NotificationsRoute: NotificationsRoute,
   PremierRoute: PremierRoute,
+  PrivacyRoute: PrivacyRoute,
   ProductRoute: ProductRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
