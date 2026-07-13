@@ -6,7 +6,7 @@ import heroSplash from "@/assets/hero-splash.jpg";
 import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
 
-export const Route = createFileRoute("/landing")({
+export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "The Mahjong Circle — By Invitation Only" },
