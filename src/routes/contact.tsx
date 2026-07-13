@@ -31,7 +31,7 @@ function Contact() {
         </p>
 
         <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <Card icon={Mail} title="Write" body="hello@nexaar.co" href="mailto:hello@nexaar.co" />
+          <Card icon={Mail} title="Write" body="concierge@mahjongcircle.in" href="mailto:concierge@mahjongcircle.in" />
           <Card icon={Clock} title="Reply time" body="Within two working days" />
           <Card icon={MapPin} title="Office" body="Nexaar Pvt Ltd, Mumbai, India" />
           <Card icon={Mail} title="Privacy" body="privacy@nexaar.co" href="mailto:privacy@nexaar.co" />
