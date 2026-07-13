@@ -3,7 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
-import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
+import hsbcLogo from "@/assets/hsbc-logo.png";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
 
 export const Route = createFileRoute("/")({
