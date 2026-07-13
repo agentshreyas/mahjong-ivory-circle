@@ -8,16 +8,10 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
-    // Prerender the marketing site to static HTML files for Hostinger shared hosting.
+    // Prerender is handled manually after build because the sandbox Nitro preset
+    // outputs dist/server/index.mjs while TanStack's preview plugin expects server.js.
     prerender: {
-      enabled: true,
-      crawlLinks: true,
-      concurrency: 4,
-      failOnError: true,
+      enabled: false,
     },
-  },
-  // Use a Node preset for the prerender preview server instead of the Cloudflare preset.
-  nitro: {
-    preset: "node-server",
   },
 });
