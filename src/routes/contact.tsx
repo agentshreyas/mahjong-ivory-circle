@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mail, Clock } from "lucide-react";
-import { SiteFooter } from "./landing";
+import { SiteFooter } from "./index";
 import { LegalHeader } from "./privacy";
 
 export const Route = createFileRoute("/contact")({
@@ -41,7 +41,7 @@ function Contact() {
             Requests are best made through the waitlist.
           </p>
           <Link
-            to="/landing"
+            to="/"
             hash="waitlist"
             className="mt-5 inline-block rounded-full bg-[var(--hsbc)] px-6 py-3 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_24px_-8px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)]"
           >

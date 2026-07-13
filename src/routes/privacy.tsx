@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteFooter } from "./landing";
+import { SiteFooter } from "./index";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -100,7 +100,7 @@ function Privacy() {
           </P>
         </div>
         <div className="mt-14">
-          <Link to="/landing" className="text-[12px] uppercase tracking-[0.22em] text-[var(--taupe)] hover:text-[var(--ink)]">
+          <Link to="/" className="text-[12px] uppercase tracking-[0.22em] text-[var(--taupe)] hover:text-[var(--ink)]">
             ← Back to Mahjong Circle
           </Link>
         </div>
@@ -114,7 +114,7 @@ export function LegalHeader() {
   return (
     <header className="border-b border-[var(--hairline)] bg-[var(--ivory)]/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link to="/landing" className="font-display text-[17px] font-medium tracking-tight">
+        <Link to="/" className="font-display text-[17px] font-medium tracking-tight">
           Mahjong Circle
         </Link>
         <nav className="flex items-center gap-6 text-[12px] uppercase tracking-[0.2em] text-[var(--taupe)]">
