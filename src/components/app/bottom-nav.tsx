@@ -23,7 +23,7 @@ export function BottomNav() {
         <Link
           to="/premier"
           aria-label="HSBC Premier"
-          className={`flex flex-1 flex-row items-center justify-center gap-1 py-1 ${
+          className={`flex flex-1 flex-col items-center justify-center gap-1 py-1 ${
             premierActive ? "brightness-110" : ""
           }`}
         >
@@ -33,7 +33,7 @@ export function BottomNav() {
             className="h-5 w-auto"
           />
           <span
-            className={`text-[10px] tracking-wide ${
+            className={`text-[10px] tracking-wide whitespace-nowrap ${
               premierActive ? "text-[var(--hsbc)] font-medium" : "text-[var(--hsbc)]/80"
             }`}
           >
