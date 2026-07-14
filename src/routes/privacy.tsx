@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteFooter } from "./index";
+import { SiteFooter } from "./landing";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -26,7 +26,7 @@ function Privacy() {
         </p>
         <div className="prose-legal mt-10 space-y-8 text-[14px] leading-relaxed text-[var(--taupe)]">
           <P>
-            Es Magico Experiences Pvt Ltd & Nexaar Pvt Ltd ("Nexaar", "we", "us") operates the Mahjong Circle
+            Nexaar Pvt Ltd ("Nexaar", "we", "us") operates the Mahjong Circle
             (the "Circle") in partnership with HSBC Premier. This policy explains
             what we collect, why, and your choices.
           </P>
@@ -100,7 +100,7 @@ function Privacy() {
           </P>
         </div>
         <div className="mt-14">
-          <Link to="/" className="text-[12px] uppercase tracking-[0.22em] text-[var(--taupe)] hover:text-[var(--ink)]">
+          <Link to="/landing" className="text-[12px] uppercase tracking-[0.22em] text-[var(--taupe)] hover:text-[var(--ink)]">
             ← Back to Mahjong Circle
           </Link>
         </div>
@@ -114,7 +114,7 @@ export function LegalHeader() {
   return (
     <header className="border-b border-[var(--hairline)] bg-[var(--ivory)]/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link to="/" className="font-display text-[17px] font-medium tracking-tight">
+        <Link to="/landing" className="font-display text-[17px] font-medium tracking-tight">
           Mahjong Circle
         </Link>
         <nav className="flex items-center gap-6 text-[12px] uppercase tracking-[0.2em] text-[var(--taupe)]">

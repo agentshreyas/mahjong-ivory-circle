@@ -1,15 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Mail, Clock } from "lucide-react";
-import { SiteFooter } from "./index";
+import { Mail, MapPin, Clock } from "lucide-react";
+import { SiteFooter } from "./landing";
 import { LegalHeader } from "./privacy";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Mahjong Circle" },
-      { name: "description", content: "Reach the Mahjong Circle concierge." },
+      { name: "description", content: "Reach the Mahjong Circle team at Nexaar Pvt Ltd." },
       { property: "og:title", content: "Contact — Mahjong Circle" },
-      { property: "og:description", content: "Reach the Mahjong Circle concierge." },
+      { property: "og:description", content: "Reach the Mahjong Circle team at Nexaar Pvt Ltd." },
     ],
   }),
   component: Contact,
@@ -33,6 +33,8 @@ function Contact() {
         <div className="mt-12 grid gap-4 md:grid-cols-2">
           <Card icon={Mail} title="Write" body="concierge@mahjongcircle.in" href="mailto:concierge@mahjongcircle.in" />
           <Card icon={Clock} title="Reply time" body="Within two working days" />
+          <Card icon={MapPin} title="Office" body="Nexaar Pvt Ltd, Mumbai, India" />
+          <Card icon={Mail} title="Privacy" body="privacy@nexaar.co" href="mailto:privacy@nexaar.co" />
         </div>
 
         <div className="mt-14 rounded-3xl border border-[var(--hairline)] bg-white/60 p-8 text-center">
@@ -41,7 +43,7 @@ function Contact() {
             Requests are best made through the waitlist.
           </p>
           <Link
-            to="/"
+            to="/landing"
             hash="waitlist"
             className="mt-5 inline-block rounded-full bg-[var(--hsbc)] px-6 py-3 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_24px_-8px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)]"
           >

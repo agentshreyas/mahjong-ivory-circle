@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteFooter } from "./index";
+import { SiteFooter } from "./landing";
 import { LegalHeader } from "./privacy";
 
 export const Route = createFileRoute("/terms")({
@@ -29,7 +29,7 @@ function Terms() {
         <div className="mt-10 space-y-8 text-[14px] leading-relaxed text-[var(--taupe)]">
           <p>
             These terms govern your use of the Mahjong Circle (the "Circle")
-            operated by Es Magico Experiences Pvt Ltd & Nexaar Pvt Ltd ("Nexaar", "we", "us"). By using the
+            operated by Nexaar Pvt Ltd ("Nexaar", "we", "us"). By using the
             site, submitting a request, or accepting an invitation, you agree
             to these terms.
           </p>
@@ -103,7 +103,7 @@ function Terms() {
         </div>
 
         <div className="mt-14">
-          <Link to="/" className="text-[12px] uppercase tracking-[0.22em] text-[var(--taupe)] hover:text-[var(--ink)]">
+          <Link to="/landing" className="text-[12px] uppercase tracking-[0.22em] text-[var(--taupe)] hover:text-[var(--ink)]">
             ← Back to Mahjong Circle
           </Link>
         </div>

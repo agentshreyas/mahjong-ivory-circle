@@ -1,57 +1,73 @@
-Hostinger static deployment plan for Mahjong Circle marketing site
+# Mahjong Circle — Landing Page
 
-Objective
----------
-Deploy the current Lovable project (TanStack Start marketing site with 4 pages: /, /privacy, /terms, /contact) as a static HTML/CSS/JS site to Hostinger shared hosting via File Manager public_html upload.
+A single, quiet, couture-grade marketing page that sits at a new public route (so the existing in-app `/` flow stays intact). Same palette and typography as the app: ivory canvas, HSBC red accent, gold hairline rules, Fraunces display + Manrope body.
 
-Background
-----------
-The project is currently a TanStack Start app that builds to a server-aware bundle (Nitro/Cloudflare Workers). To upload it to Hostinger shared hosting as a zip, we must first switch the build to static prerendering so it outputs plain HTML files in dist/client/ that any static host can serve.
+## Route & structure
 
-Steps
------
+- New route: `src/routes/landing.tsx` at URL `/landing` (keeps app entry `/` untouched).
+- Sub-routes for legal:
+  - `src/routes/privacy.tsx` → `/privacy`
+  - `src/routes/terms.tsx` → `/terms`
+  - `src/routes/contact.tsx` → `/contact`
+- Each route sets its own `head()` (title, description, og:title, og:description).
+- No bottom tab bar / phone frame here — this is a real responsive web page, not the prototype shell.
 
-1. Enable static prerendering
-   - Update vite.config.ts to add prerender configuration inside the tanstackStart object:
-     - enabled: true
-     - crawlLinks: true
-     - This will generate index.html files for every static route discovered from the home page links.
+## Sections (top → bottom)
 
-2. Build the project
-   - Run the production build command.
-   - Verify the output contains dist/client/ with at least:
-     - index.html (home page)
-     - privacy/index.html
-     - terms/index.html
-     - contact/index.html
-     - assets/ (JS, CSS, images, fonts)
+1. **Hero / Teaser**
+   - Eyebrow: "HSBC Presents"
+   - Headline: "The Mahjong Circle"
+   - Sub: one line — "A private members' circle for connoisseurs of the game."
+   - Gold rule + a single primary CTA: "Request an invitation" → scrolls to waitlist.
+   - Reuses `hero-splash.jpg` as a muted background.
 
-3. Prepare the upload package
-   - Create a zip archive of the contents of dist/client/ (not the dist/ folder itself, so index.html sits at the root of the zip).
-   - The zip will be uploaded to Hostinger and extracted into public_html.
+2. **The Ethos** (3 short pillars, icon + one line each)
+   - Quiet Rooms · Considered Company · Couture Collection.
 
-4. Upload to Hostinger
-   - Log in to Hostinger hPanel.
-   - Go to File Manager → public_html.
-   - Upload the zip file and extract it.
-   - Ensure index.html is at public_html/index.html.
+3. **Exclusivity / By Invitation Only**
+   - Short manifesto paragraph making clear membership is invite-only, curated, and capped.
+   - Small factlets: "Membership capped · Vetted by the Circle · No bank login required".
 
-5. Point the custom domain to Hostinger
-   - In Hostinger hPanel, find the hosting account IP address (usually shown under hosting details or in the domain setup instructions).
-   - At the domain registrar (where mahjongcircle.in is managed), add or update these DNS records:
-     - A record @ → Hostinger IP
-     - A record www → Hostinger IP
-   - Wait for DNS propagation (up to a few hours, sometimes longer).
-   - In hPanel, add the domain to the hosting if not already done.
+4. **Waitlist form**
+   - Fields: Full name, Email, City, Referred by (optional), short "Why you'd like to join" (optional textarea).
+   - Submit is a front-end-only stub (writes to `localStorage` via a small store, shows a confirmation state). No backend in this plan.
+   - Fine print: "Applications reviewed monthly. We'll only reach out if there's a fit."
 
-6. Verify the live site
-   - Visit https://mahjongcircle.in and https://www.mahjongcircle.in.
-   - Check /privacy, /terms, /contact all load correctly.
-   - Check that the contact email and footer link to Es Magico work.
+5. **What members experience** (light preview)
+   - Three cards: Salons & Tournaments · The Collection · Premier privileges. Each links into the existing app routes (`/events`, `/collection`, `/premier`) for people already inside.
 
-Notes / trade-offs
-------------------
-- The waitlist/contact form currently stores submissions in browser localStorage only (no backend). If you want real email capture, that requires a backend/Cloud backend and cannot run on Hostinger static hosting alone.
-- Any future content update requires rebuilding, re-zipping, and re-uploading.
-- If you want to keep the Lovable-hosted preview/published URL alive as well, this does not affect it; it just adds a separate Hostinger deployment.
+6. **Press / trust strip** (optional, subtle)
+   - "In partnership with HSBC Premier" lockup with the HSBC logo. No fake press logos.
 
+7. **FAQ** (4 items, accordion)
+   - How do I get invited? · Is there a fee? · Where are events held? · How is my data used? (links to /privacy).
+
+8. **Footer**
+   - Left: "Mahjong Circle — a Nexaar Pvt Ltd initiative, in partnership with HSBC Premier."
+   - Links: Privacy Policy · Terms of Use · Contact Us.
+   - Contact block: email `hello@nexaar.co` (placeholder), registered office line (placeholder), copyright.
+
+## Legal pages (drafts, clearly marked "Draft")
+
+- **Privacy Policy** — Nexaar Pvt Ltd as data controller. Sections: what we collect (waitlist form data, basic analytics), how we use it (review applications, contact you), lawful basis, retention, sharing (HSBC only where relevant to Premier privileges, with consent), your rights (access, deletion, correction), cookies, contact for privacy queries. Marked "Draft — pending legal review".
+- **Terms of Use** — eligibility (18+, invitation only), acceptable use, intellectual property, membership at Nexaar's discretion, disclaimers, limitation of liability, governing law (India / Mumbai jurisdiction, placeholder), changes to terms. Marked "Draft — pending legal review".
+- **Contact Us** — email, registered office placeholder, response-time note, form-less (mailto link).
+
+## What else I'd recommend adding
+
+- **Referral / "Nominate a member"** micro-CTA on the exclusivity section — reinforces the invite-only tone and gives existing members a role.
+- **Founding Members note** — a single line acknowledging the first cohort, adds scarcity/prestige.
+- **Anti-spam & data-use microcopy** directly under the waitlist form (one sentence + link to /privacy) — required feel for a premium brand and helps with trust.
+- **Reduced-motion & responsive care** — no autoplaying video, mobile-first spacing that still reads well on desktop.
+
+## Technical notes
+
+- Pure frontend; no schema, no server functions. Waitlist submit → optimistic UI + `localStorage`.
+- Palette uses existing tokens in `src/styles.css` (`--ivory`, `--ink`, `--gold`, `--hsbc`, `--hairline`, `--taupe`).
+- Each new route file adds distinct `head()` metadata. `og:image` only on `/landing` (hero image), not on legal pages.
+- Landing page is not linked from the in-app bottom nav; it's reached directly at `/landing` and cross-links into the app.
+
+## Open questions before I build
+
+1. Should the landing page take over `/` (replacing the current app entry), or live at `/landing` while the app entry stays as-is? Default in this plan: **`/landing`**, leave `/` alone.
+2. Contact email + registered office address for Nexaar Pvt Ltd — placeholders used unless you provide real values.
