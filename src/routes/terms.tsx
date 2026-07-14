@@ -29,7 +29,7 @@ function Terms() {
         <div className="mt-10 space-y-8 text-[14px] leading-relaxed text-[var(--taupe)]">
           <p>
             These terms govern your use of the Mahjong Circle (the "Circle")
-            operated by Nexaar Pvt Ltd ("Nexaar", "we", "us"). By using the
+            operated by Es Magico Experiences Pvt Ltd & Nexaar Pvt Ltd ("Nexaar", "we", "us"). By using the
             site, submitting a request, or accepting an invitation, you agree
             to these terms.
           </p>

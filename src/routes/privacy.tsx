@@ -26,7 +26,7 @@ function Privacy() {
         </p>
         <div className="prose-legal mt-10 space-y-8 text-[14px] leading-relaxed text-[var(--taupe)]">
           <P>
-            Nexaar Pvt Ltd ("Nexaar", "we", "us") operates the Mahjong Circle
+            Es Magico Experiences Pvt Ltd & Nexaar Pvt Ltd ("Nexaar", "we", "us") operates the Mahjong Circle
             (the "Circle") in partnership with HSBC Premier. This policy explains
             what we collect, why, and your choices.
           </P>
