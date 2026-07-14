@@ -429,7 +429,7 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-[18px] text-[var(--ink)]">Mahjong Circle</p>
           <p className="mt-3 max-w-[280px] text-[12px] leading-relaxed text-[var(--taupe)]">
-            A Nexaar Pvt Ltd initiative, in partnership with HSBC Premier.
+            In partnership with Nexaar & HSBC Premier.
           </p>
           <a
             href="https://www.esmagico.com"
@@ -437,7 +437,7 @@ export function SiteFooter() {
             rel="noopener noreferrer"
             className="mt-3 inline-block text-[12px] leading-relaxed text-[var(--taupe)] hover:text-[var(--ink)]"
           >
-            Crafted by Es Magico
+            Crafted by Es Magico Experiences Pvt Lrd
           </a>
         </div>
         <div>
@@ -456,14 +456,14 @@ export function SiteFooter() {
                 concierge@mahjongcircle.in
               </a>
             </li>
-            <li>Nexaar Pvt Ltd</li>
+            <li>Es Magico Experiences Pvt Ltd</li>
             <li>Mumbai, India</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-[var(--hairline)]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-[11px] uppercase tracking-[0.22em] text-[var(--taupe)] md:flex-row">
-          <span>© {new Date().getFullYear()} Nexaar Pvt Ltd. All rights reserved.</span>
+          <span>© {new Date().getFullYear()}&nbsp;ES MAGICO. ALL RIGHTS RESERVED.</span>
           <span>By invitation only</span>
         </div>
       </div>
