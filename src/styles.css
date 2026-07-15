@@ -48,28 +48,36 @@
   --color-ivory: var(--ivory);
   --color-sand: var(--sand);
   --color-hairline: var(--hairline);
+  --color-divider: var(--divider);
   --color-gold: var(--gold);
   --color-jade: var(--jade);
   --color-ink: var(--ink);
   --color-taupe: var(--taupe);
   --color-hsbc: var(--hsbc);
   --color-hsbc-pressed: var(--hsbc-pressed);
+  --color-dark-surface: var(--dark-surface);
+  --color-nav-bar-fill: var(--nav-bar-fill);
+  --color-primary-text: var(--ink);
+  --color-secondary-text: var(--taupe);
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   --radius: 1rem;
-  /* Brand palette */
-  --ivory: #FAF6EF;
-  --sand: #F2EBDE;
-  --hairline: #E5DCCB;
-  --hsbc: #DB0011;
-  --hsbc-pressed: #A30410;
-  --gold: #B7965C;
-  --jade: #2F5D52;
-  --ink: #1B1714;
-  --taupe: #6E6357;
+  /* Brand palette — synced with mobile AppColors */
+  --ivory: #F7F3EC;          /* AppColors.background */
+  --sand: #FBF8F2;           /* AppColors.surface */
+  --hairline: #DDD0BF;       /* AppColors.border */
+  --divider: #E5DAC9;        /* AppColors.divider */
+  --hsbc: #D91E2B;           /* AppColors.hsbcRed */
+  --hsbc-pressed: #A8151F;   /* AppColors.hsbcRedPressed */
+  --gold: #B89A5D;           /* AppColors.gold */
+  --jade: #2F5D52;           /* AppColors.jade */
+  --ink: #2D2623;            /* AppColors.primaryText */
+  --taupe: #7E7265;          /* AppColors.secondaryText */
+  --dark-surface: #1F1918;   /* AppColors.darkSurface */
+  --nav-bar-fill: #E7E2D9;   /* AppColors.navBarFill */
 
   --background: var(--ivory);
   --foreground: var(--ink);
@@ -78,7 +86,7 @@
   --popover: var(--ivory);
   --popover-foreground: var(--ink);
   --primary: var(--hsbc);
-  --primary-foreground: #FAF6EF;
+  --primary-foreground: #F7F3EC;
   --secondary: var(--sand);
   --secondary-foreground: var(--ink);
   --muted: var(--sand);
@@ -86,7 +94,7 @@
   --accent: var(--gold);
   --accent-foreground: var(--ink);
   --destructive: #B00020;
-  --destructive-foreground: #FAF6EF;
+  --destructive-foreground: #F7F3EC;
   --border: var(--hairline);
   --input: var(--hairline);
   --ring: var(--gold);
