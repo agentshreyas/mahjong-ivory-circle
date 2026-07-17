@@ -350,30 +350,6 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label className="block">
-      <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-[var(--taupe)]">
-        {label}
-      </span>
-      {children}
-      <style>{`
-        .input {
-          width: 100%;
-          border: 1px solid var(--hairline);
-          background: var(--ivory);
-          border-radius: 14px;
-          padding: 12px 14px;
-          font-size: 13px;
-          color: var(--ink);
-          outline: none;
-          transition: border-color .15s;
-        }
-        .input:focus { border-color: var(--gold); }
-      `}</style>
-    </label>
-  );
-}
 
 const preview = [
   { icon: CalendarDays, title: "Salons & Tournaments", body: "Intimate evenings in landmark rooms.", to: "/events" as const },
