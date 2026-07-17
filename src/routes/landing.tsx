@@ -65,12 +65,7 @@ function SiteHeader() {
   );
 }
 
-function Hero({ email, setEmail }: { email: string; setEmail: (v: string) => void }) {
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const el = document.getElementById("waitlist");
-    el?.scrollIntoView({ behavior: "smooth" });
-  }
+function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
@@ -87,26 +82,7 @@ function Hero({ email, setEmail }: { email: string; setEmail: (v: string) => voi
           A private members' circle for connoisseurs of the game. Quiet rooms,
           considered company, and a couture collection celebrating the tile.
         </p>
-        <form
-          onSubmit={onSubmit}
-          className="mx-auto mt-9 flex w-full max-w-[460px] flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:border sm:border-[var(--hairline)] sm:bg-[var(--ivory)]/90 sm:p-1.5 sm:shadow-[0_10px_30px_-14px_rgba(0,0,0,0.25)] sm:backdrop-blur"
-        >
-          <input
-            required
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Your email address"
-            className="w-full rounded-full border border-[var(--hairline)] bg-[var(--ivory)] px-5 py-3.5 text-[13px] text-[var(--ink)] outline-none placeholder:text-[var(--taupe)] focus:border-[var(--gold)] sm:flex-1 sm:border-0 sm:bg-transparent sm:py-2 sm:focus:border-0"
-          />
-          <button
-            type="submit"
-            className="rounded-full bg-[var(--hsbc)] px-7 py-3.5 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_30px_-10px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)] sm:py-3"
-          >
-            Request an invitation
-          </button>
-        </form>
-        <p className="mt-8 text-[10px] uppercase tracking-[0.24em] text-[var(--taupe)]">
+        <p className="mt-9 text-[10px] uppercase tracking-[0.24em] text-[var(--taupe)]">
           By invitation only · No bank login required
         </p>
       </div>
