@@ -38,15 +38,16 @@ function Contact() {
         </div>
 
         <div className="mt-14 rounded-3xl border border-[var(--hairline)] bg-white/60 p-8 text-center">
-          <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Membership</p>
+          <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Prefer an invitation?</p>
           <p className="mt-3 text-[14px] leading-relaxed text-[var(--taupe)]">
-            The Circle is by invitation only. Members nominate future members.
+            Requests are best made through the waitlist.
           </p>
           <Link
             to="/landing"
+            hash="waitlist"
             className="mt-5 inline-block rounded-full bg-[var(--hsbc)] px-6 py-3 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_24px_-8px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)]"
           >
-            Learn more
+            Request an invitation
           </Link>
         </div>
       </section>
