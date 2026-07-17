@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown, Smartphone } from "lucide-react";
@@ -6,6 +7,7 @@ import heroSplash from "@/assets/hero-splash.jpg";
 import partnershipLockup from "@/assets/HSBC_In_partnership_with_RGB.png.asset.json";
 import mOrbitIcon from "@/assets/m_orbit.svg.asset.json";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
+import { submitWaitlist } from "@/lib/waitlist.functions";
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
@@ -198,6 +200,7 @@ function Exclusivity() {
 }
 
 function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
+  const submitWaitlistFn = useServerFn(submitWaitlist);
   const [state, setState] = useState<{
     name: string;
     email: string;
@@ -207,6 +210,7 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
   }>({ name: "", email: initialEmail, city: "", referredBy: "", reason: "" });
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (initialEmail) {
@@ -214,69 +218,7 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
     }
   }, [initialEmail]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const parsed = waitlistSchema.safeParse(state);
     if (!parsed.success) {
@@ -284,8 +226,16 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
       return;
     }
     setError(null);
-    addWaitlistEntry(parsed.data);
-    setDone(true);
+    setLoading(true);
+    try {
+      await submitWaitlistFn({ data: parsed.data });
+      addWaitlistEntry(parsed.data);
+      setDone(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -371,9 +321,10 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
           )}
           <button
             type="submit"
-            className="mt-2 rounded-2xl bg-[var(--hsbc)] py-3.5 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_28px_-10px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)]"
+            disabled={loading}
+            className="mt-2 rounded-2xl bg-[var(--hsbc)] py-3.5 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_28px_-10px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)] disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Submit request
+            {loading ? "Submitting..." : "Submit request"}
           </button>
           <p className="text-center text-[11px] text-[var(--taupe)]">
             We use your details only to review your request. See our{" "}
