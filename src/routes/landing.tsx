@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
-import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
+import partnershipLockup from "@/assets/HSBC_In_partnership_with_RGB.png.asset.json";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
 
 export const Route = createFileRoute("/landing")({
@@ -451,15 +451,13 @@ function Preview() {
 
 function PartnerStrip() {
   return (
-    <section className="border-y border-[var(--hairline)] bg-[var(--sand)]/40 py-10">
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-4 px-6 md:flex-row md:gap-8">
-        <span className="text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)]">
-          In partnership with
-        </span>
-        <img src={hsbcLogo.url} alt="HSBC Premier" className="h-6 w-auto" />
-        <span className="hidden text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)] md:inline">
-          · Premier
-        </span>
+    <section className="bg-[var(--ivory)] py-10">
+      <div className="mx-auto max-w-3xl px-6">
+        <img
+          src={partnershipLockup.url}
+          alt="In partnership with HSBC"
+          className="mx-auto w-full max-w-[420px]"
+        />
       </div>
     </section>
   );
