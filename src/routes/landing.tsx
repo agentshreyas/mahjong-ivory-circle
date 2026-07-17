@@ -4,6 +4,7 @@ import { z } from "zod";
 import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
 import partnershipLockup from "@/assets/HSBC_In_partnership_with_RGB.png.asset.json";
+import mOrbitIcon from "@/assets/m_orbit.svg.asset.json";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
 
 export const Route = createFileRoute("/landing")({
@@ -63,7 +64,8 @@ function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--hairline)] bg-[var(--ivory)]/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link to="/landing" className="font-display text-[17px] font-medium tracking-tight">
+        <Link to="/landing" className="flex items-center gap-2 font-display text-[17px] font-medium tracking-tight">
+          <img src={mOrbitIcon.url} alt="Mahjong Circle" className="h-7 w-7 rounded-lg" />
           Mahjong Circle
         </Link>
         <nav className="hidden items-center gap-8 text-[13px] text-[var(--taupe)] md:flex">
