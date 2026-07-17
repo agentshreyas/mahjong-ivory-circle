@@ -159,202 +159,10 @@ function Exclusivity() {
   );
 }
 
-function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
-  const [state, setState] = useState<{
-    name: string;
-    email: string;
-    city: string;
-    referredBy: string;
-    reason: string;
-  }>({ name: "", email: initialEmail, city: "", referredBy: "", reason: "" });
-  const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    if (initialEmail) {
-      setState((s) => (s.email ? s : { ...s, email: initialEmail }));
-    }
-  }, [initialEmail]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const parsed = waitlistSchema.safeParse(state);
-    if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Please check your entries");
-      return;
-    }
-    setError(null);
-    addWaitlistEntry(parsed.data);
-    setDone(true);
-  }
-
-  return (
-    <section id="waitlist" className="mx-auto max-w-3xl px-6 py-24 md:py-32">
-      <div className="text-center">
-        <p className="text-[11px] uppercase tracking-[0.32em] text-[var(--gold)]">The Waitlist</p>
-        <h2 className="mt-3 font-display text-[30px] leading-tight md:text-[40px]">
-          Request an invitation.
-        </h2>
-        <p className="mx-auto mt-4 max-w-[480px] text-[13px] leading-relaxed text-[var(--taupe)]">
-          Applications are reviewed monthly. We only reach out if there is a fit.
-        </p>
-      </div>
-
-      {done ? (
-        <div className="mt-12 rounded-3xl border border-[var(--gold)]/40 bg-[var(--ivory)] p-10 text-center">
-          <Crown size={22} className="mx-auto text-[var(--gold)]" />
-          <h3 className="mt-4 font-display text-[22px]">Received with thanks.</h3>
-          <p className="mx-auto mt-3 max-w-[420px] text-[13px] leading-relaxed text-[var(--taupe)]">
-            Your request is with the Circle. If there is a fit, we will be in
-            touch at {state.email}.
-          </p>
-        </div>
-      ) : (
-        <form
-          onSubmit={onSubmit}
-          className="mt-12 grid gap-4 rounded-3xl border border-[var(--hairline)] bg-white/60 p-6 md:p-8"
-        >
-          <div className="grid gap-4 md:grid-cols-2">
-            <Field label="Full name">
-              <input
-                required
-                maxLength={80}
-                value={state.name}
-                onChange={(e) => setState((s) => ({ ...s, name: e.target.value }))}
-                className="input"
-                placeholder="Aanya Bhatia"
-              />
-            </Field>
-            <Field label="Email">
-              <input
-                required
-                type="email"
-                maxLength={160}
-                value={state.email}
-                onChange={(e) => setState((s) => ({ ...s, email: e.target.value }))}
-                className="input"
-                placeholder="you@example.com"
-              />
-            </Field>
-            <Field label="City">
-              <input
-                required
-                maxLength={60}
-                value={state.city}
-                onChange={(e) => setState((s) => ({ ...s, city: e.target.value }))}
-                className="input"
-                placeholder="Mumbai"
-              />
-            </Field>
-            <Field label="Referred by (optional)">
-              <input
-                maxLength={80}
-                value={state.referredBy}
-                onChange={(e) => setState((s) => ({ ...s, referredBy: e.target.value }))}
-                className="input"
-                placeholder="A member's name"
-              />
-            </Field>
-          </div>
-          <Field label="Why you'd like to join (optional)">
-            <textarea
-              maxLength={500}
-              rows={4}
-              value={state.reason}
-              onChange={(e) => setState((s) => ({ ...s, reason: e.target.value }))}
-              className="input resize-none"
-              placeholder="A few lines is plenty."
-            />
-          </Field>
-          {error && (
-            <p className="text-[12px] text-[var(--hsbc)]">{error}</p>
-          )}
-          <button
-            type="submit"
-            className="mt-2 rounded-2xl bg-[var(--hsbc)] py-3.5 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_28px_-10px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)]"
-          >
-            Submit request
-          </button>
-          <p className="text-center text-[11px] text-[var(--taupe)]">
-            We use your details only to review your request. See our{" "}
-            <Link to="/privacy" className="underline underline-offset-2">
-              Privacy Policy
-            </Link>
-            .
-          </p>
-        </form>
-      )}
-    </section>
-  );
-}
-
-
 const preview = [
   { icon: CalendarDays, title: "Salons & Tournaments", body: "Intimate evenings in landmark rooms.", to: "/events" as const },
   { icon: Sparkles, title: "The Collection", body: "A couture capsule celebrating the tile.", to: "/collection" as const },
-  { icon: Crown, title: "Premier Privileges", body: "Curated benefits for HSBC Premier members.", to: "/premier" as const },
+  { icon: Sparkles, title: "Premier Privileges", body: "Curated benefits for HSBC Premier members.", to: "/premier" as const },
 ];
 
 function Preview() {
@@ -406,10 +214,10 @@ function PartnerStrip() {
 }
 
 const faq = [
-  { q: "How do I get invited?", a: "Members nominate future members. You may also request an invitation via the waitlist — the Circle reviews requests monthly." },
+  { q: "How do I get invited?", a: "Members nominate future members. The Circle reviews nominations monthly and reaches out if there is a fit." },
   { q: "Is there a fee?", a: "There is no application fee. Certain salons, tournaments and collection pieces are priced separately for members." },
   { q: "Where are events held?", a: "Landmark private rooms in select cities. Members receive location details on confirmation." },
-  { q: "How is my data used?", a: "Only to review your request and, if there is a fit, to contact you. See our Privacy Policy for details." },
+  { q: "How is my data used?", a: "Only to communicate with members and prospects. See our Privacy Policy for details." },
 ];
 
 function FAQ() {
