@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
@@ -206,13 +206,11 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
 
-  // Sync email prefilled from the hero form when it changes.
-  const lastInitial = useState(initialEmail)[0];
-  if (initialEmail && initialEmail !== state.email && initialEmail !== lastInitial) {
-    // no-op guard; setState via effect below
-  }
-  // Use effect for clean sync
-  useEffectSync(initialEmail, (v) => setState((s) => (s.email ? s : { ...s, email: v })));
+  useEffect(() => {
+    if (initialEmail) {
+      setState((s) => (s.email ? s : { ...s, email: initialEmail }));
+    }
+  }, [initialEmail]);
 
 
 
