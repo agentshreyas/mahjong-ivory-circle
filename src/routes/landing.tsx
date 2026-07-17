@@ -32,23 +32,13 @@ export const Route = createFileRoute("/landing")({
   component: LandingPage,
 });
 
-const waitlistSchema = z.object({
-  name: z.string().trim().min(2, "Please share your full name").max(80),
-  email: z.string().trim().email("A valid email, please").max(160),
-  city: z.string().trim().min(2, "City").max(60),
-  referredBy: z.string().trim().max(80).optional(),
-  reason: z.string().trim().max(500).optional(),
-});
-
 function LandingPage() {
-  const [heroEmail, setHeroEmail] = useState("");
   return (
     <div className="min-h-screen w-full bg-[var(--ivory)] text-[var(--ink)]">
       <SiteHeader />
-      <Hero email={heroEmail} setEmail={setHeroEmail} />
+      <Hero />
       <Ethos />
       <Exclusivity />
-      <Waitlist initialEmail={heroEmail} />
       <Preview />
       <PartnerStrip />
       <FAQ />
