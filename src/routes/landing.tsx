@@ -160,8 +160,8 @@ function Exclusivity() {
 }
 
 const preview = [
-  { icon: CalendarDays, title: "Salons & Tournaments", body: "Intimate evenings in landmark rooms.", to: "/events" as const },
-  { icon: Sparkles, title: "The Collection", body: "A couture capsule celebrating the tile.", to: "/collection" as const },
+  { icon: CalendarDays, title: "Exclusive Tournaments", body: "Intimate evenings in landmark rooms.", to: "/events" as const },
+  { icon: Sparkles, title: "A Limited Edition Collection", body: "A couture capsule celebrating the tile.", to: "/collection" as const },
   { icon: Crown, title: "Premier Privileges", body: "Curated benefits for HSBC Premier members.", to: "/premier" as const },
 ];
 
@@ -202,11 +202,11 @@ function PartnerStrip() {
     <section className="border-y border-[var(--hairline)] bg-[var(--sand)]/40 py-10">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-4 px-6 md:flex-row md:gap-8">
         <span className="text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)]">
-          In partnership with
+          {"\n"}
         </span>
         <img src={hsbcLogo.url} alt="HSBC Premier" className="h-6 w-auto" />
         <span className="hidden text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)] md:inline">
-          · Premier
+          {"\n"}
         </span>
       </div>
     </section>
