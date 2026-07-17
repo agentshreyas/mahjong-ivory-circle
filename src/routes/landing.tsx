@@ -3,6 +3,81 @@ import { useState } from "react";
 import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
 import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
+import { z } from "zod";
+import { addWaitlistEntry } from "@/lib/waitlist-store";
+
+const emailSchema = z
+  .string()
+  .trim()
+  .email({ message: "Enter a valid email" })
+  .max(255, { message: "Email is too long" });
+
+function InvitationForm({ id, variant = "light" }: { id: string; variant?: "light" | "dark" }) {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const parsed = emailSchema.safeParse(email);
+    if (!parsed.success) {
+      setError(parsed.error.issues[0]?.message ?? "Enter a valid email");
+      return;
+    }
+    setError(null);
+    addWaitlistEntry({ name: "", email: parsed.data, city: "" });
+    setSubmitted(true);
+    setEmail("");
+  }
+
+  const isDark = variant === "dark";
+
+  if (submitted) {
+    return (
+      <p
+        className={`text-[12px] uppercase tracking-[0.24em] ${
+          isDark ? "text-[var(--gold)]" : "text-[var(--hsbc)]"
+        }`}
+      >
+        Thank you — we will be in touch.
+      </p>
+    );
+  }
+
+  return (
+    <form
+      id={id}
+      onSubmit={onSubmit}
+      className="mx-auto flex w-full max-w-md flex-col gap-2 sm:flex-row"
+      noValidate
+    >
+      <label htmlFor={`${id}-email`} className="sr-only">
+        Email address
+      </label>
+      <input
+        id={`${id}-email`}
+        type="email"
+        required
+        maxLength={255}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="your@email.com"
+        className="flex-1 rounded-full border border-[var(--hairline)] bg-white/80 px-5 py-3 text-[13px] text-[var(--ink)] placeholder:text-[var(--taupe)] focus:border-[var(--gold)] focus:outline-none"
+      />
+      <button
+        type="submit"
+        className="rounded-full bg-[var(--hsbc)] px-6 py-3 text-[11px] font-medium uppercase tracking-[0.24em] text-white transition hover:opacity-90"
+      >
+        Request an invitation
+      </button>
+      {error && (
+        <p className="w-full text-left text-[11px] text-[var(--hsbc)] sm:absolute">
+          {error}
+        </p>
+      )}
+    </form>
+  );
+}
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
@@ -85,6 +160,9 @@ function Hero() {
         <p className="mt-9 text-[10px] uppercase tracking-[0.24em] text-[var(--taupe)]">
           By invitation only · No bank login required
         </p>
+        <div className="mt-8">
+          <InvitationForm id="hero-invite" />
+        </div>
       </div>
     </section>
   );
@@ -250,6 +328,22 @@ function FAQ() {
 export function SiteFooter() {
   return (
     <footer className="border-t border-[var(--hairline)] bg-[var(--ivory)]">
+      <div className="border-b border-[var(--hairline)]">
+        <div className="mx-auto max-w-3xl px-6 py-14 text-center">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--gold)]">
+            Join the Circle
+          </p>
+          <h3 className="mt-3 font-display text-[24px] leading-tight md:text-[30px]">
+            Request an invitation.
+          </h3>
+          <p className="mx-auto mt-3 max-w-md text-[13px] leading-relaxed text-[var(--taupe)]">
+            Leave your email and we will reach out when the next cohort opens.
+          </p>
+          <div className="mt-6">
+            <InvitationForm id="footer-invite" />
+          </div>
+        </div>
+      </div>
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-3">
         <div>
           <p className="font-display text-[18px] text-[var(--ink)]">Mahjong Circle</p>
