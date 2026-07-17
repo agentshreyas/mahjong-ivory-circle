@@ -1,10 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { z } from "zod";
-import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown } from "lucide-react";
+import { useState } from "react";
+import { CalendarDays, Sparkles, Feather, Users, Lock, ChevronDown } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
 import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
-import { addWaitlistEntry } from "@/lib/waitlist-store";
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
