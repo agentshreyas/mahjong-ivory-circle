@@ -90,7 +90,7 @@ function Hero({ email, setEmail }: { email: string; setEmail: (v: string) => voi
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--ivory)]/30 via-[var(--ivory)]/60 to-[var(--ivory)]" />
       </div>
       <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-32 text-center md:pt-36 md:pb-44">
-        <p className="text-[11px] uppercase tracking-[0.36em] text-[var(--gold)]">HSBC Presents</p>
+        <p className="text-[11px] uppercase tracking-[0.36em] text-[var(--hsbc)]">HSBC Presents</p>
         <h1 className="mt-5 font-display text-[44px] font-medium leading-[1.05] md:text-[68px]">
           The Mahjong<br />Circle
         </h1>
