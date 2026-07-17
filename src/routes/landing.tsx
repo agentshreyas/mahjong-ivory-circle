@@ -328,6 +328,22 @@ function FAQ() {
 export function SiteFooter() {
   return (
     <footer className="border-t border-[var(--hairline)] bg-[var(--ivory)]">
+      <div className="border-b border-[var(--hairline)]">
+        <div className="mx-auto max-w-3xl px-6 py-14 text-center">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--gold)]">
+            Join the Circle
+          </p>
+          <h3 className="mt-3 font-display text-[24px] leading-tight md:text-[30px]">
+            Request an invitation.
+          </h3>
+          <p className="mx-auto mt-3 max-w-md text-[13px] leading-relaxed text-[var(--taupe)]">
+            Leave your email and we will reach out when the next cohort opens.
+          </p>
+          <div className="mt-6">
+            <InvitationForm id="footer-invite" />
+          </div>
+        </div>
+      </div>
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-3">
         <div>
           <p className="font-display text-[18px] text-[var(--ink)]">Mahjong Circle</p>
