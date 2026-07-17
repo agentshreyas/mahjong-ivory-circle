@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown } from "lucide-react";
+import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown, Smartphone } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
 import partnershipLockup from "@/assets/HSBC_In_partnership_with_RGB.png.asset.json";
 import mOrbitIcon from "@/assets/m_orbit.svg.asset.json";
@@ -502,7 +502,7 @@ function FAQ() {
 export function SiteFooter() {
   return (
     <footer className="border-t border-[var(--hairline)] bg-[var(--ivory)]">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-3">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-4">
         <div>
           <p className="font-display text-[18px] text-[var(--ink)]">Mahjong Circle</p>
           <p className="mt-3 max-w-[280px] text-[12px] leading-relaxed text-[var(--taupe)]">
@@ -536,6 +536,16 @@ export function SiteFooter() {
             <li>Nexaar Pvt Ltd</li>
             <li>Mumbai, India</li>
           </ul>
+        </div>
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Apps</p>
+          <div className="mt-4 flex items-center gap-2 text-[13px] text-[var(--taupe)]">
+            <Smartphone size={16} strokeWidth={1.5} />
+            <span>Coming soon</span>
+          </div>
+          <p className="mt-2 text-[12px] leading-relaxed text-[var(--taupe)]">
+            iOS and Android apps are on their way.
+          </p>
         </div>
       </div>
       <div className="border-t border-[var(--hairline)]">
