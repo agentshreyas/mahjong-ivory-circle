@@ -43,13 +43,14 @@ const waitlistSchema = z.object({
 });
 
 function LandingPage() {
+  const [heroEmail, setHeroEmail] = useState("");
   return (
     <div className="min-h-screen w-full bg-[var(--ivory)] text-[var(--ink)]">
       <SiteHeader />
-      <Hero />
+      <Hero email={heroEmail} setEmail={setHeroEmail} />
       <Ethos />
       <Exclusivity />
-      <Waitlist />
+      <Waitlist initialEmail={heroEmail} />
       <Preview />
       <PartnerStrip />
       <FAQ />
@@ -71,18 +72,17 @@ function SiteHeader() {
           <a href="#faq" className="hover:text-[var(--ink)]">FAQ</a>
           <Link to="/contact" className="hover:text-[var(--ink)]">Contact</Link>
         </nav>
-        <a
-          href="#waitlist"
-          className="rounded-full bg-[var(--hsbc)] px-4 py-2 text-[12px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_8px_20px_-8px_rgba(219,0,17,0.5)] transition active:bg-[var(--hsbc-pressed)]"
-        >
-          Request invitation
-        </a>
       </div>
     </header>
   );
 }
 
-function Hero() {
+function Hero({ email, setEmail }: { email: string; setEmail: (v: string) => void }) {
+  function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const el = document.getElementById("waitlist");
+    el?.scrollIntoView({ behavior: "smooth" });
+  }
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
@@ -99,20 +99,25 @@ function Hero() {
           A private members' circle for connoisseurs of the game. Quiet rooms,
           considered company, and a couture collection celebrating the tile.
         </p>
-        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href="#waitlist"
-            className="rounded-full bg-[var(--hsbc)] px-7 py-3.5 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_30px_-10px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)]"
+        <form
+          onSubmit={onSubmit}
+          className="mx-auto mt-9 flex w-full max-w-[460px] flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:border sm:border-[var(--hairline)] sm:bg-[var(--ivory)]/90 sm:p-1.5 sm:shadow-[0_10px_30px_-14px_rgba(0,0,0,0.25)] sm:backdrop-blur"
+        >
+          <input
+            required
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Your email address"
+            className="w-full rounded-full border border-[var(--hairline)] bg-[var(--ivory)] px-5 py-3.5 text-[13px] text-[var(--ink)] outline-none placeholder:text-[var(--taupe)] focus:border-[var(--gold)] sm:flex-1 sm:border-0 sm:bg-transparent sm:py-2 sm:focus:border-0"
+          />
+          <button
+            type="submit"
+            className="rounded-full bg-[var(--hsbc)] px-7 py-3.5 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_30px_-10px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)] sm:py-3"
           >
             Request an invitation
-          </a>
-          <a
-            href="#ethos"
-            className="rounded-full border border-[var(--ink)]/15 px-7 py-3.5 text-[13px] font-medium text-[var(--ink)] transition hover:bg-[var(--sand)]"
-          >
-            Discover the circle
-          </a>
-        </div>
+          </button>
+        </form>
         <p className="mt-8 text-[10px] uppercase tracking-[0.24em] text-[var(--taupe)]">
           By invitation only · No bank login required
         </p>
@@ -190,16 +195,86 @@ function Exclusivity() {
   );
 }
 
-function Waitlist() {
+function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
   const [state, setState] = useState<{
     name: string;
     email: string;
     city: string;
     referredBy: string;
     reason: string;
-  }>({ name: "", email: "", city: "", referredBy: "", reason: "" });
+  }>({ name: "", email: initialEmail, city: "", referredBy: "", reason: "" });
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+
+  // Sync email prefilled from the hero form when it changes.
+  const lastInitial = useState(initialEmail)[0];
+  if (initialEmail && initialEmail !== state.email && initialEmail !== lastInitial) {
+    // no-op guard; setState via effect below
+  }
+  // Use effect for clean sync
+  useEffectSync(initialEmail, (v) => setState((s) => (s.email ? s : { ...s, email: v })));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
