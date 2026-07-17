@@ -1,10 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { z } from "zod";
+import { useState } from "react";
 import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
 import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
-import { addWaitlistEntry } from "@/lib/waitlist-store";
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
@@ -34,23 +32,13 @@ export const Route = createFileRoute("/landing")({
   component: LandingPage,
 });
 
-const waitlistSchema = z.object({
-  name: z.string().trim().min(2, "Please share your full name").max(80),
-  email: z.string().trim().email("A valid email, please").max(160),
-  city: z.string().trim().min(2, "City").max(60),
-  referredBy: z.string().trim().max(80).optional(),
-  reason: z.string().trim().max(500).optional(),
-});
-
 function LandingPage() {
-  const [heroEmail, setHeroEmail] = useState("");
   return (
     <div className="min-h-screen w-full bg-[var(--ivory)] text-[var(--ink)]">
       <SiteHeader />
-      <Hero email={heroEmail} setEmail={setHeroEmail} />
+      <Hero />
       <Ethos />
       <Exclusivity />
-      <Waitlist initialEmail={heroEmail} />
       <Preview />
       <PartnerStrip />
       <FAQ />
@@ -77,12 +65,7 @@ function SiteHeader() {
   );
 }
 
-function Hero({ email, setEmail }: { email: string; setEmail: (v: string) => void }) {
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const el = document.getElementById("waitlist");
-    el?.scrollIntoView({ behavior: "smooth" });
-  }
+function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
@@ -99,26 +82,7 @@ function Hero({ email, setEmail }: { email: string; setEmail: (v: string) => voi
           A private members' circle for connoisseurs of the game. Quiet rooms,
           considered company, and a couture collection celebrating the tile.
         </p>
-        <form
-          onSubmit={onSubmit}
-          className="mx-auto mt-9 flex w-full max-w-[460px] flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:border sm:border-[var(--hairline)] sm:bg-[var(--ivory)]/90 sm:p-1.5 sm:shadow-[0_10px_30px_-14px_rgba(0,0,0,0.25)] sm:backdrop-blur"
-        >
-          <input
-            required
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Your email address"
-            className="w-full rounded-full border border-[var(--hairline)] bg-[var(--ivory)] px-5 py-3.5 text-[13px] text-[var(--ink)] outline-none placeholder:text-[var(--taupe)] focus:border-[var(--gold)] sm:flex-1 sm:border-0 sm:bg-transparent sm:py-2 sm:focus:border-0"
-          />
-          <button
-            type="submit"
-            className="rounded-full bg-[var(--hsbc)] px-7 py-3.5 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_30px_-10px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)] sm:py-3"
-          >
-            Request an invitation
-          </button>
-        </form>
-        <p className="mt-8 text-[10px] uppercase tracking-[0.24em] text-[var(--taupe)]">
+        <p className="mt-9 text-[10px] uppercase tracking-[0.24em] text-[var(--taupe)]">
           By invitation only · No bank login required
         </p>
       </div>
@@ -195,222 +159,6 @@ function Exclusivity() {
   );
 }
 
-function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
-  const [state, setState] = useState<{
-    name: string;
-    email: string;
-    city: string;
-    referredBy: string;
-    reason: string;
-  }>({ name: "", email: initialEmail, city: "", referredBy: "", reason: "" });
-  const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    if (initialEmail) {
-      setState((s) => (s.email ? s : { ...s, email: initialEmail }));
-    }
-  }, [initialEmail]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const parsed = waitlistSchema.safeParse(state);
-    if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Please check your entries");
-      return;
-    }
-    setError(null);
-    addWaitlistEntry(parsed.data);
-    setDone(true);
-  }
-
-  return (
-    <section id="waitlist" className="mx-auto max-w-3xl px-6 py-24 md:py-32">
-      <div className="text-center">
-        <p className="text-[11px] uppercase tracking-[0.32em] text-[var(--gold)]">The Waitlist</p>
-        <h2 className="mt-3 font-display text-[30px] leading-tight md:text-[40px]">
-          Request an invitation.
-        </h2>
-        <p className="mx-auto mt-4 max-w-[480px] text-[13px] leading-relaxed text-[var(--taupe)]">
-          Applications are reviewed monthly. We only reach out if there is a fit.
-        </p>
-      </div>
-
-      {done ? (
-        <div className="mt-12 rounded-3xl border border-[var(--gold)]/40 bg-[var(--ivory)] p-10 text-center">
-          <Crown size={22} className="mx-auto text-[var(--gold)]" />
-          <h3 className="mt-4 font-display text-[22px]">Received with thanks.</h3>
-          <p className="mx-auto mt-3 max-w-[420px] text-[13px] leading-relaxed text-[var(--taupe)]">
-            Your request is with the Circle. If there is a fit, we will be in
-            touch at {state.email}.
-          </p>
-        </div>
-      ) : (
-        <form
-          onSubmit={onSubmit}
-          className="mt-12 grid gap-4 rounded-3xl border border-[var(--hairline)] bg-white/60 p-6 md:p-8"
-        >
-          <div className="grid gap-4 md:grid-cols-2">
-            <Field label="Full name">
-              <input
-                required
-                maxLength={80}
-                value={state.name}
-                onChange={(e) => setState((s) => ({ ...s, name: e.target.value }))}
-                className="input"
-                placeholder="Aanya Bhatia"
-              />
-            </Field>
-            <Field label="Email">
-              <input
-                required
-                type="email"
-                maxLength={160}
-                value={state.email}
-                onChange={(e) => setState((s) => ({ ...s, email: e.target.value }))}
-                className="input"
-                placeholder="you@example.com"
-              />
-            </Field>
-            <Field label="City">
-              <input
-                required
-                maxLength={60}
-                value={state.city}
-                onChange={(e) => setState((s) => ({ ...s, city: e.target.value }))}
-                className="input"
-                placeholder="Mumbai"
-              />
-            </Field>
-            <Field label="Referred by (optional)">
-              <input
-                maxLength={80}
-                value={state.referredBy}
-                onChange={(e) => setState((s) => ({ ...s, referredBy: e.target.value }))}
-                className="input"
-                placeholder="A member's name"
-              />
-            </Field>
-          </div>
-          <Field label="Why you'd like to join (optional)">
-            <textarea
-              maxLength={500}
-              rows={4}
-              value={state.reason}
-              onChange={(e) => setState((s) => ({ ...s, reason: e.target.value }))}
-              className="input resize-none"
-              placeholder="A few lines is plenty."
-            />
-          </Field>
-          {error && (
-            <p className="text-[12px] text-[var(--hsbc)]">{error}</p>
-          )}
-          <button
-            type="submit"
-            className="mt-2 rounded-2xl bg-[var(--hsbc)] py-3.5 text-[13px] font-medium tracking-wide text-[var(--ivory)] shadow-[0_10px_28px_-10px_rgba(219,0,17,0.55)] transition active:bg-[var(--hsbc-pressed)]"
-          >
-            Submit request
-          </button>
-          <p className="text-center text-[11px] text-[var(--taupe)]">
-            We use your details only to review your request. See our{" "}
-            <Link to="/privacy" className="underline underline-offset-2">
-              Privacy Policy
-            </Link>
-            .
-          </p>
-        </form>
-      )}
-    </section>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label className="block">
-      <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-[var(--taupe)]">
-        {label}
-      </span>
-      {children}
-      <style>{`
-        .input {
-          width: 100%;
-          border: 1px solid var(--hairline);
-          background: var(--ivory);
-          border-radius: 14px;
-          padding: 12px 14px;
-          font-size: 13px;
-          color: var(--ink);
-          outline: none;
-          transition: border-color .15s;
-        }
-        .input:focus { border-color: var(--gold); }
-      `}</style>
-    </label>
-  );
-}
-
 const preview = [
   { icon: CalendarDays, title: "Salons & Tournaments", body: "Intimate evenings in landmark rooms.", to: "/events" as const },
   { icon: Sparkles, title: "The Collection", body: "A couture capsule celebrating the tile.", to: "/collection" as const },
@@ -466,10 +214,10 @@ function PartnerStrip() {
 }
 
 const faq = [
-  { q: "How do I get invited?", a: "Members nominate future members. You may also request an invitation via the waitlist — the Circle reviews requests monthly." },
+  { q: "How do I get invited?", a: "Members nominate future members. The Circle reviews nominations monthly and reaches out if there is a fit." },
   { q: "Is there a fee?", a: "There is no application fee. Certain salons, tournaments and collection pieces are priced separately for members." },
   { q: "Where are events held?", a: "Landmark private rooms in select cities. Members receive location details on confirmation." },
-  { q: "How is my data used?", a: "Only to review your request and, if there is a fit, to contact you. See our Privacy Policy for details." },
+  { q: "How is my data used?", a: "Only to communicate with members and prospects. See our Privacy Policy for details." },
 ];
 
 function FAQ() {
