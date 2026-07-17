@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { CalendarDays, Sparkles, Feather, Users, Lock, ChevronDown } from "lucide-react";
+import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
 import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
 
