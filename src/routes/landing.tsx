@@ -162,7 +162,7 @@ function Exclusivity() {
 const preview = [
   { icon: CalendarDays, title: "Salons & Tournaments", body: "Intimate evenings in landmark rooms.", to: "/events" as const },
   { icon: Sparkles, title: "The Collection", body: "A couture capsule celebrating the tile.", to: "/collection" as const },
-  { icon: Sparkles, title: "Premier Privileges", body: "Curated benefits for HSBC Premier members.", to: "/premier" as const },
+  { icon: Crown, title: "Premier Privileges", body: "Curated benefits for HSBC Premier members.", to: "/premier" as const },
 ];
 
 function Preview() {
