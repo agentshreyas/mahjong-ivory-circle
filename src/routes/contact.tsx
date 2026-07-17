@@ -34,7 +34,7 @@ function Contact() {
           <Card icon={Mail} title="Write" body="concierge@mahjongcircle.in" href="mailto:concierge@mahjongcircle.in" />
           <Card icon={Clock} title="Reply time" body="Within two working days" />
           <Card icon={MapPin} title="Office" body="Nexaar Pvt Ltd, Mumbai, India" />
-          <Card icon={Mail} title="Privacy" body="privacy@nexaar.co" href="mailto:privacy@nexaar.co" />
+          <Card icon={Mail} title="Privacy" body="hello@nexaarhq.com" href="mailto:hello@nexaarhq.com" />
         </div>
 
         <div className="mt-14 rounded-3xl border border-[var(--hairline)] bg-white/60 p-8 text-center">
