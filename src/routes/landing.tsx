@@ -2,7 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { CalendarDays, Sparkles, Crown, Feather, Users, Lock, ChevronDown, Smartphone } from "lucide-react";
+import {
+  CalendarDays,
+  Sparkles,
+  Crown,
+  Feather,
+  Users,
+  Lock,
+  ChevronDown,
+  Smartphone,
+} from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
 import hsbcPresentsLogo from "@/assets/hsbc-presents-logo.png";
 import mOrbitIcon from "@/assets/m_orbit.svg.asset.json";
@@ -21,8 +30,7 @@ export const Route = createFileRoute("/landing")({
       { property: "og:title", content: "The Mahjong Circle — By Invitation Only" },
       {
         property: "og:description",
-        content:
-          "A private members' circle for connoisseurs of the game. Invitation only.",
+        content: "A private members' circle for connoisseurs of the game. Invitation only.",
       },
       { property: "og:type", content: "website" },
       {
@@ -30,9 +38,7 @@ export const Route = createFileRoute("/landing")({
         content: "https://mahjong-ivory-circle.lovable.app/landing",
       },
     ],
-    links: [
-      { rel: "canonical", href: "https://mahjong-ivory-circle.lovable.app/landing" },
-    ],
+    links: [{ rel: "canonical", href: "https://mahjong-ivory-circle.lovable.app/landing" }],
   }),
   component: LandingPage,
 });
@@ -64,15 +70,26 @@ function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--hairline)] bg-[var(--ivory)]/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link to="/landing" className="flex items-center gap-2 font-display text-[17px] font-medium tracking-tight">
+        <Link
+          to="/landing"
+          className="flex items-center gap-2 font-display text-[17px] font-medium tracking-tight"
+        >
           <img src={mOrbitIcon.url} alt="Mahjong Circle" className="h-7 w-7 rounded-lg" />
           Mahjong Circle
         </Link>
         <nav className="hidden items-center gap-8 text-[13px] text-[var(--taupe)] md:flex">
-          <a href="#ethos" className="hover:text-[var(--ink)]">Ethos</a>
-          <a href="#exclusivity" className="hover:text-[var(--ink)]">Membership</a>
-          <a href="#faq" className="hover:text-[var(--ink)]">FAQ</a>
-          <Link to="/contact" className="hover:text-[var(--ink)]">Contact</Link>
+          <a href="#ethos" className="hover:text-[var(--ink)]">
+            Ethos
+          </a>
+          <a href="#exclusivity" className="hover:text-[var(--ink)]">
+            Membership
+          </a>
+          <a href="#faq" className="hover:text-[var(--ink)]">
+            FAQ
+          </a>
+          <Link to="/contact" className="hover:text-[var(--ink)]">
+            Contact
+          </Link>
         </nav>
       </div>
     </header>
@@ -87,14 +104,20 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--ivory)]/30 via-[var(--ivory)]/60 to-[var(--ivory)]" />
       </div>
       <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-32 text-center md:pt-36 md:pb-44">
-        <img src={hsbcPresentsLogo} alt="HSBC Presents" className="mx-auto h-28 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] md:h-36" />
+        <img
+          src={hsbcPresentsLogo}
+          alt="HSBC Presents"
+          className="mx-auto h-28 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] md:h-36"
+        />
         <h1 className="mt-5 font-display text-[44px] font-medium leading-[1.05] md:text-[68px]">
-          The Mahjong<br />Circle
+          The Mahjong
+          <br />
+          Circle
         </h1>
         <div className="mx-auto my-6 gold-rule w-28" />
         <p className="mx-auto max-w-[520px] text-[14px] leading-relaxed text-[var(--taupe)] md:text-[15px]">
-          A private members' circle for connoisseurs of the game. Quiet rooms,
-          considered company, and a couture collection celebrating the tile.
+          A private members' circle for connoisseurs of the game. Quiet rooms, considered company,
+          and a couture collection celebrating the tile.
         </p>
         <p className="mt-8 text-[10px] uppercase tracking-[0.24em] text-[var(--taupe)]">
           By invitation only · No bank login required
@@ -105,9 +128,21 @@ function Hero() {
 }
 
 const pillars = [
-  { icon: Feather, title: "Quiet Rooms", body: "Private salons in landmark addresses across select cities." },
-  { icon: Users, title: "Considered Company", body: "A vetted circle of players, collectors and hosts." },
-  { icon: Sparkles, title: "Couture Collection", body: "A limited edition capsule celebrating the tile." },
+  {
+    icon: Feather,
+    title: "Quiet Rooms",
+    body: "Private salons in landmark addresses across select cities.",
+  },
+  {
+    icon: Users,
+    title: "Considered Company",
+    body: "A vetted circle of players, collectors and hosts.",
+  },
+  {
+    icon: Sparkles,
+    title: "Couture Collection",
+    body: "A limited edition capsule celebrating the tile.",
+  },
 ];
 
 function Ethos() {
@@ -155,10 +190,9 @@ function Exclusivity() {
         </h2>
         <div className="mx-auto my-6 gold-rule w-24" />
         <p className="mx-auto max-w-[560px] text-[14px] leading-relaxed text-[var(--taupe)] md:text-[15px]">
-          Membership is capped and vetted. Each cohort is curated by hand — a
-          quiet room of players, hosts and collectors introduced by those
-          already inside. There is no application fee, no public sign-up, and
-          no shortcut. If the circle is right for you, we will find our way to
+          Membership is capped and vetted. Each cohort is curated by hand — a quiet room of players,
+          hosts and collectors introduced by those already inside. There is no application fee, no
+          public sign-up, and no shortcut. If the circle is right for you, we will find our way to
           each other.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[11px] uppercase tracking-[0.22em] text-[var(--taupe)]">
@@ -229,8 +263,8 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
           <Crown size={22} className="mx-auto text-[var(--gold)]" />
           <h3 className="mt-4 font-display text-[22px]">Received with thanks.</h3>
           <p className="mx-auto mt-3 max-w-[420px] text-[13px] leading-relaxed text-[var(--taupe)]">
-            Your request is with the Circle. If there is a fit, we will be in
-            touch at {state.email}.
+            Your request is with the Circle. If there is a fit, we will be in touch at {state.email}
+            .
           </p>
         </div>
       ) : (
@@ -290,9 +324,7 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
               placeholder="A few lines is plenty."
             />
           </Field>
-          {error && (
-            <p className="text-[12px] text-[var(--hsbc)]">{error}</p>
-          )}
+          {error && <p className="text-[12px] text-[var(--hsbc)]">{error}</p>}
           <button
             type="submit"
             disabled={loading}
@@ -339,16 +371,33 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 const preview = [
-  { icon: CalendarDays, title: "Salons & Tournaments", body: "Intimate evenings in landmark rooms.", to: "/events" as const },
-  { icon: Sparkles, title: "The Collection", body: "A couture capsule celebrating the tile.", to: "/collection" as const },
-  { icon: Crown, title: "Premier Privileges", body: "Curated benefits for HSBC Premier members.", to: "/premier" as const },
+  {
+    icon: CalendarDays,
+    title: "Salons & Tournaments",
+    body: "Intimate evenings in landmark rooms.",
+    to: "/events" as const,
+  },
+  {
+    icon: Sparkles,
+    title: "The Collection",
+    body: "A couture capsule celebrating the tile.",
+    to: "/collection" as const,
+  },
+  {
+    icon: Crown,
+    title: "Premier Privileges",
+    body: "Curated benefits for HSBC Premier members.",
+    to: "/premier" as const,
+  },
 ];
 
 function Preview() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <div className="text-center">
-        <p className="text-[11px] uppercase tracking-[0.32em] text-[var(--gold)]">Inside the Circle</p>
+        <p className="text-[11px] uppercase tracking-[0.32em] text-[var(--gold)]">
+          Inside the Circle
+        </p>
         <h2 className="mt-3 font-display text-[30px] leading-tight md:text-[40px]">
           What members experience.
         </h2>
@@ -377,10 +426,22 @@ function Preview() {
 }
 
 const faq = [
-  { q: "How do I get invited?", a: "Members nominate future members. You may also request an invitation via the waitlist — the Circle reviews requests monthly." },
-  { q: "Is there a fee?", a: "There is no application fee. Certain salons, tournaments and collection pieces are priced separately for members." },
-  { q: "Where are events held?", a: "Landmark private rooms in select cities. Members receive location details on confirmation." },
-  { q: "How is my data used?", a: "Only to review your request and, if there is a fit, to contact you. See our Privacy Policy for details." },
+  {
+    q: "How do I get invited?",
+    a: "Members nominate future members. You may also request an invitation via the waitlist — the Circle reviews requests monthly.",
+  },
+  {
+    q: "Is there a fee?",
+    a: "There is no application fee. Certain salons, tournaments and collection pieces are priced separately for members.",
+  },
+  {
+    q: "Where are events held?",
+    a: "Landmark private rooms in select cities. Members receive location details on confirmation.",
+  },
+  {
+    q: "How is my data used?",
+    a: "Only to review your request and, if there is a fit, to contact you. See our Privacy Policy for details.",
+  },
 ];
 
 function FAQ() {
@@ -431,9 +492,21 @@ export function SiteFooter() {
         <div>
           <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Company</p>
           <ul className="mt-4 space-y-2 text-[13px] text-[var(--taupe)]">
-            <li><Link to="/privacy" className="hover:text-[var(--ink)]">Privacy Policy</Link></li>
-            <li><Link to="/terms" className="hover:text-[var(--ink)]">Terms of Use</Link></li>
-            <li><Link to="/contact" className="hover:text-[var(--ink)]">Contact Us</Link></li>
+            <li>
+              <Link to="/privacy" className="hover:text-[var(--ink)]">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link to="/terms" className="hover:text-[var(--ink)]">
+                Terms of Use
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-[var(--ink)]">
+                Contact Us
+              </Link>
+            </li>
           </ul>
         </div>
         <div>

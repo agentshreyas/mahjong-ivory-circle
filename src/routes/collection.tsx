@@ -37,8 +37,8 @@ function Collection() {
         <div className="mx-auto mt-5 h-px w-8 bg-[var(--hairline)]" />
 
         <p className="mx-auto mt-5 max-w-[260px] text-center text-[13px] leading-[1.65] text-[var(--taupe)]/90">
-          Two Mahjong boxes, made to order. Each celebrates the geometry of the tile —
-          one ceremonial, one made to travel.
+          Two Mahjong boxes, made to order. Each celebrates the geometry of the tile — one
+          ceremonial, one made to travel.
         </p>
       </section>
 

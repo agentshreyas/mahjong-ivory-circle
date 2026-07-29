@@ -23,7 +23,9 @@ function Home() {
   return (
     <Screen>
       <div className="px-5 pt-2 pb-6">
-        <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Thursday · Monsoon edition</p>
+        <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">
+          Thursday · Monsoon edition
+        </p>
         <h1 className="mt-1 font-display text-[28px] font-medium leading-tight text-[var(--ink)]">
           Hi, {firstName}.
         </h1>
@@ -31,12 +33,22 @@ function Home() {
       </div>
 
       {/* 1. Gaurav Gupta banner (top) → Collection */}
-      <Link to="/collection" className="mx-5 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40">
+      <Link
+        to="/collection"
+        className="mx-5 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40"
+      >
         <div className="relative h-48 w-full overflow-hidden">
-          <img src={ggBanner} alt="Gaurav Gupta capsule" loading="lazy" className="h-full w-full object-cover" />
+          <img
+            src={ggBanner}
+            alt="Gaurav Gupta capsule"
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-4">
-            <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">A Capsule · Atelier</p>
+            <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">
+              A Capsule · Atelier
+            </p>
             <p className="mt-1 font-display text-[20px] leading-tight text-[var(--ivory)]">
               Gaurav Gupta for the Circle
             </p>
@@ -53,20 +65,46 @@ function Home() {
           <h2 className="font-display text-[18px] text-[var(--ink)]">
             {hasCity ? `Upcoming in ${city}` : "Upcoming events"}
           </h2>
-          <Link to="/events" search={{ tab: undefined }} className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]">All events</Link>
+          <Link
+            to="/events"
+            search={{ tab: undefined }}
+            className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]"
+          >
+            All events
+          </Link>
         </div>
         <div className="gold-rule mt-2" />
         <div className="mt-4 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[
-            { img: event1, title: "An evening at Khotachiwadi", date: "Sat · 22 Jun · 7pm", venue: hasCity ? city : cities[0] },
-            { img: event2, title: "The Long Table", date: "Wed · 26 Jun · 6:30pm", venue: hasCity ? city : cities[1] },
+            {
+              img: event1,
+              title: "An evening at Khotachiwadi",
+              date: "Sat · 22 Jun · 7pm",
+              venue: hasCity ? city : cities[0],
+            },
+            {
+              img: event2,
+              title: "The Long Table",
+              date: "Wed · 26 Jun · 6:30pm",
+              venue: hasCity ? city : cities[1],
+            },
           ].map((e) => (
-            <Link key={e.title} to="/event-detail" className="w-[240px] shrink-0 overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/50">
+            <Link
+              key={e.title}
+              to="/event-detail"
+              className="w-[240px] shrink-0 overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/50"
+            >
               <img src={e.img} alt="" className="h-28 w-full object-cover" />
               <div className="p-3">
-                <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">{e.date}</p>
-                <p className="mt-1 font-display text-[14px] leading-tight text-[var(--ink)]">{e.title}</p>
-                <p className="mt-1 flex items-center gap-1 text-[11px] text-[var(--taupe)]"><MapPin size={11} /> {e.venue}</p>
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">
+                  {e.date}
+                </p>
+                <p className="mt-1 font-display text-[14px] leading-tight text-[var(--ink)]">
+                  {e.title}
+                </p>
+                <p className="mt-1 flex items-center gap-1 text-[11px] text-[var(--taupe)]">
+                  <MapPin size={11} /> {e.venue}
+                </p>
               </div>
             </Link>
           ))}
@@ -138,7 +176,19 @@ function Home() {
   );
 }
 
-function FeedVideo({ img, kind, duration, title, author }: any) {
+function FeedVideo({
+  img,
+  kind,
+  duration,
+  title,
+  author,
+}: {
+  img: string;
+  kind: string;
+  duration: string;
+  title: string;
+  author: string;
+}) {
   return (
     <article>
       <div className="relative h-56 w-full overflow-hidden rounded-2xl">
@@ -162,14 +212,28 @@ function FeedVideo({ img, kind, duration, title, author }: any) {
   );
 }
 
-function FeedArticle({ img, kind, time, title, author }: any) {
+function FeedArticle({
+  img,
+  kind,
+  time,
+  title,
+  author,
+}: {
+  img: string;
+  kind: string;
+  time: string;
+  title: string;
+  author: string;
+}) {
   return (
     <article className="grid grid-cols-[112px_1fr] gap-4">
       <div className="h-[112px] w-[112px] overflow-hidden rounded-2xl">
         <img src={img} alt="" loading="lazy" className="h-full w-full object-cover" />
       </div>
       <div className="min-w-0">
-        <p className="text-[9px] uppercase tracking-[0.22em] text-[var(--gold)]">{kind} · {time}</p>
+        <p className="text-[9px] uppercase tracking-[0.22em] text-[var(--gold)]">
+          {kind} · {time}
+        </p>
         <h3 className="mt-1 font-display text-[16px] leading-snug text-[var(--ink)]">{title}</h3>
         <p className="mt-2 text-[11px] text-[var(--taupe)]">{author}</p>
       </div>

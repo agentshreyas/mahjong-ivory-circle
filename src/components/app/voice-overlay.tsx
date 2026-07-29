@@ -39,7 +39,9 @@ export function VoiceOverlay() {
           </span>
         </div>
         <p className="mt-6 font-display text-[22px] leading-tight text-[var(--ink)]">Listening…</p>
-        <p className="mt-1 text-[12px] text-[var(--taupe)]">Speak naturally, in English or Hinglish.</p>
+        <p className="mt-1 text-[12px] text-[var(--taupe)]">
+          Speak naturally, in English or Hinglish.
+        </p>
       </div>
 
       <div className="px-6 pt-7">
@@ -57,12 +59,16 @@ export function VoiceOverlay() {
       </div>
 
       <div className="mt-6 flex-1 overflow-y-auto px-6 pb-6">
-        <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">Suggested results</p>
+        <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
+          Suggested results
+        </p>
         <div className="mt-3 divide-y divide-[var(--hairline)] rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40">
           {results.map((r) => (
             <div key={r.title} className="flex items-start justify-between gap-3 px-4 py-3">
               <div className="min-w-0">
-                <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">{r.kind}</p>
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">
+                  {r.kind}
+                </p>
                 <p className="truncate text-[14px] font-medium text-[var(--ink)]">{r.title}</p>
                 <p className="truncate text-[12px] text-[var(--taupe)]">{r.note}</p>
               </div>

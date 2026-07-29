@@ -74,9 +74,7 @@ function ProductPage() {
         </div>
 
         <div className="mt-6 px-6">
-          <h3 className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">
-            The Piece
-          </h3>
+          <h3 className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">The Piece</h3>
           <dl className="mt-3 divide-y divide-[var(--hairline)] border-y border-[var(--hairline)]">
             {product.details.map((d) => (
               <div key={d.label} className="flex items-start justify-between gap-6 py-3">

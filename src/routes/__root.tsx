@@ -85,13 +85,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "A private members' circle for connoisseurs of the game." },
       { name: "author", content: "HSBC Mahjong Circle" },
       { property: "og:title", content: "HSBC Mahjong Circle" },
-      { property: "og:description", content: "A private members' circle for connoisseurs of the game." },
+      {
+        property: "og:description",
+        content: "A private members' circle for connoisseurs of the game.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "HSBC Mahjong Circle" },
-      { name: "twitter:description", content: "A private members' circle for connoisseurs of the game." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c9a883b7-ca20-49b8-9019-6ee3075b2eb7/id-preview-d32c3ef4--2baacd7e-08be-4723-97d6-d8844936e687.lovable.app-1783496780451.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c9a883b7-ca20-49b8-9019-6ee3075b2eb7/id-preview-d32c3ef4--2baacd7e-08be-4723-97d6-d8844936e687.lovable.app-1783496780451.png" },
+      {
+        name: "twitter:description",
+        content: "A private members' circle for connoisseurs of the game.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c9a883b7-ca20-49b8-9019-6ee3075b2eb7/id-preview-d32c3ef4--2baacd7e-08be-4723-97d6-d8844936e687.lovable.app-1783496780451.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c9a883b7-ca20-49b8-9019-6ee3075b2eb7/id-preview-d32c3ef4--2baacd7e-08be-4723-97d6-d8844936e687.lovable.app-1783496780451.png",
+      },
     ],
     links: [
       {
@@ -130,9 +144,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const marketingRoutes = ["/landing", "/privacy", "/terms", "/contact"];
-  const isMarketing = marketingRoutes.some(
-    (r) => pathname === r || pathname.startsWith(r + "/"),
-  );
+  const isMarketing = marketingRoutes.some((r) => pathname === r || pathname.startsWith(r + "/"));
 
   if (isMarketing) {
     return (

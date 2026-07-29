@@ -9,9 +9,21 @@ export const Route = createFileRoute("/notifications")({
 });
 
 const GROUPS: Array<{ key: "editorial" | "events" | "system"; title: string; note: string }> = [
-  { key: "editorial", title: "Editorial pings", note: "New articles, films and the weekly letter." },
-  { key: "events", title: "Event nudges", note: "RSVP confirmations and gentle reminders — your table is tomorrow." },
-  { key: "system", title: "System notes", note: "Account, security and important service updates." },
+  {
+    key: "editorial",
+    title: "Editorial pings",
+    note: "New articles, films and the weekly letter.",
+  },
+  {
+    key: "events",
+    title: "Event nudges",
+    note: "RSVP confirmations and gentle reminders — your table is tomorrow.",
+  },
+  {
+    key: "system",
+    title: "System notes",
+    note: "Account, security and important service updates.",
+  },
 ];
 
 function Notifications() {
@@ -29,14 +41,20 @@ function Notifications() {
             return (
               <button
                 key={g.key}
-                onClick={() => writeMember({ notifications: { ...member.notifications, [g.key]: !on } })}
+                onClick={() =>
+                  writeMember({ notifications: { ...member.notifications, [g.key]: !on } })
+                }
                 className="flex w-full items-start gap-3 px-4 py-4 text-left"
               >
-                <span className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded border ${on ? "border-[var(--hsbc)] bg-[var(--hsbc)]" : "border-[var(--hairline)] bg-[var(--ivory)]"}`}>
+                <span
+                  className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded border ${on ? "border-[var(--hsbc)] bg-[var(--hsbc)]" : "border-[var(--hairline)] bg-[var(--ivory)]"}`}
+                >
                   {on && <Check size={13} className="text-[var(--ivory)]" />}
                 </span>
                 <span className="min-w-0">
-                  <span className="block font-display text-[15px] text-[var(--ink)]">{g.title}</span>
+                  <span className="block font-display text-[15px] text-[var(--ink)]">
+                    {g.title}
+                  </span>
                   <span className="mt-0.5 block text-[12px] text-[var(--taupe)]">{g.note}</span>
                 </span>
               </button>

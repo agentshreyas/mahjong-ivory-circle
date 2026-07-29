@@ -56,7 +56,9 @@ function EventDetail() {
         <div className="-mt-12 relative px-6 pb-8">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--gold)]">Sat · 22 June · 7:00 pm</p>
+              <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--gold)]">
+                Sat · 22 June · 7:00 pm
+              </p>
               <h1 className="mt-2 font-display text-[28px] leading-tight text-[var(--ink)]">
                 {EVENT.title}
               </h1>
@@ -72,24 +74,38 @@ function EventDetail() {
 
           {/* Style & skill */}
           <div className="mt-4 flex flex-wrap gap-2">
-            <span className="rounded-full border border-[var(--gold)]/60 bg-[var(--gold)]/10 px-3 py-1 text-[11px] text-[var(--ink)]">Style · Cantonese</span>
-            <span className="rounded-full border border-[var(--hairline)] bg-[var(--sand)]/60 px-3 py-1 text-[11px] text-[var(--ink)]">Skill · Intermediate & up</span>
+            <span className="rounded-full border border-[var(--gold)]/60 bg-[var(--gold)]/10 px-3 py-1 text-[11px] text-[var(--ink)]">
+              Style · Cantonese
+            </span>
+            <span className="rounded-full border border-[var(--hairline)] bg-[var(--sand)]/60 px-3 py-1 text-[11px] text-[var(--ink)]">
+              Skill · Intermediate & up
+            </span>
           </div>
 
           <div className="gold-rule my-5" />
 
           <div className="space-y-3 text-[13px] text-[var(--taupe)]">
-            <p className="flex items-center gap-2.5"><CalendarDays size={15} strokeWidth={1.5} /> Saturday, 22 June · 7:00 – 10:30 pm</p>
-            <p className="flex items-center gap-2.5"><MapPin size={15} strokeWidth={1.5} /> {EVENT.venue}</p>
-            <p className="flex items-center gap-2.5"><Users size={15} strokeWidth={1.5} /> 12 seats · 7 confirmed</p>
+            <p className="flex items-center gap-2.5">
+              <CalendarDays size={15} strokeWidth={1.5} /> Saturday, 22 June · 7:00 – 10:30 pm
+            </p>
+            <p className="flex items-center gap-2.5">
+              <MapPin size={15} strokeWidth={1.5} /> {EVENT.venue}
+            </p>
+            <p className="flex items-center gap-2.5">
+              <Users size={15} strokeWidth={1.5} /> 12 seats · 7 confirmed
+            </p>
           </div>
 
           <div className="mt-6 flex items-center gap-3 rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/50 p-3">
             <img src={avatar1} className="h-12 w-12 shrink-0 rounded-full object-cover" alt="" />
             <div className="min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Hosted by</p>
+              <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">
+                Hosted by
+              </p>
               <p className="truncate font-display text-[16px] text-[var(--ink)]">Aarti Mehra</p>
-              <p className="truncate text-[11px] text-[var(--taupe)]">A long‑standing member of the Bombay Circle</p>
+              <p className="truncate text-[11px] text-[var(--taupe)]">
+                A long‑standing member of the Bombay Circle
+              </p>
             </div>
           </div>
 
@@ -107,7 +123,13 @@ function EventDetail() {
                 navigate({ to: "/register" });
                 return;
               }
-              toggleBooking({ id: EVENT.id, title: EVENT.title, date: EVENT.date, venue: EVENT.venue, img: EVENT.img });
+              toggleBooking({
+                id: EVENT.id,
+                title: EVENT.title,
+                date: EVENT.date,
+                venue: EVENT.venue,
+                img: EVENT.img,
+              });
               setRsvp(!rsvp);
             }}
             className={`mt-7 w-full rounded-2xl py-3.5 text-[14px] font-medium transition ${
@@ -116,7 +138,11 @@ function EventDetail() {
                 : "bg-[var(--hsbc)] text-[var(--ivory)] shadow-[0_8px_24px_-8px_rgba(219,0,17,0.4)] active:bg-[var(--hsbc-pressed)]"
             }`}
           >
-            {member.guest ? "Sign up to join waitlist" : rsvp ? "Waitlist joined" : "Join the Waitlist"}
+            {member.guest
+              ? "Sign up to join waitlist"
+              : rsvp
+                ? "Waitlist joined"
+                : "Join the Waitlist"}
           </button>
           {rsvp ? (
             <p className="mt-3 text-center text-[12px] text-[var(--taupe)]">

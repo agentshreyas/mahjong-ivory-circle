@@ -62,7 +62,9 @@ function Profile() {
           <div className="rounded-full border border-[var(--gold)]/60 p-1">
             <img src={profileMe.url} alt="" className="h-24 w-24 rounded-full object-cover" />
           </div>
-          <h1 className="mt-4 font-display text-[24px] leading-tight text-[var(--ink)]">{member.name || "—"}</h1>
+          <h1 className="mt-4 font-display text-[24px] leading-tight text-[var(--ink)]">
+            {member.name || "—"}
+          </h1>
           <p className="mt-1 text-[12px] text-[var(--taupe)]">
             {member.city || "City"} · Member since {member.memberSince}
           </p>
@@ -80,7 +82,8 @@ function Profile() {
                         : "border-[var(--hairline)] bg-[var(--sand)]/60 text-[var(--ink)]"
                     }`}
                   >
-                    {primary && "★ "}{s}
+                    {primary && "★ "}
+                    {s}
                   </span>
                 );
               })}
@@ -98,7 +101,9 @@ function Profile() {
         {/* Personal details */}
         <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-4">
           <div className="flex items-center justify-between">
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">Personal details</p>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">
+              Personal details
+            </p>
             <button
               onClick={() => {
                 if (editing) writeMember({ mobile, email, name, city });
@@ -106,12 +111,20 @@ function Profile() {
               }}
               className="flex items-center gap-1 text-[11px] text-[var(--ink)] underline underline-offset-2"
             >
-              {editing ? "Save" : (<><Pencil size={11} /> Edit</>)}
+              {editing ? (
+                "Save"
+              ) : (
+                <>
+                  <Pencil size={11} /> Edit
+                </>
+              )}
             </button>
           </div>
           <div className="mt-3 space-y-3">
             <div>
-              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">Name</label>
+              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
+                Name
+              </label>
               {editing ? (
                 <input
                   value={name}
@@ -123,7 +136,9 @@ function Profile() {
               )}
             </div>
             <div>
-              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">City</label>
+              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
+                City
+              </label>
               {editing ? (
                 <select
                   value={city}
@@ -131,14 +146,18 @@ function Profile() {
                   className="mt-1 w-full appearance-none border-0 border-b border-[var(--hairline)] bg-transparent pb-1 text-[14px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
                 >
                   <option value="">Select your city</option>
-                  {CITIES.map((c) => <option key={c}>{c}</option>)}
+                  {CITIES.map((c) => (
+                    <option key={c}>{c}</option>
+                  ))}
                 </select>
               ) : (
                 <p className="mt-1 text-[14px] text-[var(--ink)]">{member.city || "—"}</p>
               )}
             </div>
             <div>
-              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">Mobile</label>
+              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
+                Mobile
+              </label>
               {editing ? (
                 <input
                   value={mobile}
@@ -150,7 +169,9 @@ function Profile() {
               )}
             </div>
             <div>
-              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">Email</label>
+              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
+                Email
+              </label>
               {editing ? (
                 <input
                   value={email}

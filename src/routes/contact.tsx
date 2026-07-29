@@ -26,19 +26,31 @@ function Contact() {
         </h1>
         <div className="my-6 gold-rule w-24" />
         <p className="max-w-[520px] text-[14px] leading-relaxed text-[var(--taupe)]">
-          The Circle is small by design. Write to us and a member of the team
-          will reply personally — usually within two working days.
+          The Circle is small by design. Write to us and a member of the team will reply personally
+          — usually within two working days.
         </p>
 
         <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <Card icon={Mail} title="Write" body="concierge@mahjongcircle.in" href="mailto:concierge@mahjongcircle.in" />
+          <Card
+            icon={Mail}
+            title="Write"
+            body="concierge@mahjongcircle.in"
+            href="mailto:concierge@mahjongcircle.in"
+          />
           <Card icon={Clock} title="Reply time" body="Within two working days" />
           <Card icon={MapPin} title="Office" body="Nexaar Pvt Ltd, Mumbai, India" />
-          <Card icon={Mail} title="Privacy" body="hello@nexaarhq.com" href="mailto:hello@nexaarhq.com" />
+          <Card
+            icon={Mail}
+            title="Privacy"
+            body="hello@nexaarhq.com"
+            href="mailto:hello@nexaarhq.com"
+          />
         </div>
 
         <div className="mt-14 rounded-3xl border border-[var(--hairline)] bg-white/60 p-8 text-center">
-          <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Prefer an invitation?</p>
+          <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">
+            Prefer an invitation?
+          </p>
           <p className="mt-3 text-[14px] leading-relaxed text-[var(--taupe)]">
             Requests are best made through the waitlist.
           </p>

@@ -12,10 +12,20 @@ interface Props {
   transparentTop?: boolean;
 }
 
-export function Screen({ children, title, eyebrow, back, hideTop, hideTabs, transparentTop }: Props) {
+export function Screen({
+  children,
+  title,
+  eyebrow,
+  back,
+  hideTop,
+  hideTabs,
+  transparentTop,
+}: Props) {
   return (
     <div className="relative flex min-h-full flex-1 flex-col bg-[var(--ivory)]">
-      {!hideTop && <TopBar title={title} eyebrow={eyebrow} back={back} transparent={transparentTop} />}
+      {!hideTop && (
+        <TopBar title={title} eyebrow={eyebrow} back={back} transparent={transparentTop} />
+      )}
       <main className="flex-1">{children}</main>
       {!hideTabs && <BottomNav />}
     </div>

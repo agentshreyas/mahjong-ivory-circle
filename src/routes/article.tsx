@@ -15,7 +15,9 @@ function Article() {
       <TopBar back />
       <article className="flex-1 overflow-y-auto">
         <div className="px-7 pt-2 pb-6">
-          <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--gold)]">Heritage · 6 min read</p>
+          <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--gold)]">
+            Heritage · 6 min read
+          </p>
           <h1 className="mt-3 font-display text-[32px] font-medium leading-[1.08] text-[var(--ink)]">
             A short history of the bamboo tile.
           </h1>
@@ -36,14 +38,14 @@ function Article() {
 
         <div className="px-7 py-8 text-[15.5px] leading-[1.75] text-[var(--ink)]">
           <p className="first-letter:float-left first-letter:mr-2 first-letter:font-display first-letter:text-[54px] first-letter:leading-[0.9] first-letter:text-[var(--hsbc)]">
-            The bamboo suit was, for the longest time, the suit one underestimated. In a set of
-            one hundred and forty‑four tiles it sits between the circles and the characters with
-            no ornament beyond a single, drawn stalk.
+            The bamboo suit was, for the longest time, the suit one underestimated. In a set of one
+            hundred and forty‑four tiles it sits between the circles and the characters with no
+            ornament beyond a single, drawn stalk.
           </p>
 
           <blockquote className="my-7 border-l-2 border-[var(--gold)] pl-5 font-display text-[20px] leading-snug text-[var(--ink)]">
-            "A good player keeps her bamboos until the room has settled — and only then begins
-            to speak."
+            "A good player keeps her bamboos until the room has settled — and only then begins to
+            speak."
           </blockquote>
 
           <p>
@@ -55,8 +57,8 @@ function Article() {
           <h3 className="mt-7 font-display text-[20px] text-[var(--ink)]">The one‑bamboo</h3>
           <p className="mt-3">
             Look closely at the one of bamboos in any old set and you will see a bird —
-            traditionally a sparrow, sometimes a peacock — the only tile in the suit that breaks
-            its own pattern. Collectors prize it almost above the dragons.
+            traditionally a sparrow, sometimes a peacock — the only tile in the suit that breaks its
+            own pattern. Collectors prize it almost above the dragons.
           </p>
 
           <div className="gold-rule my-10" />
@@ -70,7 +72,9 @@ function Article() {
               <img src={ggBanner} alt="" className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-4">
-                <p className="text-[9px] uppercase tracking-[0.24em] text-[var(--gold)]">The Mahjong Collection</p>
+                <p className="text-[9px] uppercase tracking-[0.24em] text-[var(--gold)]">
+                  The Mahjong Collection
+                </p>
                 <p className="mt-1 font-display text-[18px] leading-tight text-[var(--ivory)]">
                   Gaurav Gupta's tile motif — the capsule for the Circle.
                 </p>
@@ -90,8 +94,12 @@ function Article() {
         <div className="sticky bottom-0 border-t border-[var(--hairline)] bg-[var(--ivory)]/95 px-6 py-3 backdrop-blur">
           <div className="flex items-center justify-between text-[var(--taupe)]">
             <div className="flex items-center gap-5 text-[12px]">
-              <button className="flex items-center gap-1.5"><Heart size={15} strokeWidth={1.5} /> 24</button>
-              <button className="flex items-center gap-1.5"><MessageCircle size={15} strokeWidth={1.5} /> 6</button>
+              <button className="flex items-center gap-1.5">
+                <Heart size={15} strokeWidth={1.5} /> 24
+              </button>
+              <button className="flex items-center gap-1.5">
+                <MessageCircle size={15} strokeWidth={1.5} /> 6
+              </button>
             </div>
             <div className="flex items-center gap-4">
               <Bookmark size={15} strokeWidth={1.5} />

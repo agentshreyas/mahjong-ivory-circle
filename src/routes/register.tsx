@@ -98,7 +98,9 @@ function Register() {
 
             <div className="mt-7 space-y-5">
               <div>
-                <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">Mobile number</label>
+                <label className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">
+                  Mobile number
+                </label>
                 <div className="mt-2 flex items-center gap-2 border-b border-[var(--hairline)] pb-2 focus-within:border-[var(--gold)]">
                   <span className="font-display text-[18px] text-[var(--ink)]">+91</span>
                   <input
@@ -111,7 +113,9 @@ function Register() {
                   />
                 </div>
                 {!!mobile && !mobileValid && (
-                  <p className="mt-1 text-[11px] text-[var(--hsbc)]">Enter a valid 10-digit Indian mobile.</p>
+                  <p className="mt-1 text-[11px] text-[var(--hsbc)]">
+                    Enter a valid 10-digit Indian mobile.
+                  </p>
                 )}
               </div>
             </div>
@@ -121,7 +125,9 @@ function Register() {
                 type="button"
                 onClick={() => setConsent(!consent)}
                 className={`mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded border ${
-                  consent ? "border-[var(--hsbc)] bg-[var(--hsbc)]" : "border-[var(--hairline)] bg-transparent"
+                  consent
+                    ? "border-[var(--hsbc)] bg-[var(--hsbc)]"
+                    : "border-[var(--hairline)] bg-transparent"
                 }`}
               >
                 {consent && <Check size={11} className="text-[var(--ivory)]" />}
@@ -157,7 +163,8 @@ function Register() {
               Enter your code.
             </h2>
             <p className="mt-2 text-[13px] text-[var(--taupe)]">
-              We sent a 6-digit code to +91 {mobile.replace(/(\d{5})(\d{5})/, "$1 $2")}. It is valid for 5 minutes.
+              We sent a 6-digit code to +91 {mobile.replace(/(\d{5})(\d{5})/, "$1 $2")}. It is valid
+              for 5 minutes.
             </p>
 
             <div className="mt-8 flex justify-center gap-2">
@@ -226,7 +233,9 @@ function Register() {
               So we may recommend the right rooms, reads and tables.
             </p>
 
-            <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[var(--taupe)]">Skill level</p>
+            <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[var(--taupe)]">
+              Skill level
+            </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {SKILLS.map((s) => (
                 <button
@@ -243,7 +252,9 @@ function Register() {
               ))}
             </div>
 
-            <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[var(--taupe)]">Interests</p>
+            <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[var(--taupe)]">
+              Interests
+            </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {INTERESTS.map((tag) => {
                 const active = interests.includes(tag);
@@ -265,7 +276,9 @@ function Register() {
               })}
             </div>
 
-            <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[var(--taupe)]">Playing style</p>
+            <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[var(--taupe)]">
+              Playing style
+            </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {STYLES.map((s) => (
                 <button
@@ -284,7 +297,12 @@ function Register() {
 
             <div className="mt-9 flex gap-3">
               <button
-                onClick={() => { setSkill(""); setInterests([]); setStyle(""); setStep("details"); }}
+                onClick={() => {
+                  setSkill("");
+                  setInterests([]);
+                  setStyle("");
+                  setStep("details");
+                }}
                 className="flex-1 rounded-2xl border border-[var(--ink)]/15 py-3.5 text-[14px] font-medium text-[var(--ink)] active:bg-[var(--sand)]"
               >
                 Skip
@@ -318,7 +336,9 @@ function Register() {
                 className="mt-2 w-full appearance-none border-0 border-b border-[var(--hairline)] bg-transparent pb-2 font-display text-[18px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
               >
                 <option value="">Select your city</option>
-                {CITIES.map((c) => <option key={c}>{c}</option>)}
+                {CITIES.map((c) => (
+                  <option key={c}>{c}</option>
+                ))}
               </select>
             </div>
 
@@ -354,4 +374,3 @@ function Register() {
     </div>
   );
 }
-

@@ -44,20 +44,36 @@ function MyBookings() {
             <p className="mt-2 text-[12px] text-[var(--taupe)]">
               When you book a table, it will appear here.
             </p>
-            <Link to="/events" search={{ tab: undefined }} className="mt-6 inline-block rounded-2xl bg-[var(--hsbc)] px-5 py-2.5 text-[13px] font-medium text-[var(--ivory)]">
+            <Link
+              to="/events"
+              search={{ tab: undefined }}
+              className="mt-6 inline-block rounded-2xl bg-[var(--hsbc)] px-5 py-2.5 text-[13px] font-medium text-[var(--ivory)]"
+            >
               Browse events
             </Link>
           </div>
         ) : (
           <div className="space-y-3 pt-4">
             {bookings.map((b) => (
-              <Link key={b.id} to="/event-detail" className="flex gap-3 rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-3">
+              <Link
+                key={b.id}
+                to="/event-detail"
+                className="flex gap-3 rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-3"
+              >
                 <img src={b.img} alt="" className="h-20 w-20 shrink-0 rounded-xl object-cover" />
                 <div className="min-w-0 flex-1 py-0.5">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--gold)]">{b.date}</p>
-                  <p className="mt-1 truncate font-display text-[15px] text-[var(--ink)]">{b.title}</p>
-                  <p className="mt-1 flex items-center gap-1.5 truncate text-[11px] text-[var(--taupe)]"><MapPin size={11} /> {b.venue}</p>
-                  <p className="mt-1 flex items-center gap-1.5 text-[11px] text-[var(--jade)]"><CalendarDays size={11} /> Seat booked</p>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--gold)]">
+                    {b.date}
+                  </p>
+                  <p className="mt-1 truncate font-display text-[15px] text-[var(--ink)]">
+                    {b.title}
+                  </p>
+                  <p className="mt-1 flex items-center gap-1.5 truncate text-[11px] text-[var(--taupe)]">
+                    <MapPin size={11} /> {b.venue}
+                  </p>
+                  <p className="mt-1 flex items-center gap-1.5 text-[11px] text-[var(--jade)]">
+                    <CalendarDays size={11} /> Seat booked
+                  </p>
                 </div>
               </Link>
             ))}

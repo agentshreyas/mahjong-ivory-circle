@@ -27,11 +27,7 @@ export function BottomNav() {
             premierActive ? "brightness-110" : ""
           }`}
         >
-          <img
-            src={hsbcLogo.url}
-            alt="HSBC"
-            className="h-5 w-auto"
-          />
+          <img src={hsbcLogo.url} alt="HSBC" className="h-5 w-auto" />
           <span
             className={`text-[10px] tracking-wide whitespace-nowrap ${
               premierActive ? "text-[var(--hsbc)] font-medium" : "text-[var(--hsbc)]/80"
@@ -47,18 +43,11 @@ export function BottomNav() {
   );
 }
 
-function renderTab(
-  t: { to: string; label: string; icon: typeof Home },
-  path: string,
-) {
+function renderTab(t: { to: string; label: string; icon: typeof Home }, path: string) {
   const active = path === t.to || path.startsWith(t.to + "/");
   const Icon = t.icon;
   return (
-    <Link
-      key={t.to}
-      to={t.to}
-      className="flex flex-1 flex-col items-center gap-1 py-1"
-    >
+    <Link key={t.to} to={t.to} className="flex flex-1 flex-col items-center gap-1 py-1">
       <Icon
         size={20}
         strokeWidth={active ? 2 : 1.5}

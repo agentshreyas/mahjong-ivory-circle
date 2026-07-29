@@ -8,7 +8,10 @@ export const Route = createFileRoute("/")({
       { title: "HSBC Mahjong Circle" },
       { name: "description", content: "A private members' circle for connoisseurs of the game." },
       { property: "og:title", content: "HSBC Mahjong Circle" },
-      { property: "og:description", content: "A private members' circle for connoisseurs of the game." },
+      {
+        property: "og:description",
+        content: "A private members' circle for connoisseurs of the game.",
+      },
     ],
   }),
   component: Index,
@@ -31,12 +34,14 @@ function Index() {
       <div className="flex flex-1 flex-col items-center px-7 pt-5 text-center">
         <p className="text-[10px] uppercase tracking-[0.32em] text-[var(--gold)]">HSBC PRESENTS</p>
         <h1 className="mt-3 font-display text-[36px] font-medium leading-[1.05] text-[var(--ink)]">
-          The Mahjong<br />Circle
+          The Mahjong
+          <br />
+          Circle
         </h1>
         <div className="my-5 gold-rule w-24" />
         <p className="max-w-[280px] text-[13px] leading-relaxed text-[var(--taupe)]">
-          A members' circle for connoisseurs of the game. Quiet rooms, considered company,
-          and a couture collection celebrating the tile.
+          A members' circle for connoisseurs of the game. Quiet rooms, considered company, and a
+          couture collection celebrating the tile.
         </p>
 
         <div className="mt-auto w-full space-y-3 pb-8 pt-8">

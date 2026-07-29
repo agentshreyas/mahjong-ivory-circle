@@ -69,7 +69,9 @@ function Events() {
   const cities = ["All cities", ...Array.from(new Set(events.map((e) => e.city)))];
   const search = Route.useSearch();
   const [tab, setTab] = useState<"all" | "hsbc" | "mine">(search.tab ?? "all");
-  const [city, setCity] = useState<string>(member.city && cities.includes(member.city) ? member.city : "All cities");
+  const [city, setCity] = useState<string>(
+    member.city && cities.includes(member.city) ? member.city : "All cities",
+  );
 
   const filtered = events.filter((e) => (city === "All cities" ? true : e.city === city));
   const visible =
@@ -148,11 +150,17 @@ function Events() {
             <div className="p-4">
               <h3 className="font-display text-[19px] leading-snug text-[var(--ink)]">{e.title}</h3>
               <div className="mt-3 space-y-1.5 text-[12px] text-[var(--taupe)]">
-                <p className="flex items-center gap-2"><CalendarDays size={13} strokeWidth={1.5} /> {e.date}</p>
-                <p className="flex items-center gap-2"><MapPin size={13} strokeWidth={1.5} /> {e.venue}</p>
+                <p className="flex items-center gap-2">
+                  <CalendarDays size={13} strokeWidth={1.5} /> {e.date}
+                </p>
+                <p className="flex items-center gap-2">
+                  <MapPin size={13} strokeWidth={1.5} /> {e.venue}
+                </p>
               </div>
               <div className="gold-rule mt-3" />
-              <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-[var(--gold)]">{e.host}</p>
+              <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-[var(--gold)]">
+                {e.host}
+              </p>
             </div>
           </Link>
         ))}

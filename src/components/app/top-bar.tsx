@@ -37,7 +37,9 @@ export function TopBar({ title, eyebrow, back, transparent }: Props) {
                 {eyebrow}
               </p>
             )}
-            <h1 className="truncate font-display text-[17px] font-medium text-[var(--ink)]">{title}</h1>
+            <h1 className="truncate font-display text-[17px] font-medium text-[var(--ink)]">
+              {title}
+            </h1>
           </div>
         ) : (
           !back && (

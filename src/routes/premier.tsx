@@ -41,9 +41,21 @@ const pillars = [
 ];
 
 const journey = [
-  { step: "01", title: "Discover", body: "A private conversation to map your goals across banking, wealth and lifestyle." },
-  { step: "02", title: "Onboard", body: "White-glove onboarding with your Premier RM — accounts, cards and access set up end-to-end." },
-  { step: "03", title: "Grow", body: "Ongoing advisory reviews, curated events like The Mahjong Circle, and global mobility support." },
+  {
+    step: "01",
+    title: "Discover",
+    body: "A private conversation to map your goals across banking, wealth and lifestyle.",
+  },
+  {
+    step: "02",
+    title: "Onboard",
+    body: "White-glove onboarding with your Premier RM — accounts, cards and access set up end-to-end.",
+  },
+  {
+    step: "03",
+    title: "Grow",
+    body: "Ongoing advisory reviews, curated events like The Mahjong Circle, and global mobility support.",
+  },
 ];
 
 function Premier() {
@@ -61,11 +73,13 @@ function Premier() {
             </span>
           </div>
           <h1 className="mt-4 font-display text-[30px] font-medium leading-[1.1] text-white">
-            Your journey,<br />privately advised.
+            Your journey,
+            <br />
+            privately advised.
           </h1>
           <p className="mt-3 max-w-[280px] text-[13px] leading-relaxed text-white/80">
-            A relationship banking experience designed for HNIs and their families — global reach, quiet
-            expertise, and access to moments like The Mahjong Circle.
+            A relationship banking experience designed for HNIs and their families — global reach,
+            quiet expertise, and access to moments like The Mahjong Circle.
           </p>
           <a
             href="https://www.hsbc.co.in/premier/"
@@ -129,7 +143,9 @@ function Premier() {
       {/* CTA */}
       <section className="px-5 pt-10 pb-24">
         <div className="rounded-3xl bg-[var(--ink)] p-6 text-center text-[var(--ivory)]">
-          <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Ready when you are</p>
+          <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">
+            Ready when you are
+          </p>
           <h3 className="mt-2 font-display text-[20px] leading-tight">
             Speak with a Premier Relationship Manager
           </h3>
