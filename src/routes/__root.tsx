@@ -143,7 +143,7 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const marketingRoutes = ["/landing", "/privacy", "/terms", "/contact"];
+  const marketingRoutes = ["/", "/landing", "/privacy", "/terms", "/contact", "/coming-soon"];
   const isMarketing = marketingRoutes.some((r) => pathname === r || pathname.startsWith(r + "/"));
 
   if (isMarketing) {

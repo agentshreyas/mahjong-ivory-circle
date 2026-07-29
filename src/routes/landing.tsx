@@ -13,8 +13,9 @@ import {
   Smartphone,
 } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
-import hsbcPresentsLogo from "@/assets/hsbc-presents-logo.png";
-import mOrbitIcon from "@/assets/m_orbit.svg.asset.json";
+import mahjongHomePageIcon from "@/assets/mahjong-home-page-icon.png";
+import mahjongMark from "@/assets/mahjong-mark.png";
+import mahjongAppIcon from "@/assets/mahjong-app-icon.jpg";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
 import { submitWaitlist } from "@/lib/waitlist.functions";
 
@@ -58,7 +59,7 @@ function LandingPage() {
       <Hero />
       <Ethos />
       <Exclusivity />
-      <Waitlist />
+      {/* <Waitlist /> hidden as requested */}
       <Preview />
       <FAQ />
       <SiteFooter />
@@ -74,7 +75,10 @@ function SiteHeader() {
           to="/landing"
           className="flex items-center gap-2 font-display text-[17px] font-medium tracking-tight"
         >
-          <img src={mOrbitIcon.url} alt="Mahjong Circle" className="h-7 w-7 rounded-lg" />
+          <div className="relative flex h-7 w-7 items-center justify-center rounded-full border border-[var(--ink)]">
+            <span className="font-display text-[13px] font-bold text-[var(--ink)]">M</span>
+            <div className="absolute right-[3px] top-[3px] h-1.5 w-1.5 rounded-full bg-[var(--hsbc)]"></div>
+          </div>
           Mahjong Circle
         </Link>
         <nav className="hidden items-center gap-8 text-[13px] text-[var(--taupe)] md:flex">
@@ -103,13 +107,13 @@ function Hero() {
         <img src={heroSplash} alt="" className="h-full w-full object-cover opacity-70" />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--ivory)]/30 via-[var(--ivory)]/60 to-[var(--ivory)]" />
       </div>
-      <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-32 text-center md:pt-36 md:pb-44">
+      <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-12 text-center md:pt-36 md:pb-20">
         <img
-          src={hsbcPresentsLogo}
-          alt="HSBC Presents"
+          src={mahjongHomePageIcon}
+          alt="Mahjong Circle"
           className="mx-auto h-28 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] md:h-36"
         />
-        <h1 className="mt-5 font-display text-[44px] font-medium leading-[1.05] md:text-[68px]">
+        <h1 className="mt-1 font-display text-[44px] font-medium leading-[1.05] text-[var(--ink)] md:text-[68px]">
           The Mahjong
           <br />
           Circle
@@ -118,9 +122,6 @@ function Hero() {
         <p className="mx-auto max-w-[520px] text-[14px] leading-relaxed text-[var(--taupe)] md:text-[15px]">
           A private members' circle for connoisseurs of the game. Quiet rooms, considered company,
           and a couture collection celebrating the tile.
-        </p>
-        <p className="mt-8 text-[10px] uppercase tracking-[0.24em] text-[var(--taupe)]">
-          By invitation only · No bank login required
         </p>
       </div>
     </section>
@@ -375,19 +376,19 @@ const preview = [
     icon: CalendarDays,
     title: "Salons & Tournaments",
     body: "Intimate evenings in landmark rooms.",
-    to: "/events" as const,
+    to: "/coming-soon" as const,
   },
   {
     icon: Sparkles,
     title: "The Collection",
     body: "A couture capsule celebrating the tile.",
-    to: "/collection" as const,
+    to: "/coming-soon" as const,
   },
   {
     icon: Crown,
     title: "Premier Privileges",
     body: "Curated benefits for HSBC Premier members.",
-    to: "/premier" as const,
+    to: "/coming-soon" as const,
   },
 ];
 
@@ -513,7 +514,12 @@ export function SiteFooter() {
           <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Contact</p>
           <ul className="mt-4 space-y-2 text-[13px] text-[var(--taupe)]">
             <li>
-              <a href="mailto:concierge@mahjongcircle.in" className="hover:text-[var(--ink)]">
+              <a 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=concierge@mahjongcircle.in" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--ink)]"
+              >
                 concierge@mahjongcircle.in
               </a>
             </li>
@@ -523,12 +529,24 @@ export function SiteFooter() {
         </div>
         <div>
           <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Apps</p>
-          <div className="mt-4 flex items-center gap-2 text-[13px] text-[var(--taupe)]">
-            <Smartphone size={16} strokeWidth={1.5} />
-            <span>Coming soon</span>
-          </div>
-          <p className="mt-2 text-[12px] leading-relaxed text-[var(--taupe)]">
-            iOS and Android apps are on their way.
+          <a 
+            href="https://apps.apple.com/in/app/id6790778933" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="mt-4 flex items-center gap-3 transition hover:opacity-80"
+          >
+            <img 
+              src={mahjongAppIcon} 
+              alt="Mahjong Circle App" 
+              className="h-10 w-10 rounded-xl object-cover shadow-sm border border-[var(--hairline)]"
+            />
+            <div className="text-[13px]">
+              <p className="font-medium text-[var(--ink)]">Download for iOS</p>
+              <p className="text-[11px] text-[var(--taupe)]">Available on the App Store</p>
+            </div>
+          </a>
+          <p className="mt-4 text-[12px] text-[var(--taupe)]">
+            Android coming soon
           </p>
         </div>
       </div>

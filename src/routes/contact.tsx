@@ -35,7 +35,7 @@ function Contact() {
             icon={Mail}
             title="Write"
             body="concierge@mahjongcircle.in"
-            href="mailto:concierge@mahjongcircle.in"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=concierge@mahjongcircle.in"
           />
           <Card icon={Clock} title="Reply time" body="Within two working days" />
           <Card icon={MapPin} title="Office" body="Nexaar Pvt Ltd, Mumbai, India" />
@@ -43,7 +43,7 @@ function Contact() {
             icon={Mail}
             title="Privacy"
             body="hello@nexaarhq.com"
-            href="mailto:hello@nexaarhq.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@nexaarhq.com"
           />
         </div>
 
@@ -79,22 +79,26 @@ function Card({
   body: string;
   href?: string;
 }) {
-  const inner = (
+  return (
     <div className="flex items-start gap-4 rounded-2xl border border-[var(--hairline)] bg-white/60 p-5">
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--hsbc)]/10 text-[var(--hsbc)]">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--hsbc)]/10 text-[var(--hsbc)]">
         <Icon size={16} strokeWidth={1.75} />
       </div>
       <div>
         <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--taupe)]">{title}</p>
-        <p className="mt-1 text-[14px] text-[var(--ink)]">{body}</p>
+        {href ? (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 block text-[14px] text-[var(--ink)] transition hover:opacity-80"
+          >
+            {body}
+          </a>
+        ) : (
+          <p className="mt-1 text-[14px] text-[var(--ink)]">{body}</p>
+        )}
       </div>
     </div>
-  );
-  return href ? (
-    <a href={href} className="block transition hover:opacity-90">
-      {inner}
-    </a>
-  ) : (
-    inner
   );
 }

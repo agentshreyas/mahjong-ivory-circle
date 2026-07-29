@@ -91,7 +91,9 @@ function Terms() {
           <S title="11. Contact">
             For any question about these terms, write to{" "}
             <a
-              href="mailto:legal@nexaar.co"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=legal@nexaar.co"
+              target="_blank"
+              rel="noopener noreferrer"
               className="underline underline-offset-2 hover:text-[var(--ink)]"
             >
               legal@nexaar.co

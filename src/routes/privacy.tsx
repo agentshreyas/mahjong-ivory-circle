@@ -95,7 +95,9 @@ function Privacy() {
             <P>
               For any privacy question, write to{" "}
               <a
-                href="mailto:privacy@nexaar.co"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=privacy@nexaar.co"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="underline underline-offset-2 hover:text-[var(--ink)]"
               >
                 privacy@nexaar.co
@@ -126,7 +128,14 @@ export function LegalHeader() {
   return (
     <header className="border-b border-[var(--hairline)] bg-[var(--ivory)]/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link to="/landing" className="font-display text-[17px] font-medium tracking-tight">
+        <Link 
+          to="/landing" 
+          className="flex items-center gap-2 font-display text-[17px] font-medium tracking-tight"
+        >
+          <div className="relative flex h-7 w-7 items-center justify-center rounded-full border border-[var(--ink)]">
+            <span className="font-display text-[13px] font-bold text-[var(--ink)]">M</span>
+            <div className="absolute right-[3px] top-[3px] h-1.5 w-1.5 rounded-full bg-[var(--hsbc)]"></div>
+          </div>
           Mahjong Circle
         </Link>
         <nav className="flex items-center gap-6 text-[12px] uppercase tracking-[0.2em] text-[var(--taupe)]">
