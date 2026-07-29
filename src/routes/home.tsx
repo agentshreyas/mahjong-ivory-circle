@@ -53,7 +53,7 @@ function Home() {
           <h2 className="font-display text-[18px] text-[var(--ink)]">
             {hasCity ? `Upcoming in ${city}` : "Upcoming events"}
           </h2>
-          <Link to="/events" className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]">All events</Link>
+          <Link to="/events" search={{ tab: undefined }} className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]">All events</Link>
         </div>
         <div className="gold-rule mt-2" />
         <div className="mt-4 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

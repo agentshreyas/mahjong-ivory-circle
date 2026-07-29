@@ -44,59 +44,12 @@ export const submitWaitlist = createServerFn({ method: "POST" })
       throw new Error(error.message);
     }
 
-    await notifyWaitlistEmail(data);
+    const { error: fnError } = await supabasePublic.functions.invoke("notify-waitlist", {
+      body: data,
+    });
+    if (fnError) {
+      console.error("Failed to send waitlist notification email", fnError.message);
+    }
 
     return { ok: true };
   });
-
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-async function notifyWaitlistEmail(data: z.infer<typeof waitlistSchema>) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("RESEND_API_KEY is not set; skipping waitlist notification email");
-    return;
-  }
-
-  const rows = [
-    ["Full name", data.name],
-    ["Email", data.email],
-    ["City", data.city],
-    ["Referred by", data.referredBy || "—"],
-    ["Reason", data.reason || "—"],
-    ["Source", data.source],
-  ];
-
-  const html = `
-    <h2>New Mahjong Circle invitation request</h2>
-    <table cellpadding="6" cellspacing="0" border="1" style="border-collapse:collapse;font-family:sans-serif">
-      ${rows.map(([label, value]) => `<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join("")}
-    </table>
-  `;
-
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
-      to: process.env.WAITLIST_NOTIFY_EMAIL || "mahjong@nexaarhq.com",
-      reply_to: data.email,
-      subject: `New invitation request — ${data.name}`,
-      html,
-    }),
-  });
-
-  if (!res.ok) {
-    console.error("Failed to send waitlist notification email", await res.text());
-  }
-}

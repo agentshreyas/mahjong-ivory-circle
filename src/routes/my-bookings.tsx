@@ -44,7 +44,7 @@ function MyBookings() {
             <p className="mt-2 text-[12px] text-[var(--taupe)]">
               When you book a table, it will appear here.
             </p>
-            <Link to="/events" className="mt-6 inline-block rounded-2xl bg-[var(--hsbc)] px-5 py-2.5 text-[13px] font-medium text-[var(--ivory)]">
+            <Link to="/events" search={{ tab: undefined }} className="mt-6 inline-block rounded-2xl bg-[var(--hsbc)] px-5 py-2.5 text-[13px] font-medium text-[var(--ivory)]">
               Browse events
             </Link>
           </div>
