@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import {
@@ -18,7 +17,35 @@ import mahjongMark from "@/assets/mahjong-mark.png";
 import mahjongAppIcon from "@/assets/mahjong-app-icon.jpg";
 import newWebAppIcon from "@/assets/new-web-app-icon.jpg";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
-import { submitWaitlist } from "@/lib/waitlist.functions";
+
+const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbylgYhT6iBq-JJt55PdMpIXb9S0MbGoDpXAz4zwxBENH_jQXzYMCh1awiDdzyjmCeBX/exec";
+
+type WaitlistPayload = {
+  name: string;
+  email: string;
+  city: string;
+  referredBy?: string;
+  reason?: string;
+};
+
+type WaitlistResponse =
+  | { result: 'success'; row: number; debug: unknown }
+  | { result: 'error'; step: string; error?: string; errors?: Record<string, string>; debug: unknown };
+
+async function submitWaitlistFrontend(data: WaitlistPayload): Promise<WaitlistResponse> {
+  const res = await fetch(WAITLIST_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Waitlist request failed with status ${res.status}`);
+  }
+
+  const json = (await res.json()) as WaitlistResponse;
+  return json;
+}
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
@@ -225,7 +252,6 @@ function Exclusivity() {
 }
 
 function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
-  const submitWaitlistFn = useServerFn(submitWaitlist);
   const [state, setState] = useState<{
     name: string;
     email: string;
@@ -253,11 +279,21 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
     setError(null);
     setLoading(true);
     try {
-      await submitWaitlistFn({ data: parsed.data });
+      const response = await submitWaitlistFrontend(parsed.data);
+
+      if (response.result === 'error') {
+        if (response.step === 'VALIDATION' && response.errors) {
+          setError(Object.values(response.errors)[0] || "Validation failed");
+          return;
+        }
+        throw new Error(response.error ?? "Unknown error");
+      }
+
       addWaitlistEntry(parsed.data);
       setDone(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      console.error(err);
     } finally {
       setLoading(false);
     }
