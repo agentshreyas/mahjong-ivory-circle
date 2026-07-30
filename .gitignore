@@ -26,6 +26,10 @@ dist-ssr
 .env.*
 !.env.example
 
+# Deployment scripts
+deploy_hostinger.sh
+deploy_*.sh
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
