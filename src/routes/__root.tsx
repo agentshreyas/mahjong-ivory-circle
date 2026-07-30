@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { PhoneFrame } from "@/components/app/phone-frame";
 import { VoiceProvider } from "@/components/app/voice-context";
 import { VoiceOverlay } from "@/components/app/voice-overlay";
+import faviconUrl from "@/assets/new-web-app-icon.jpg";
 
 function NotFoundComponent() {
   return (
@@ -110,8 +111,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       {
         rel: "icon",
-        type: "image/svg+xml",
-        href: "/favicon.svg",
+        type: "image/jpeg",
+        href: faviconUrl,
       },
       {
         rel: "stylesheet",

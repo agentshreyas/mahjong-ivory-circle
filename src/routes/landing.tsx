@@ -16,6 +16,7 @@ import heroSplash from "@/assets/hero-splash.jpg";
 import mahjongHomePageIcon from "@/assets/mahjong-home-page-icon.png";
 import mahjongMark from "@/assets/mahjong-mark.png";
 import mahjongAppIcon from "@/assets/mahjong-app-icon.jpg";
+import newWebAppIcon from "@/assets/new-web-app-icon.jpg";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
 import { submitWaitlist } from "@/lib/waitlist.functions";
 
@@ -75,10 +76,7 @@ function SiteHeader() {
           to="/landing"
           className="flex items-center gap-2 font-display text-[17px] font-medium tracking-tight"
         >
-          <div className="relative flex h-7 w-7 items-center justify-center rounded-full border border-[var(--ink)]">
-            <span className="font-display text-[13px] font-bold text-[var(--ink)]">M</span>
-            <div className="absolute right-[3px] top-[3px] h-1.5 w-1.5 rounded-full bg-[var(--hsbc)]"></div>
-          </div>
+          <img src={newWebAppIcon} alt="Mahjong Circle Icon" className="h-7 w-7 rounded-full object-cover" />
           Mahjong Circle
         </Link>
         <nav className="hidden items-center gap-8 text-[13px] text-[var(--taupe)] md:flex">
@@ -107,7 +105,7 @@ function Hero() {
         <img src={heroSplash} alt="" className="h-full w-full object-cover opacity-70" />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--ivory)]/30 via-[var(--ivory)]/60 to-[var(--ivory)]" />
       </div>
-      <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-12 text-center md:pt-36 md:pb-20">
+      <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-8 text-center md:pt-36 md:pb-12">
         <img
           src={mahjongHomePageIcon}
           alt="Mahjong Circle"
@@ -118,11 +116,29 @@ function Hero() {
           <br />
           Circle
         </h1>
-        <div className="mx-auto my-6 gold-rule w-28" />
+        <div className="mx-auto mt-8 mb-6 gold-rule w-28" />
         <p className="mx-auto max-w-[520px] text-[14px] leading-relaxed text-[var(--taupe)] md:text-[15px]">
           A private members' circle for connoisseurs of the game. Quiet rooms, considered company,
           and a couture collection celebrating the tile.
         </p>
+        <div className="mt-10 flex justify-center">
+          <a
+            href="https://apps.apple.com/in/app/id6790778933"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3.5 transition hover:opacity-80 text-left bg-white/40 backdrop-blur-sm pr-6 pl-2 py-2 rounded-2xl border border-[var(--hairline)] shadow-sm hover:bg-white/60"
+          >
+            <img 
+              src={mahjongAppIcon} 
+              alt="Mahjong Circle App" 
+              className="h-11 w-11 rounded-xl object-cover shadow-sm border border-[var(--hairline)]"
+            />
+            <div>
+              <p className="text-[14px] font-medium text-[var(--ink)]">Download for iOS</p>
+              <p className="text-[11px] text-[var(--taupe)]">Available on the App Store</p>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -148,7 +164,7 @@ const pillars = [
 
 function Ethos() {
   return (
-    <section id="ethos" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <section id="ethos" className="mx-auto max-w-6xl px-6 pt-12 pb-24 md:pt-16 md:pb-32">
       <div className="text-center">
         <p className="text-[11px] uppercase tracking-[0.32em] text-[var(--gold)]">The Ethos</p>
         <h2 className="mt-3 font-display text-[30px] leading-tight md:text-[40px]">

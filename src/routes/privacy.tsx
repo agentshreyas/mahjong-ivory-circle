@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFooter } from "./landing";
+import newWebAppIcon from "@/assets/new-web-app-icon.jpg";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -132,10 +133,7 @@ export function LegalHeader() {
           to="/landing" 
           className="flex items-center gap-2 font-display text-[17px] font-medium tracking-tight"
         >
-          <div className="relative flex h-7 w-7 items-center justify-center rounded-full border border-[var(--ink)]">
-            <span className="font-display text-[13px] font-bold text-[var(--ink)]">M</span>
-            <div className="absolute right-[3px] top-[3px] h-1.5 w-1.5 rounded-full bg-[var(--hsbc)]"></div>
-          </div>
+          <img src={newWebAppIcon} alt="Mahjong Circle Icon" className="h-7 w-7 rounded-full object-cover" />
           Mahjong Circle
         </Link>
         <nav className="flex items-center gap-6 text-[12px] uppercase tracking-[0.2em] text-[var(--taupe)]">
