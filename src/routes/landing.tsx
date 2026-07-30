@@ -60,7 +60,7 @@ function LandingPage() {
       <Hero />
       <Ethos />
       <Exclusivity />
-      {/* <Waitlist /> hidden as requested */}
+      <Waitlist />
       <Preview />
       <FAQ />
       <SiteFooter />
