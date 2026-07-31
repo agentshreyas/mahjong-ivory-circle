@@ -12,10 +12,10 @@ const waitlistSchema = z.object({
 });
 
 export const submitWaitlist = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => waitlistSchema.parse(data))
+  .validator((data: unknown) => waitlistSchema.parse(data))
   .handler(async ({ data }) => {
-    const url = process.env.SUPABASE_URL!;
-    const key = process.env.SUPABASE_PUBLISHABLE_KEY!;
+    const url = (import.meta.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL)!;
+    const key = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY)!;
 
     const supabasePublic = createClient(url, key, {
       auth: { persistSession: false, autoRefreshToken: false },
@@ -44,11 +44,49 @@ export const submitWaitlist = createServerFn({ method: "POST" })
       throw new Error(error.message);
     }
 
-    const { error: fnError } = await supabasePublic.functions.invoke("notify-waitlist", {
-      body: data,
-    });
-    if (fnError) {
-      console.error("Failed to send waitlist notification email", fnError.message);
+    const resendApiKey = process.env.RESEND_API_KEY;
+
+    if (resendApiKey) {
+      const escapeHtml = (unsafe: string) => 
+        unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+
+      const html = `
+        <h2>New Mahjong Circle invitation request</h2>
+        <table cellpadding="6" cellspacing="0" border="1" style="border-collapse:collapse;font-family:sans-serif">
+          <tr><td><strong>Full name</strong></td><td>${escapeHtml(data.name)}</td></tr>
+          <tr><td><strong>Email</strong></td><td>${escapeHtml(data.email)}</td></tr>
+          <tr><td><strong>City</strong></td><td>${escapeHtml(data.city)}</td></tr>
+          <tr><td><strong>Referred by</strong></td><td>${escapeHtml(data.referredBy || "—")}</td></tr>
+          <tr><td><strong>Reason</strong></td><td>${escapeHtml(data.reason || "—")}</td></tr>
+          <tr><td><strong>Source</strong></td><td>${escapeHtml(data.source)}</td></tr>
+        </table>
+      `;
+
+      try {
+        const res = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${resendApiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+            to: process.env.WAITLIST_NOTIFY_EMAIL || "mahjong@nexaarhq.com",
+            reply_to: data.email,
+            subject: `New invitation request — ${data.name}`,
+            html,
+          }),
+        });
+
+        if (!res.ok) {
+          const text = await res.text();
+          console.error("Failed to send waitlist notification email via Resend", text);
+        }
+      } catch (err) {
+        console.error("Error sending waitlist notification email", err);
+      }
+    } else {
+      console.warn("RESEND_API_KEY not set in .env file. Skipping email notification.");
     }
 
     return { ok: true };

@@ -17,7 +17,10 @@ import mahjongMark from "@/assets/mahjong-mark.png";
 import mahjongAppIcon from "@/assets/mahjong-app-icon.jpg";
 import newWebAppIcon from "@/assets/new-web-app-icon.jpg";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
+import { submitWaitlist } from "@/lib/waitlist.functions";
 
+/* 
+// Deprecated Google Apps Script endpoint
 const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbylgYhT6iBq-JJt55PdMpIXb9S0MbGoDpXAz4zwxBENH_jQXzYMCh1awiDdzyjmCeBX/exec";
 
 type WaitlistPayload = {
@@ -46,6 +49,7 @@ async function submitWaitlistFrontend(data: WaitlistPayload): Promise<WaitlistRe
   const json = (await res.json()) as WaitlistResponse;
   return json;
 }
+*/
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
@@ -279,6 +283,7 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
     setError(null);
     setLoading(true);
     try {
+      /*
       const response = await submitWaitlistFrontend(parsed.data);
 
       if (response.result === 'error') {
@@ -288,6 +293,9 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
         }
         throw new Error(response.error ?? "Unknown error");
       }
+      */
+      
+      await submitWaitlist({ data: { ...parsed.data, source: "form" } });
 
       addWaitlistEntry(parsed.data);
       setDone(true);
