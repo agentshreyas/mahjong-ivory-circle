@@ -82,11 +82,64 @@ export const submitWaitlist = createServerFn({ method: "POST" })
           const text = await res.text();
           console.error("Failed to send waitlist notification email via Resend", text);
         }
+
+        // Send confirmation email to the user
+        const firstName = data.name.split(" ")[0] || data.name;
+        const userHtml = `
+          <div style="font-family: sans-serif; color: #333; line-height: 1.6;">
+            <p>Hi ${escapeHtml(firstName)},</p>
+            <p>Thank you for your interest in joining Mahjong Circle.</p>
+            <p>We've successfully received your invitation request and added your application to our waitlist. We appreciate you taking the time to tell us about yourself.</p>
+            <p>At Mahjong Circle, we're building a thoughtfully curated community of people who share a passion for meaningful experiences, quality conversations, and authentic connections. Every application is reviewed carefully to ensure we maintain the experience our members expect.</p>
+            <p><strong>Your Application</strong></p>
+            <p>We've received the following information:<br/>
+            Name: ${escapeHtml(data.name)}<br/>
+            Email: ${escapeHtml(data.email)}<br/>
+            City: ${escapeHtml(data.city)}<br/>
+            Referral: ${escapeHtml(data.referredBy || "None")}</p>
+            <p>Regards,<br/>
+            From the Circle</p>
+          </div>
+        `;
+
+        const userRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${resendApiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+            to: data.email,
+            subject: "Your Mahjong Circle Application",
+            html: userHtml,
+          }),
+        });
+
+        if (!userRes.ok) {
+          const text = await userRes.text();
+          console.error("Failed to send user confirmation email via Resend", text);
+        }
       } catch (err) {
-        console.error("Error sending waitlist notification email", err);
+        console.error("Error sending emails", err);
       }
     } else {
       console.warn("RESEND_API_KEY not set in .env file. Skipping email notification.");
+    }
+
+    // Submit to Google Apps Script
+    try {
+      const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbylgYhT6iBq-JJt55PdMpIXb9S0MbGoDpXAz4zwxBENH_jQXzYMCh1awiDdzyjmCeBX/exec";
+      const appScriptRes = await fetch(WAITLIST_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(data),
+      });
+      if (!appScriptRes.ok) {
+        console.error("Failed to send data to Apps Script, status:", appScriptRes.status);
+      }
+    } catch (err) {
+      console.error("Error sending data to Apps Script", err);
     }
 
     return { ok: true };
