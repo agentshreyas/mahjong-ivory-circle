@@ -8,12 +8,12 @@ export const Route = createFileRoute("/terms")({
       { title: "Terms of Use — Mahjong Circle" },
       {
         name: "description",
-        content: "Terms governing use of the Mahjong Circle by Es Magico Pvt Ltd.",
+        content: "Terms governing use of the Mahjong Circle by Es Magico Experiences Private Limited.",
       },
       { property: "og:title", content: "Terms of Use — Mahjong Circle" },
       {
         property: "og:description",
-        content: "Terms governing use of the Mahjong Circle by Es Magico Pvt Ltd.",
+        content: "Terms governing use of the Mahjong Circle by Es Magico Experiences Private Limited.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -37,8 +37,8 @@ function Terms() {
 
         <div className="mt-10 space-y-8 text-[14px] leading-relaxed text-[var(--taupe)]">
           <p>
-            These terms govern your use of the Mahjong Circle (the "Circle") operated by Es Magico Pvt
-            Ltd ("Es Magico", "we", "us"). By using the site, submitting a request, or accepting an
+            These terms govern your use of the Mahjong Circle (the "Circle") operated by Es Magico Experiences Private
+            Limited ("Es Magico", "we", "us"). By using the site, submitting a request, or accepting an
             invitation, you agree to these terms.
           </p>
 

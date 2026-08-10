@@ -8,12 +8,12 @@ export const Route = createFileRoute("/privacy")({
       { title: "Privacy Policy — Mahjong Circle" },
       {
         name: "description",
-        content: "How Es Magico Pvt Ltd handles your data for the Mahjong Circle.",
+        content: "How Es Magico Experiences Private Limited handles your data for the Mahjong Circle.",
       },
       { property: "og:title", content: "Privacy Policy — Mahjong Circle" },
       {
         property: "og:description",
-        content: "How Es Magico Pvt Ltd handles your data for the Mahjong Circle.",
+        content: "How Es Magico Experiences Private Limited handles your data for the Mahjong Circle.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -38,7 +38,7 @@ function Privacy() {
         </p>
         <div className="prose-legal mt-10 space-y-8 text-[14px] leading-relaxed text-[var(--taupe)]">
           <P>
-            Es Magico Pvt Ltd ("Es Magico", "we", "us") operates the Mahjong Circle (the "Circle") in
+            Es Magico Experiences Private Limited ("Es Magico", "we", "us") operates the Mahjong Circle (the "Circle") in
             partnership with HSBC Premier. This policy explains what we collect, why, and your
             choices.
           </P>
@@ -103,7 +103,7 @@ function Privacy() {
               >
                 aryan.sirohi@esmagico.com
               </a>
-              . Es Magico Pvt Ltd, Mumbai, India.
+              . Es Magico Experiences Private Limited, Mumbai, India.
             </P>
           </Section>
           <P className="italic">
