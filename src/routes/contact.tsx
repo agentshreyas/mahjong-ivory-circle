@@ -7,9 +7,9 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Mahjong Circle" },
-      { name: "description", content: "Reach the Mahjong Circle team at Es Magico Pvt Ltd." },
+      { name: "description", content: "Reach the Mahjong Circle team at Nexaar Pvt Ltd." },
       { property: "og:title", content: "Contact — Mahjong Circle" },
-      { property: "og:description", content: "Reach the Mahjong Circle team at Es Magico Pvt Ltd." },
+      { property: "og:description", content: "Reach the Mahjong Circle team at Nexaar Pvt Ltd." },
     ],
   }),
   component: Contact,
@@ -38,12 +38,12 @@ function Contact() {
             href="https://mail.google.com/mail/?view=cm&fs=1&to=concierge@mahjongcircle.in"
           />
           <Card icon={Clock} title="Reply time" body="Within two working days" />
-          <Card icon={MapPin} title="Office" body="Es Magico Pvt Ltd, Mumbai, India" />
+          <Card icon={MapPin} title="Office" body="Nexaar Pvt Ltd, Mumbai, India" />
           <Card
             icon={Mail}
             title="Privacy"
-            body="aryan.sirohi@esmagico.com"
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=aryan.sirohi@esmagico.com"
+            body="hello@nexaarhq.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@nexaarhq.com"
           />
         </div>
 
