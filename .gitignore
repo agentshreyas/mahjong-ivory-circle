@@ -40,3 +40,4 @@ deploy_*.sh
 *.njsproj
 *.sln
 *.sw?
+.env*
