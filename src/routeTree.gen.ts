@@ -24,6 +24,7 @@ import { Route as PremierRouteImport } from './routes/premier'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProductRouteImport } from './routes/product'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as QrredirectRouteImport } from './routes/qrredirect'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as TermsRouteImport } from './routes/terms'
 
@@ -102,6 +103,11 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QrredirectRoute = QrredirectRouteImport.update({
+  id: '/qrredirect',
+  path: '/qrredirect',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
@@ -129,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
+  '/qrredirect': typeof QrredirectRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
 }
@@ -148,6 +155,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
+  '/qrredirect': typeof QrredirectRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
 }
@@ -168,6 +176,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
+  '/qrredirect': typeof QrredirectRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
 }
@@ -189,6 +198,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/product'
     | '/profile'
+    | '/qrredirect'
     | '/register'
     | '/terms'
   fileRoutesByTo: FileRoutesByTo
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/product'
     | '/profile'
+    | '/qrredirect'
     | '/register'
     | '/terms'
   id:
@@ -227,6 +238,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/product'
     | '/profile'
+    | '/qrredirect'
     | '/register'
     | '/terms'
   fileRoutesById: FileRoutesById
@@ -247,6 +259,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ProductRoute: typeof ProductRoute
   ProfileRoute: typeof ProfileRoute
+  QrredirectRoute: typeof QrredirectRoute
   RegisterRoute: typeof RegisterRoute
   TermsRoute: typeof TermsRoute
 }
@@ -358,6 +371,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/qrredirect': {
+      id: '/qrredirect'
+      path: '/qrredirect'
+      fullPath: '/qrredirect'
+      preLoaderRoute: typeof QrredirectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/register': {
       id: '/register'
       path: '/register'
@@ -391,6 +411,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ProductRoute: ProductRoute,
   ProfileRoute: ProfileRoute,
+  QrredirectRoute: QrredirectRoute,
   RegisterRoute: RegisterRoute,
   TermsRoute: TermsRoute,
 }
