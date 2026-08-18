@@ -14,7 +14,7 @@ import {
 import heroSplash from "@/assets/hero-splash.jpg";
 import mahjongHomePageIcon from "@/assets/mahjong-home-page-icon.png";
 import mahjongMark from "@/assets/mahjong-mark.png";
-import mahjongAppIcon from "@/assets/mahjong-app-icon.jpg";
+import mahjongAppIcon from "@/assets/image-11.png";
 import newWebAppIcon from "@/assets/new-web-app-icon.jpg";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
 import { submitWaitlist } from "@/lib/waitlist.functions";
@@ -152,7 +152,7 @@ function Hero() {
           A private members' circle for connoisseurs of the game. Quiet rooms, considered company,
           and a couture collection celebrating the tile.
         </p>
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="https://apps.apple.com/in/app/id6790778933"
             target="_blank"
@@ -167,6 +167,22 @@ function Hero() {
             <div>
               <p className="text-[14px] font-medium text-[var(--ink)]">Download for iOS</p>
               <p className="text-[11px] text-[var(--taupe)]">Available on the App Store</p>
+            </div>
+          </a>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.mahjongcircle.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3.5 transition hover:opacity-80 text-left bg-white/40 backdrop-blur-sm pr-6 pl-2 py-2 rounded-2xl border border-[var(--hairline)] shadow-sm hover:bg-white/60"
+          >
+            <img 
+              src={mahjongAppIcon} 
+              alt="Mahjong Circle App" 
+              className="h-11 w-11 rounded-xl object-cover shadow-sm border border-[var(--hairline)]"
+            />
+            <div>
+              <p className="text-[14px] font-medium text-[var(--ink)]">Download for Android</p>
+              <p className="text-[11px] text-[var(--taupe)]">Available on Google Play</p>
             </div>
           </a>
         </div>
@@ -605,9 +621,22 @@ export function SiteFooter() {
               <p className="text-[11px] text-[var(--taupe)]">Available on the App Store</p>
             </div>
           </a>
-          <p className="mt-4 text-[12px] text-[var(--taupe)]">
-            Android coming soon
-          </p>
+          <a 
+            href="https://play.google.com/store/apps/details?id=com.mahjongcircle.app" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="mt-4 flex items-center gap-3 transition hover:opacity-80"
+          >
+            <img 
+              src={mahjongAppIcon} 
+              alt="Mahjong Circle App" 
+              className="h-10 w-10 rounded-xl object-cover shadow-sm border border-[var(--hairline)]"
+            />
+            <div className="text-[13px]">
+              <p className="font-medium text-[var(--ink)]">Download for Android</p>
+              <p className="text-[11px] text-[var(--taupe)]">Available on Google Play</p>
+            </div>
+          </a>
         </div>
       </div>
       <div className="border-t border-[var(--hairline)]">
