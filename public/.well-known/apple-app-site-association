@@ -1,0 +1,24 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "7QM2LLP7D6.com.mahjongcircle.app",
+        "paths": [
+          "/",
+          "/register",
+          "/home",
+          "/events",
+          "/event-detail",
+          "/my-bookings",
+          "/hsbc-premier",
+          "/collection",
+          "/product",
+          "/article",
+          "/profile",
+          "/notifications"
+        ]
+      }
+    ]
+  }
+}

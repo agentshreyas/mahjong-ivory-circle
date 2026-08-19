@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mahjongcircle.app",
+      "sha256_cert_fingerprints": [
+        "F3:FA:1F:41:5C:A6:F4:B2:44:21:FA:6C:23:1C:89:43:B9:52:58:39:14:37:59:F4:3B:ED:69:CE:25:45:0C:7C",
+        "73:D5:C4:58:5C:7B:AA:CB:63:28:04:A3:EA:19:66:58:5F:AD:6E:2D:E9:88:6C:48:5C:6D:0B:D4:34:AC:EF:28"
+      ]
+    }
+  }
+]
