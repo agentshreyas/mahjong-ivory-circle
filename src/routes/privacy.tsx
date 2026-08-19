@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFooter } from "./landing";
+import newWebAppIcon from "@/assets/new-web-app-icon.jpg";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -7,12 +8,12 @@ export const Route = createFileRoute("/privacy")({
       { title: "Privacy Policy — Mahjong Circle" },
       {
         name: "description",
-        content: "How Nexaar Pvt Ltd handles your data for the Mahjong Circle.",
+        content: "How Es Magico Experiences Private Limited handles your data for the Mahjong Circle.",
       },
       { property: "og:title", content: "Privacy Policy — Mahjong Circle" },
       {
         property: "og:description",
-        content: "How Nexaar Pvt Ltd handles your data for the Mahjong Circle.",
+        content: "How Es Magico Experiences Private Limited handles your data for the Mahjong Circle.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -37,7 +38,7 @@ function Privacy() {
         </p>
         <div className="prose-legal mt-10 space-y-8 text-[14px] leading-relaxed text-[var(--taupe)]">
           <P>
-            Nexaar Pvt Ltd ("Nexaar", "we", "us") operates the Mahjong Circle (the "Circle") in
+            Es Magico Experiences Private Limited ("Es Magico", "we", "us") operates the Mahjong Circle (the "Circle") in
             partnership with HSBC Premier. This policy explains what we collect, why, and your
             choices.
           </P>
@@ -95,12 +96,14 @@ function Privacy() {
             <P>
               For any privacy question, write to{" "}
               <a
-                href="mailto:privacy@nexaar.co"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=aryan.sirohi@esmagico.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="underline underline-offset-2 hover:text-[var(--ink)]"
               >
-                privacy@nexaar.co
+                aryan.sirohi@esmagico.com
               </a>
-              . Nexaar Pvt Ltd, Mumbai, India.
+              . Es Magico Experiences Private Limited, Mumbai, India.
             </P>
           </Section>
           <P className="italic">
@@ -126,7 +129,11 @@ export function LegalHeader() {
   return (
     <header className="border-b border-[var(--hairline)] bg-[var(--ivory)]/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link to="/landing" className="font-display text-[17px] font-medium tracking-tight">
+        <Link 
+          to="/landing" 
+          className="flex items-center gap-2 font-display text-[17px] font-medium tracking-tight"
+        >
+          <img src={newWebAppIcon} alt="Mahjong Circle Icon" className="h-7 w-7 rounded-full object-cover" />
           Mahjong Circle
         </Link>
         <nav className="flex items-center gap-6 text-[12px] uppercase tracking-[0.2em] text-[var(--taupe)]">

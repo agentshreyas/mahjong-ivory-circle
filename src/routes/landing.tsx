@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import {
@@ -13,10 +12,44 @@ import {
   Smartphone,
 } from "lucide-react";
 import heroSplash from "@/assets/hero-splash.jpg";
-import hsbcPresentsLogo from "@/assets/hsbc-presents-logo.png";
-import mOrbitIcon from "@/assets/m_orbit.svg.asset.json";
+import mahjongHomePageIcon from "@/assets/mahjong-home-page-icon.png";
+import mahjongMark from "@/assets/mahjong-mark.png";
+import mahjongAppIcon from "@/assets/image-11.png";
+import newWebAppIcon from "@/assets/new-web-app-icon.jpg";
 import { addWaitlistEntry } from "@/lib/waitlist-store";
 import { submitWaitlist } from "@/lib/waitlist.functions";
+
+/* 
+// Deprecated Google Apps Script endpoint
+const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbylgYhT6iBq-JJt55PdMpIXb9S0MbGoDpXAz4zwxBENH_jQXzYMCh1awiDdzyjmCeBX/exec";
+
+type WaitlistPayload = {
+  name: string;
+  email: string;
+  city: string;
+  referredBy?: string;
+  reason?: string;
+};
+
+type WaitlistResponse =
+  | { result: 'success'; row: number; debug: unknown }
+  | { result: 'error'; step: string; error?: string; errors?: Record<string, string>; debug: unknown };
+
+async function submitWaitlistFrontend(data: WaitlistPayload): Promise<WaitlistResponse> {
+  const res = await fetch(WAITLIST_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Waitlist request failed with status ${res.status}`);
+  }
+
+  const json = (await res.json()) as WaitlistResponse;
+  return json;
+}
+*/
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
@@ -74,7 +107,7 @@ function SiteHeader() {
           to="/landing"
           className="flex items-center gap-2 font-display text-[17px] font-medium tracking-tight"
         >
-          <img src={mOrbitIcon.url} alt="Mahjong Circle" className="h-7 w-7 rounded-lg" />
+          <img src={newWebAppIcon} alt="Mahjong Circle Icon" className="h-7 w-7 rounded-full object-cover" />
           Mahjong Circle
         </Link>
         <nav className="hidden items-center gap-8 text-[13px] text-[var(--taupe)] md:flex">
@@ -103,25 +136,56 @@ function Hero() {
         <img src={heroSplash} alt="" className="h-full w-full object-cover opacity-70" />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--ivory)]/30 via-[var(--ivory)]/60 to-[var(--ivory)]" />
       </div>
-      <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-32 text-center md:pt-36 md:pb-44">
+      <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-8 text-center md:pt-36 md:pb-12">
         <img
-          src={hsbcPresentsLogo}
-          alt="HSBC Presents"
+          src={mahjongHomePageIcon}
+          alt="Mahjong Circle"
           className="mx-auto h-28 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] md:h-36"
         />
-        <h1 className="mt-5 font-display text-[44px] font-medium leading-[1.05] md:text-[68px]">
+        <h1 className="mt-1 font-display text-[44px] font-medium leading-[1.05] text-[var(--ink)] md:text-[68px]">
           The Mahjong
           <br />
           Circle
         </h1>
-        <div className="mx-auto my-6 gold-rule w-28" />
+        <div className="mx-auto mt-8 mb-6 gold-rule w-28" />
         <p className="mx-auto max-w-[520px] text-[14px] leading-relaxed text-[var(--taupe)] md:text-[15px]">
           A private members' circle for connoisseurs of the game. Quiet rooms, considered company,
           and a couture collection celebrating the tile.
         </p>
-        <p className="mt-8 text-[10px] uppercase tracking-[0.24em] text-[var(--taupe)]">
-          By invitation only · No bank login required
-        </p>
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="https://apps.apple.com/in/app/id6790778933"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3.5 transition hover:opacity-80 text-left bg-white/40 backdrop-blur-sm pr-6 pl-2 py-2 rounded-2xl border border-[var(--hairline)] shadow-sm hover:bg-white/60"
+          >
+            <img 
+              src={mahjongAppIcon} 
+              alt="Mahjong Circle App" 
+              className="h-11 w-11 rounded-xl object-cover shadow-sm border border-[var(--hairline)]"
+            />
+            <div>
+              <p className="text-[14px] font-medium text-[var(--ink)]">Download for iOS</p>
+              <p className="text-[11px] text-[var(--taupe)]">Available on the App Store</p>
+            </div>
+          </a>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.mahjongcircle.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3.5 transition hover:opacity-80 text-left bg-white/40 backdrop-blur-sm pr-6 pl-2 py-2 rounded-2xl border border-[var(--hairline)] shadow-sm hover:bg-white/60"
+          >
+            <img 
+              src={mahjongAppIcon} 
+              alt="Mahjong Circle App" 
+              className="h-11 w-11 rounded-xl object-cover shadow-sm border border-[var(--hairline)]"
+            />
+            <div>
+              <p className="text-[14px] font-medium text-[var(--ink)]">Download for Android</p>
+              <p className="text-[11px] text-[var(--taupe)]">Available on Google Play</p>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -147,7 +211,7 @@ const pillars = [
 
 function Ethos() {
   return (
-    <section id="ethos" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <section id="ethos" className="mx-auto max-w-6xl px-6 pt-12 pb-24 md:pt-16 md:pb-32">
       <div className="text-center">
         <p className="text-[11px] uppercase tracking-[0.32em] text-[var(--gold)]">The Ethos</p>
         <h2 className="mt-3 font-display text-[30px] leading-tight md:text-[40px]">
@@ -208,7 +272,6 @@ function Exclusivity() {
 }
 
 function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
-  const submitWaitlistFn = useServerFn(submitWaitlist);
   const [state, setState] = useState<{
     name: string;
     email: string;
@@ -236,11 +299,25 @@ function Waitlist({ initialEmail = "" }: { initialEmail?: string }) {
     setError(null);
     setLoading(true);
     try {
-      await submitWaitlistFn({ data: parsed.data });
+      /*
+      const response = await submitWaitlistFrontend(parsed.data);
+
+      if (response.result === 'error') {
+        if (response.step === 'VALIDATION' && response.errors) {
+          setError(Object.values(response.errors)[0] || "Validation failed");
+          return;
+        }
+        throw new Error(response.error ?? "Unknown error");
+      }
+      */
+      
+      await submitWaitlist({ data: { ...parsed.data, source: "form" } });
+
       addWaitlistEntry(parsed.data);
       setDone(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -375,19 +452,19 @@ const preview = [
     icon: CalendarDays,
     title: "Salons & Tournaments",
     body: "Intimate evenings in landmark rooms.",
-    to: "/events" as const,
+    to: "/coming-soon" as const,
   },
   {
     icon: Sparkles,
     title: "The Collection",
     body: "A couture capsule celebrating the tile.",
-    to: "/collection" as const,
+    to: "/coming-soon" as const,
   },
   {
     icon: Crown,
     title: "Premier Privileges",
     body: "Curated benefits for HSBC Premier members.",
-    to: "/premier" as const,
+    to: "/coming-soon" as const,
   },
 ];
 
@@ -478,7 +555,7 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-[18px] text-[var(--ink)]">Mahjong Circle</p>
           <p className="mt-3 max-w-[280px] text-[12px] leading-relaxed text-[var(--taupe)]">
-            A Nexaar Pvt Ltd initiative, in partnership with HSBC Premier.
+            A Es Magico Experiences Private Limited initiative, in partnership with HSBC Premier.
           </p>
           <a
             href="https://www.esmagico.com"
@@ -513,28 +590,58 @@ export function SiteFooter() {
           <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Contact</p>
           <ul className="mt-4 space-y-2 text-[13px] text-[var(--taupe)]">
             <li>
-              <a href="mailto:concierge@mahjongcircle.in" className="hover:text-[var(--ink)]">
+              <a 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=concierge@mahjongcircle.in" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--ink)]"
+              >
                 concierge@mahjongcircle.in
               </a>
             </li>
-            <li>Nexaar Pvt Ltd</li>
+            <li>Es Magico Experiences Private Limited</li>
             <li>Mumbai, India</li>
           </ul>
         </div>
         <div>
           <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">Apps</p>
-          <div className="mt-4 flex items-center gap-2 text-[13px] text-[var(--taupe)]">
-            <Smartphone size={16} strokeWidth={1.5} />
-            <span>Coming soon</span>
-          </div>
-          <p className="mt-2 text-[12px] leading-relaxed text-[var(--taupe)]">
-            iOS and Android apps are on their way.
-          </p>
+          <a 
+            href="https://apps.apple.com/in/app/id6790778933" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="mt-4 flex items-center gap-3 transition hover:opacity-80"
+          >
+            <img 
+              src={mahjongAppIcon} 
+              alt="Mahjong Circle App" 
+              className="h-10 w-10 rounded-xl object-cover shadow-sm border border-[var(--hairline)]"
+            />
+            <div className="text-[13px]">
+              <p className="font-medium text-[var(--ink)]">Download for iOS</p>
+              <p className="text-[11px] text-[var(--taupe)]">Available on the App Store</p>
+            </div>
+          </a>
+          <a 
+            href="https://play.google.com/store/apps/details?id=com.mahjongcircle.app" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="mt-4 flex items-center gap-3 transition hover:opacity-80"
+          >
+            <img 
+              src={mahjongAppIcon} 
+              alt="Mahjong Circle App" 
+              className="h-10 w-10 rounded-xl object-cover shadow-sm border border-[var(--hairline)]"
+            />
+            <div className="text-[13px]">
+              <p className="font-medium text-[var(--ink)]">Download for Android</p>
+              <p className="text-[11px] text-[var(--taupe)]">Available on Google Play</p>
+            </div>
+          </a>
         </div>
       </div>
       <div className="border-t border-[var(--hairline)]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-[11px] uppercase tracking-[0.22em] text-[var(--taupe)] md:flex-row">
-          <span>© {new Date().getFullYear()} Nexaar Pvt Ltd. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Es Magico Experiences Private Limited. All rights reserved.</span>
           <span>By invitation only</span>
         </div>
       </div>

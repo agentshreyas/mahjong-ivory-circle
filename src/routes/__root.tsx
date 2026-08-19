@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { PhoneFrame } from "@/components/app/phone-frame";
 import { VoiceProvider } from "@/components/app/voice-context";
 import { VoiceOverlay } from "@/components/app/voice-overlay";
+import faviconUrl from "@/assets/new-web-app-icon.jpg";
 
 function NotFoundComponent() {
   return (
@@ -109,6 +110,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       {
+        rel: "icon",
+        type: "image/jpeg",
+        href: faviconUrl,
+      },
+      {
         rel: "stylesheet",
         href: appCss,
       },
@@ -143,7 +149,7 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const marketingRoutes = ["/landing", "/privacy", "/terms", "/contact"];
+  const marketingRoutes = ["/", "/landing", "/privacy", "/terms", "/contact", "/coming-soon"];
   const isMarketing = marketingRoutes.some((r) => pathname === r || pathname.startsWith(r + "/"));
 
   if (isMarketing) {
