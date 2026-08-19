@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ComingSoonRouteImport } from './routes/coming-soon'
@@ -24,13 +25,17 @@ import { Route as PremierRouteImport } from './routes/premier'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProductRouteImport } from './routes/product'
 import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as QrredirectRouteImport } from './routes/qrredirect'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as TermsRouteImport } from './routes/terms'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArticleRoute = ArticleRouteImport.update({
@@ -103,11 +108,6 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
-const QrredirectRoute = QrredirectRouteImport.update({
-  id: '/qrredirect',
-  path: '/qrredirect',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
@@ -121,6 +121,7 @@ const TermsRoute = TermsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
   '/coming-soon': typeof ComingSoonRoute
@@ -135,12 +136,12 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
-  '/qrredirect': typeof QrredirectRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app': typeof AppRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
   '/coming-soon': typeof ComingSoonRoute
@@ -155,13 +156,13 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
-  '/qrredirect': typeof QrredirectRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRoute
   '/article': typeof ArticleRoute
   '/collection': typeof CollectionRoute
   '/coming-soon': typeof ComingSoonRoute
@@ -176,7 +177,6 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
-  '/qrredirect': typeof QrredirectRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
 }
@@ -184,6 +184,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/app'
     | '/article'
     | '/collection'
     | '/coming-soon'
@@ -198,12 +199,12 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/product'
     | '/profile'
-    | '/qrredirect'
     | '/register'
     | '/terms'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app'
     | '/article'
     | '/collection'
     | '/coming-soon'
@@ -218,12 +219,12 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/product'
     | '/profile'
-    | '/qrredirect'
     | '/register'
     | '/terms'
   id:
     | '__root__'
     | '/'
+    | '/app'
     | '/article'
     | '/collection'
     | '/coming-soon'
@@ -238,13 +239,13 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/product'
     | '/profile'
-    | '/qrredirect'
     | '/register'
     | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRoute
   ArticleRoute: typeof ArticleRoute
   CollectionRoute: typeof CollectionRoute
   ComingSoonRoute: typeof ComingSoonRoute
@@ -259,7 +260,6 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ProductRoute: typeof ProductRoute
   ProfileRoute: typeof ProfileRoute
-  QrredirectRoute: typeof QrredirectRoute
   RegisterRoute: typeof RegisterRoute
   TermsRoute: typeof TermsRoute
 }
@@ -271,6 +271,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/article': {
@@ -371,13 +378,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/qrredirect': {
-      id: '/qrredirect'
-      path: '/qrredirect'
-      fullPath: '/qrredirect'
-      preLoaderRoute: typeof QrredirectRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/register': {
       id: '/register'
       path: '/register'
@@ -397,6 +397,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRoute,
   ArticleRoute: ArticleRoute,
   CollectionRoute: CollectionRoute,
   ComingSoonRoute: ComingSoonRoute,
@@ -411,7 +412,6 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ProductRoute: ProductRoute,
   ProfileRoute: ProfileRoute,
-  QrredirectRoute: QrredirectRoute,
   RegisterRoute: RegisterRoute,
   TermsRoute: TermsRoute,
 }
