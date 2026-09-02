@@ -24,7 +24,7 @@ function MahjongTile({ size = 20, strokeWidth = 1.5, className }: { size?: numbe
 }
 
 const leftTabs = [
-  { to: "/home", label: "Home", icon: Home },
+  { to: "/home", label: "Explore", icon: Home },
   { to: "/events", label: "Events", icon: CalendarDays },
 ] as const;
 
