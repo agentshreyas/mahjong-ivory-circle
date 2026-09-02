@@ -63,7 +63,7 @@ export function BottomNav() {
   );
 }
 
-function renderTab(t: { to: string; label: string; icon: typeof Home }, path: string) {
+function renderTab(t: { to: string; label: string; icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }> }, path: string) {
   const active = path === t.to || path.startsWith(t.to + "/");
   const Icon = t.icon;
   return (
