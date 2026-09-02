@@ -27,6 +27,7 @@ import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlayIndexRouteImport } from './routes/play.index'
+import { Route as PlayMyCircleRouteImport } from './routes/play.my-circle'
 import { Route as PlayJoinRoomRouteImport } from './routes/play.join-room'
 import { Route as PlayCreateRoomRouteImport } from './routes/play.create-room'
 
@@ -120,6 +121,11 @@ const PlayIndexRoute = PlayIndexRouteImport.update({
   path: '/',
   getParentRoute: () => PlayRoute,
 } as any)
+const PlayMyCircleRoute = PlayMyCircleRouteImport.update({
+  id: '/my-circle',
+  path: '/my-circle',
+  getParentRoute: () => PlayRoute,
+} as any)
 const PlayJoinRoomRoute = PlayJoinRoomRouteImport.update({
   id: '/join-room',
   path: '/join-room',
@@ -151,6 +157,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/play/create-room': typeof PlayCreateRoomRoute
   '/play/join-room': typeof PlayJoinRoomRoute
+  '/play/my-circle': typeof PlayMyCircleRoute
   '/play/': typeof PlayIndexRoute
 }
 export interface FileRoutesByTo {
@@ -172,6 +179,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/play/create-room': typeof PlayCreateRoomRoute
   '/play/join-room': typeof PlayJoinRoomRoute
+  '/play/my-circle': typeof PlayMyCircleRoute
   '/play': typeof PlayIndexRoute
 }
 export interface FileRoutesById {
@@ -195,6 +203,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/play/create-room': typeof PlayCreateRoomRoute
   '/play/join-room': typeof PlayJoinRoomRoute
+  '/play/my-circle': typeof PlayMyCircleRoute
   '/play/': typeof PlayIndexRoute
 }
 export interface FileRouteTypes {
@@ -219,6 +228,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/play/create-room'
     | '/play/join-room'
+    | '/play/my-circle'
     | '/play/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -240,6 +250,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/play/create-room'
     | '/play/join-room'
+    | '/play/my-circle'
     | '/play'
   id:
     | '__root__'
@@ -262,6 +273,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/play/create-room'
     | '/play/join-room'
+    | '/play/my-circle'
     | '/play/'
   fileRoutesById: FileRoutesById
 }
@@ -413,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayIndexRouteImport
       parentRoute: typeof PlayRoute
     }
+    '/play/my-circle': {
+      id: '/play/my-circle'
+      path: '/my-circle'
+      fullPath: '/play/my-circle'
+      preLoaderRoute: typeof PlayMyCircleRouteImport
+      parentRoute: typeof PlayRoute
+    }
     '/play/join-room': {
       id: '/play/join-room'
       path: '/join-room'
@@ -433,12 +452,14 @@ declare module '@tanstack/react-router' {
 interface PlayRouteChildren {
   PlayCreateRoomRoute: typeof PlayCreateRoomRoute
   PlayJoinRoomRoute: typeof PlayJoinRoomRoute
+  PlayMyCircleRoute: typeof PlayMyCircleRoute
   PlayIndexRoute: typeof PlayIndexRoute
 }
 
 const PlayRouteChildren: PlayRouteChildren = {
   PlayCreateRoomRoute: PlayCreateRoomRoute,
   PlayJoinRoomRoute: PlayJoinRoomRoute,
+  PlayMyCircleRoute: PlayMyCircleRoute,
   PlayIndexRoute: PlayIndexRoute,
 }
 
