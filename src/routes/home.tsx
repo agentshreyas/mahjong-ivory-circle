@@ -34,7 +34,7 @@ function Home() {
         <p className="mt-1 text-[13px] text-[var(--taupe)]">A short edit chosen for you tonight.</p>
       </div>
 
-      {/* 1. Exclusive collections → Collection */}
+      {/* 1. Gaurav Gupta banner (top) → Collection */}
       <section className="px-5">
         <div className="flex items-end justify-between">
           <h2 className="font-display text-[18px] text-[var(--ink)]">
@@ -49,50 +49,31 @@ function Home() {
         </div>
         <div className="gold-rule mt-2" />
       </section>
-      <div className="mx-5 mt-4 mb-6 grid grid-cols-2 gap-3">
-        {[
-          {
-            to: "/collection",
-            img: lacquerCapsule,
-            tag: "Limited · 25 sets",
-            title: "The Lacquer Capsule",
-            subtitle: "Rosewood & Gold",
-          },
-          {
-            to: "/collection",
-            img: jadeTiles,
-            tag: "One of one",
-            title: "Jade Tiles, Set of 14",
-            subtitle: "Green Quartz",
-          },
-        ].map((item) => (
-          <Link
-            key={item.title}
-            to={item.to}
-            className="block overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/30"
-          >
-            <div className="aspect-square w-full overflow-hidden">
-              <img
-                src={item.img}
-                alt={item.title}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="p-3">
-              <p className="text-[9px] uppercase tracking-[0.22em] text-[var(--gold)]">
-                {item.tag}
-              </p>
-              <p className="mt-1 font-display text-[14px] leading-tight text-[var(--ink)]">
-                {item.title}
-              </p>
-              <p className="mt-0.5 text-[11px] text-[var(--taupe)]">
-                {item.subtitle}
-              </p>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <Link
+        to="/collection"
+        className="mx-5 mt-4 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40"
+      >
+        <div className="relative h-48 w-full overflow-hidden">
+          <img
+            src={ggBanner}
+            alt="Gaurav Gupta capsule"
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 p-4">
+            <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">
+              A Capsule · Atelier
+            </p>
+            <p className="mt-1 font-display text-[20px] leading-tight text-[var(--ivory)]">
+              Gaurav Gupta for the Circle
+            </p>
+            <p className="mt-1 flex items-center gap-1 text-[11px] text-[var(--ivory)]/80">
+              View the Collection <ChevronRight size={12} />
+            </p>
+          </div>
+        </div>
+      </Link>
 
       {/* 2. Upcoming events in your city */}
       <section className="px-5">
