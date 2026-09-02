@@ -26,7 +26,7 @@ export const Route = createFileRoute("/play/")({
 
 const actions = [
   { label: "Create Room", icon: PlusCircle, to: "/play/create-room" },
-  { label: "Join Room", icon: LogIn },
+  { label: "Join Room", icon: LogIn, to: "/play/join-room" },
   { label: "My Circle", icon: Users },
 ] as const;
 
@@ -100,7 +100,11 @@ function PlayIndex() {
           />
         </div>
         <div className="mt-8 flex items-start justify-center gap-8">
-          <ActionOrb label={actions[1].label} Icon={actions[1].icon} />
+          <ActionOrb
+            label={actions[1].label}
+            Icon={actions[1].icon}
+            to={actions[1].to}
+          />
           <ActionOrb label={actions[2].label} Icon={actions[2].icon} />
         </div>
       </section>

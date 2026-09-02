@@ -27,6 +27,7 @@ import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlayIndexRouteImport } from './routes/play.index'
+import { Route as PlayJoinRoomRouteImport } from './routes/play.join-room'
 import { Route as PlayCreateRoomRouteImport } from './routes/play.create-room'
 
 const TermsRoute = TermsRouteImport.update({
@@ -119,6 +120,11 @@ const PlayIndexRoute = PlayIndexRouteImport.update({
   path: '/',
   getParentRoute: () => PlayRoute,
 } as any)
+const PlayJoinRoomRoute = PlayJoinRoomRouteImport.update({
+  id: '/join-room',
+  path: '/join-room',
+  getParentRoute: () => PlayRoute,
+} as any)
 const PlayCreateRoomRoute = PlayCreateRoomRouteImport.update({
   id: '/create-room',
   path: '/create-room',
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
   '/play/create-room': typeof PlayCreateRoomRoute
+  '/play/join-room': typeof PlayJoinRoomRoute
   '/play/': typeof PlayIndexRoute
 }
 export interface FileRoutesByTo {
@@ -164,6 +171,7 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
   '/play/create-room': typeof PlayCreateRoomRoute
+  '/play/join-room': typeof PlayJoinRoomRoute
   '/play': typeof PlayIndexRoute
 }
 export interface FileRoutesById {
@@ -186,6 +194,7 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
   '/play/create-room': typeof PlayCreateRoomRoute
+  '/play/join-room': typeof PlayJoinRoomRoute
   '/play/': typeof PlayIndexRoute
 }
 export interface FileRouteTypes {
@@ -209,6 +218,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/terms'
     | '/play/create-room'
+    | '/play/join-room'
     | '/play/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -229,6 +239,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/terms'
     | '/play/create-room'
+    | '/play/join-room'
     | '/play'
   id:
     | '__root__'
@@ -250,6 +261,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/terms'
     | '/play/create-room'
+    | '/play/join-room'
     | '/play/'
   fileRoutesById: FileRoutesById
 }
@@ -401,6 +413,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayIndexRouteImport
       parentRoute: typeof PlayRoute
     }
+    '/play/join-room': {
+      id: '/play/join-room'
+      path: '/join-room'
+      fullPath: '/play/join-room'
+      preLoaderRoute: typeof PlayJoinRoomRouteImport
+      parentRoute: typeof PlayRoute
+    }
     '/play/create-room': {
       id: '/play/create-room'
       path: '/create-room'
@@ -413,11 +432,13 @@ declare module '@tanstack/react-router' {
 
 interface PlayRouteChildren {
   PlayCreateRoomRoute: typeof PlayCreateRoomRoute
+  PlayJoinRoomRoute: typeof PlayJoinRoomRoute
   PlayIndexRoute: typeof PlayIndexRoute
 }
 
 const PlayRouteChildren: PlayRouteChildren = {
   PlayCreateRoomRoute: PlayCreateRoomRoute,
+  PlayJoinRoomRoute: PlayJoinRoomRoute,
   PlayIndexRoute: PlayIndexRoute,
 }
 
