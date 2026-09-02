@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Screen } from "@/components/app/screen";
 import { Users, Palette, PlayCircle, ChevronRight } from "lucide-react";
 
@@ -99,14 +99,6 @@ function CreateRoom() {
         </div>
       </section>
 
-      <section className="px-6 pb-10">
-        <Link
-          to="/play"
-          className="flex w-full items-center justify-center rounded-full bg-[var(--hsbc)] py-4 text-[13px] font-medium tracking-[0.04em] text-[var(--ivory)] transition-colors hover:bg-[var(--hsbc-pressed)] active:scale-[0.98]"
-        >
-          Start Game
-        </Link>
-      </section>
     </Screen>
   );
 }
