@@ -33,9 +33,23 @@ function Home() {
       </div>
 
       {/* 1. Gaurav Gupta banner (top) → Collection */}
+      <section className="px-5">
+        <div className="flex items-end justify-between">
+          <h2 className="font-display text-[18px] text-[var(--ink)]">
+            Exclusive collections
+          </h2>
+          <Link
+            to="/collection"
+            className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]"
+          >
+            all pieces
+          </Link>
+        </div>
+        <div className="gold-rule mt-2" />
+      </section>
       <Link
         to="/collection"
-        className="mx-5 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40"
+        className="mx-5 mt-4 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40"
       >
         <div className="relative h-48 w-full overflow-hidden">
           <img
