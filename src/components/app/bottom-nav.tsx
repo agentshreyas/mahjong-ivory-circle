@@ -1,6 +1,26 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, CalendarDays, Sparkles, User } from "lucide-react";
+import { Home, CalendarDays, User } from "lucide-react";
 import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
+
+function MahjongTile({ size = 20, strokeWidth = 1.5, className }: { size?: number; strokeWidth?: number; className?: string }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect x="4" y="5" width="16" height="14" rx="2" />
+      <circle cx="12" cy="12" r="3.5" />
+      <path d="M7 8h.01" />
+    </svg>
+  );
+}
 
 const leftTabs = [
   { to: "/home", label: "Home", icon: Home },
