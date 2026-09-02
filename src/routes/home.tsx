@@ -5,6 +5,7 @@ import feedTiles from "@/assets/feed-tiles.jpg";
 import feedGathering from "@/assets/feed-gathering.jpg";
 import lacquerCapsule from "@/assets/lacquer-capsule.jpg";
 import jadeTiles from "@/assets/jade-tiles.jpg";
+import ivoryCarvedTiles from "@/assets/ivory-carved-tiles.png.asset.json";
 import ggBanner from "@/assets/gg-banner.jpg";
 import community1 from "@/assets/community-1.jpg";
 import event1 from "@/assets/event-1.jpg";
@@ -142,7 +143,7 @@ function Home() {
         </div>
         <div className="gold-rule mt-2" />
       </section>
-      <div className="mx-5 mt-4 mb-6 grid grid-cols-2 gap-3">
+      <div className="mx-5 mt-4 mb-6 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {[
           {
             to: "/collection",
@@ -158,11 +159,18 @@ function Home() {
             title: "Jade Tiles, Set of 14",
             subtitle: "Green Quartz",
           },
+          {
+            to: "/collection",
+            img: ivoryCarvedTiles.url,
+            tag: "New arrival",
+            title: "Ivory Carved Tiles",
+            subtitle: "Handcrafted in India",
+          },
         ].map((item) => (
           <Link
             key={item.title}
             to={item.to}
-            className="block overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/30"
+            className="block w-[75%] shrink-0 overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/30"
           >
             <div className="aspect-square w-full overflow-hidden">
               <img
