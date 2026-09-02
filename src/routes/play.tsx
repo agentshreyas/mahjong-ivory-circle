@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Screen } from "@/components/app/screen";
 import { PlusCircle, LogIn, Users, Trophy } from "lucide-react";
 
