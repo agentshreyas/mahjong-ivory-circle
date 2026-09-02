@@ -196,6 +196,21 @@ function Home() {
         ))}
       </div>
 
+      {/* Gaurav Gupta capsule banner */}
+      <Link
+        to="/collection"
+        className="mx-5 mt-2 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40"
+      >
+        <div className="relative w-full overflow-hidden">
+          <img
+            src={capsuleBanner.url}
+            alt="Gaurav Gupta capsule for the Circle"
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </Link>
+
       {/* 4. Magazine feed */}
       <div className="mt-7 px-5">
         <div className="flex items-end justify-between">
