@@ -38,19 +38,45 @@ const leaderboard = [
   { name: "Ishita M.", city: "Kolkata", points: 3745 },
 ];
 
-function ActionOrb({ label, Icon }: { label: string; Icon: typeof PlusCircle }) {
-  return (
-    <button
-      type="button"
-      className="flex flex-col items-center gap-3 active:scale-[0.97] transition-transform"
-      aria-label={label}
-    >
+function ActionOrb({
+  label,
+  Icon,
+  to,
+}: {
+  label: string;
+  Icon: typeof PlusCircle;
+  to?: string;
+}) {
+  const content = (
+    <>
       <span className="flex h-[104px] w-[104px] items-center justify-center rounded-full border border-[var(--hairline)] bg-[var(--sand)]/70 shadow-[0_10px_28px_-14px_rgba(0,0,0,0.28)]">
         <Icon size={40} strokeWidth={1.25} className="text-[var(--hsbc)]" />
       </span>
       <span className="text-[12px] tracking-[0.12em] uppercase text-[var(--ink)]">
         {label}
       </span>
+    </>
+  );
+
+  if (to) {
+    return (
+      <Link
+        to={to}
+        className="flex flex-col items-center gap-3 transition-transform active:scale-[0.97]"
+        aria-label={label}
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      className="flex flex-col items-center gap-3 transition-transform active:scale-[0.97]"
+      aria-label={label}
+    >
+      {content}
     </button>
   );
 }
