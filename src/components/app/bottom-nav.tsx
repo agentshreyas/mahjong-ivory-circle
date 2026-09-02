@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, CalendarDays, User } from "lucide-react";
 import hsbcLogo from "@/assets/hsbc-logo.png.asset.json";
