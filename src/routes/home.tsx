@@ -5,6 +5,7 @@ import feedTiles from "@/assets/feed-tiles.jpg";
 import feedGathering from "@/assets/feed-gathering.jpg";
 import lacquerCapsule from "@/assets/lacquer-capsule.jpg";
 import jadeTiles from "@/assets/jade-tiles.jpg";
+import ggBanner from "@/assets/gg-banner.jpg";
 import community1 from "@/assets/community-1.jpg";
 import event1 from "@/assets/event-1.jpg";
 import event2 from "@/assets/event-2.jpg";
