@@ -27,7 +27,7 @@ export const Route = createFileRoute("/play/")({
 const actions = [
   { label: "Create Room", icon: PlusCircle, to: "/play/create-room" },
   { label: "Join Room", icon: LogIn, to: "/play/join-room" },
-  { label: "My Circle", icon: Users },
+  { label: "My Circle", icon: Users, to: "/play/my-circle" },
 ] as const;
 
 const leaderboard = [
