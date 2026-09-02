@@ -6,6 +6,7 @@ import feedGathering from "@/assets/feed-gathering.jpg";
 import lacquerCapsule from "@/assets/lacquer-capsule.jpg";
 import jadeTiles from "@/assets/jade-tiles.jpg";
 import ivoryCarvedTiles from "@/assets/ivory-carved-tiles.png.asset.json";
+import capsuleBanner from "@/assets/gaurav-gupta-capsule-banner.png.asset.json";
 import ggBanner from "@/assets/gg-banner.jpg";
 import community1 from "@/assets/community-1.jpg";
 import event1 from "@/assets/event-1.jpg";
@@ -194,6 +195,21 @@ function Home() {
           </Link>
         ))}
       </div>
+
+      {/* Gaurav Gupta capsule banner */}
+      <Link
+        to="/collection"
+        className="mx-5 mt-2 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40"
+      >
+        <div className="relative w-full overflow-hidden">
+          <img
+            src={capsuleBanner.url}
+            alt="Gaurav Gupta capsule for the Circle"
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </Link>
 
       {/* 4. Magazine feed */}
       <div className="mt-7 px-5">
