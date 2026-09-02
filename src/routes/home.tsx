@@ -5,6 +5,7 @@ import feedTiles from "@/assets/feed-tiles.jpg";
 import feedGathering from "@/assets/feed-gathering.jpg";
 import lacquerCapsule from "@/assets/lacquer-capsule.jpg";
 import jadeTiles from "@/assets/jade-tiles.jpg";
+import ggBanner from "@/assets/gg-banner.jpg";
 import community1 from "@/assets/community-1.jpg";
 import event1 from "@/assets/event-1.jpg";
 import event2 from "@/assets/event-2.jpg";
@@ -33,7 +34,100 @@ function Home() {
         <p className="mt-1 text-[13px] text-[var(--taupe)]">A short edit chosen for you tonight.</p>
       </div>
 
-      {/* 1. Exclusive collections → Collection */}
+      {/* 1. Gaurav Gupta banner (top) → Collection */}
+      <section className="px-5">
+        <div className="flex items-end justify-between">
+          <h2 className="font-display text-[18px] text-[var(--ink)]">
+            Exclusive collections
+          </h2>
+          <Link
+            to="/collection"
+            className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]"
+          >
+            all pieces
+          </Link>
+        </div>
+        <div className="gold-rule mt-2" />
+      </section>
+      <Link
+        to="/collection"
+        className="mx-5 mt-4 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40"
+      >
+        <div className="relative h-48 w-full overflow-hidden">
+          <img
+            src={ggBanner}
+            alt="Gaurav Gupta capsule"
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 p-4">
+            <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">
+              A Capsule · Atelier
+            </p>
+            <p className="mt-1 font-display text-[20px] leading-tight text-[var(--ivory)]">
+              Gaurav Gupta for the Circle
+            </p>
+            <p className="mt-1 flex items-center gap-1 text-[11px] text-[var(--ivory)]/80">
+              View the Collection <ChevronRight size={12} />
+            </p>
+          </div>
+        </div>
+      </Link>
+
+      {/* 2. Upcoming events in your city */}
+      <section className="px-5">
+        <div className="flex items-end justify-between">
+          <h2 className="font-display text-[18px] text-[var(--ink)]">
+            {hasCity ? `Upcoming in ${city}` : "Upcoming events"}
+          </h2>
+          <Link
+            to="/events"
+            search={{ tab: undefined }}
+            className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]"
+          >
+            All events
+          </Link>
+        </div>
+        <div className="gold-rule mt-2" />
+        <div className="mt-4 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {[
+            {
+              img: event1,
+              title: "An evening at Khotachiwadi",
+              date: "Sat · 22 Jun · 7pm",
+              venue: hasCity ? city : cities[0],
+            },
+            {
+              img: event2,
+              title: "The Long Table",
+              date: "Wed · 26 Jun · 6:30pm",
+              venue: hasCity ? city : cities[1],
+            },
+          ].map((e) => (
+            <Link
+              key={e.title}
+              to="/event-detail"
+              className="w-[240px] shrink-0 overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/50"
+            >
+              <img src={e.img} alt="" className="h-28 w-full object-cover" />
+              <div className="p-3">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">
+                  {e.date}
+                </p>
+                <p className="mt-1 font-display text-[14px] leading-tight text-[var(--ink)]">
+                  {e.title}
+                </p>
+                <p className="mt-1 flex items-center gap-1 text-[11px] text-[var(--taupe)]">
+                  <MapPin size={11} /> {e.venue}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. Exclusive collections → Collection */}
       <section className="px-5">
         <div className="flex items-end justify-between">
           <h2 className="font-display text-[18px] text-[var(--ink)]">
@@ -92,78 +186,6 @@ function Home() {
           </Link>
         ))}
       </div>
-
-      {/* 2. Upcoming events in your city */}
-      <section className="px-5">
-        <div className="flex items-end justify-between">
-          <h2 className="font-display text-[18px] text-[var(--ink)]">
-            {hasCity ? `Upcoming in ${city}` : "Upcoming events"}
-          </h2>
-          <Link
-            to="/events"
-            search={{ tab: undefined }}
-            className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]"
-          >
-            All events
-          </Link>
-        </div>
-        <div className="gold-rule mt-2" />
-        <div className="mt-4 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {[
-            {
-              img: event1,
-              title: "An evening at Khotachiwadi",
-              date: "Sat · 22 Jun · 7pm",
-              venue: hasCity ? city : cities[0],
-            },
-            {
-              img: event2,
-              title: "The Long Table",
-              date: "Wed · 26 Jun · 6:30pm",
-              venue: hasCity ? city : cities[1],
-            },
-          ].map((e) => (
-            <Link
-              key={e.title}
-              to="/event-detail"
-              className="w-[240px] shrink-0 overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/50"
-            >
-              <img src={e.img} alt="" className="h-28 w-full object-cover" />
-              <div className="p-3">
-                <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">
-                  {e.date}
-                </p>
-                <p className="mt-1 font-display text-[14px] leading-tight text-[var(--ink)]">
-                  {e.title}
-                </p>
-                <p className="mt-1 flex items-center gap-1 text-[11px] text-[var(--taupe)]">
-                  <MapPin size={11} /> {e.venue}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. HSBC Circle teaser */}
-      <Link
-        to="/events"
-        search={{ tab: "hsbc" }}
-        className="mx-5 mt-6 block overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--ink)] text-[var(--ivory)]"
-      >
-        <div className="p-5">
-          <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">HSBC Premier</p>
-          <h3 className="mt-2 font-display text-[20px] leading-tight">
-            A quieter side of banking, for the Circle.
-          </h3>
-          <p className="mt-2 text-[12.5px] leading-relaxed text-[var(--ivory)]/70">
-            Concierge, global privileges and invitations to Circle-only tables.
-          </p>
-          <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--ivory)]/40 px-4 py-2 text-[12px] text-[var(--ivory)]">
-            See HSBC hosted events <ChevronRight size={13} />
-          </span>
-        </div>
-      </Link>
 
       {/* 4. Magazine feed */}
       <div className="mt-7 px-5">
