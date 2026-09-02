@@ -15,6 +15,7 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProductRouteImport } from './routes/product'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PremierRouteImport } from './routes/premier'
+import { Route as PlayRouteImport } from './routes/play'
 import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as MyBookingsRouteImport } from './routes/my-bookings'
 import { Route as LandingRouteImport } from './routes/landing'
@@ -54,6 +55,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const PremierRoute = PremierRouteImport.update({
   id: '/premier',
   path: '/premier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlayRoute = PlayRouteImport.update({
+  id: '/play',
+  path: '/play',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NotificationsRoute = NotificationsRouteImport.update({
@@ -118,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
+  '/play': typeof PlayRoute
   '/premier': typeof PremierRoute
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
@@ -136,6 +143,7 @@ export interface FileRoutesByTo {
   '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
+  '/play': typeof PlayRoute
   '/premier': typeof PremierRoute
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
@@ -155,6 +163,7 @@ export interface FileRoutesById {
   '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
+  '/play': typeof PlayRoute
   '/premier': typeof PremierRoute
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
@@ -175,6 +184,7 @@ export interface FileRouteTypes {
     | '/landing'
     | '/my-bookings'
     | '/notifications'
+    | '/play'
     | '/premier'
     | '/privacy'
     | '/product'
@@ -193,6 +203,7 @@ export interface FileRouteTypes {
     | '/landing'
     | '/my-bookings'
     | '/notifications'
+    | '/play'
     | '/premier'
     | '/privacy'
     | '/product'
@@ -211,6 +222,7 @@ export interface FileRouteTypes {
     | '/landing'
     | '/my-bookings'
     | '/notifications'
+    | '/play'
     | '/premier'
     | '/privacy'
     | '/product'
@@ -230,6 +242,7 @@ export interface RootRouteChildren {
   LandingRoute: typeof LandingRoute
   MyBookingsRoute: typeof MyBookingsRoute
   NotificationsRoute: typeof NotificationsRoute
+  PlayRoute: typeof PlayRoute
   PremierRoute: typeof PremierRoute
   PrivacyRoute: typeof PrivacyRoute
   ProductRoute: typeof ProductRoute
@@ -280,6 +293,13 @@ declare module '@tanstack/react-router' {
       path: '/premier'
       fullPath: '/premier'
       preLoaderRoute: typeof PremierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/play': {
+      id: '/play'
+      path: '/play'
+      fullPath: '/play'
+      preLoaderRoute: typeof PlayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/notifications': {
@@ -366,6 +386,7 @@ const rootRouteChildren: RootRouteChildren = {
   LandingRoute: LandingRoute,
   MyBookingsRoute: MyBookingsRoute,
   NotificationsRoute: NotificationsRoute,
+  PlayRoute: PlayRoute,
   PremierRoute: PremierRoute,
   PrivacyRoute: PrivacyRoute,
   ProductRoute: ProductRoute,
