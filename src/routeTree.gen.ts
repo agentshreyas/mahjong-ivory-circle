@@ -26,6 +26,8 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PlayIndexRouteImport } from './routes/play.index'
+import { Route as PlayCreateRoomRouteImport } from './routes/play.create-room'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -112,6 +114,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlayIndexRoute = PlayIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PlayRoute,
+} as any)
+const PlayCreateRoomRoute = PlayCreateRoomRouteImport.update({
+  id: '/create-room',
+  path: '/create-room',
+  getParentRoute: () => PlayRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -124,13 +136,15 @@ export interface FileRoutesByFullPath {
   '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
-  '/play': typeof PlayRoute
+  '/play': typeof PlayRouteWithChildren
   '/premier': typeof PremierRoute
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
+  '/play/create-room': typeof PlayCreateRoomRoute
+  '/play/': typeof PlayIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -143,13 +157,14 @@ export interface FileRoutesByTo {
   '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
-  '/play': typeof PlayRoute
   '/premier': typeof PremierRoute
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
+  '/play/create-room': typeof PlayCreateRoomRoute
+  '/play': typeof PlayIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -163,13 +178,15 @@ export interface FileRoutesById {
   '/landing': typeof LandingRoute
   '/my-bookings': typeof MyBookingsRoute
   '/notifications': typeof NotificationsRoute
-  '/play': typeof PlayRoute
+  '/play': typeof PlayRouteWithChildren
   '/premier': typeof PremierRoute
   '/privacy': typeof PrivacyRoute
   '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
+  '/play/create-room': typeof PlayCreateRoomRoute
+  '/play/': typeof PlayIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -191,6 +208,8 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/terms'
+    | '/play/create-room'
+    | '/play/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -203,13 +222,14 @@ export interface FileRouteTypes {
     | '/landing'
     | '/my-bookings'
     | '/notifications'
-    | '/play'
     | '/premier'
     | '/privacy'
     | '/product'
     | '/profile'
     | '/register'
     | '/terms'
+    | '/play/create-room'
+    | '/play'
   id:
     | '__root__'
     | '/'
@@ -229,6 +249,8 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/terms'
+    | '/play/create-room'
+    | '/play/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -242,7 +264,7 @@ export interface RootRouteChildren {
   LandingRoute: typeof LandingRoute
   MyBookingsRoute: typeof MyBookingsRoute
   NotificationsRoute: typeof NotificationsRoute
-  PlayRoute: typeof PlayRoute
+  PlayRoute: typeof PlayRouteWithChildren
   PremierRoute: typeof PremierRoute
   PrivacyRoute: typeof PrivacyRoute
   ProductRoute: typeof ProductRoute
@@ -372,8 +394,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/play/': {
+      id: '/play/'
+      path: '/'
+      fullPath: '/play/'
+      preLoaderRoute: typeof PlayIndexRouteImport
+      parentRoute: typeof PlayRoute
+    }
+    '/play/create-room': {
+      id: '/play/create-room'
+      path: '/create-room'
+      fullPath: '/play/create-room'
+      preLoaderRoute: typeof PlayCreateRoomRouteImport
+      parentRoute: typeof PlayRoute
+    }
   }
 }
+
+interface PlayRouteChildren {
+  PlayCreateRoomRoute: typeof PlayCreateRoomRoute
+  PlayIndexRoute: typeof PlayIndexRoute
+}
+
+const PlayRouteChildren: PlayRouteChildren = {
+  PlayCreateRoomRoute: PlayCreateRoomRoute,
+  PlayIndexRoute: PlayIndexRoute,
+}
+
+const PlayRouteWithChildren = PlayRoute._addFileChildren(PlayRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -386,7 +434,7 @@ const rootRouteChildren: RootRouteChildren = {
   LandingRoute: LandingRoute,
   MyBookingsRoute: MyBookingsRoute,
   NotificationsRoute: NotificationsRoute,
-  PlayRoute: PlayRoute,
+  PlayRoute: PlayRouteWithChildren,
   PremierRoute: PremierRoute,
   PrivacyRoute: PrivacyRoute,
   ProductRoute: ProductRoute,
