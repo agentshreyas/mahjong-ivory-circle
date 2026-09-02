@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Screen } from "@/components/app/screen";
-import { PlusCircle, LogIn, Users, Trophy } from "lucide-react";
+import { PlusCircle, LogIn, Users, Trophy, BookOpen } from "lucide-react";
 
 export const Route = createFileRoute("/play/")({
   head: () => ({
