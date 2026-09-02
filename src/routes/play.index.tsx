@@ -111,6 +111,44 @@ function PlayIndex() {
 
       <div className="mx-6 gold-rule" />
 
+      {/* How to play */}
+      <section className="px-6 pt-8 pb-4">
+        <div className="flex items-center gap-2">
+          <BookOpen size={16} strokeWidth={1.5} className="text-[var(--gold)]" />
+          <h2 className="font-display text-[18px] text-[var(--ink)]">
+            How to play
+          </h2>
+        </div>
+        <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)]">
+          Pick a style
+        </p>
+
+        <div className="mt-5 grid grid-cols-2 gap-3">
+          <a
+            href="/play/riichi"
+            className="group flex flex-col gap-2 rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-4 transition-transform active:scale-[0.97]"
+          >
+            <span className="font-display text-[16px] text-[var(--ink)]">
+              Riichi
+            </span>
+            <span className="text-[11px] leading-[1.5] text-[var(--taupe)]">
+              The Japanese classic — calls, yaku, and the dramatic riichi declaration.
+            </span>
+          </a>
+          <a
+            href="/play/hong-kong"
+            className="group flex flex-col gap-2 rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-4 transition-transform active:scale-[0.97]"
+          >
+            <span className="font-display text-[16px] text-[var(--ink)]">
+              Hong Kong
+            </span>
+            <span className="text-[11px] leading-[1.5] text-[var(--taupe)]">
+              Fast, scoring-based play with traditional fan combinations.
+            </span>
+          </a>
+        </div>
+      </section>
+
       {/* Leaderboard */}
       <section className="px-6 pt-8 pb-4">
         <div className="flex items-center gap-2">
