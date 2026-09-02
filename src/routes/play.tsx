@@ -93,7 +93,11 @@ function Play() {
       {/* Triangle arrangement */}
       <section className="px-6 pt-8 pb-10">
         <div className="flex justify-center">
-          <ActionOrb label={actions[0].label} Icon={actions[0].icon} />
+          <ActionOrb
+            label={actions[0].label}
+            Icon={actions[0].icon}
+            to="/play/create-room"
+          />
         </div>
         <div className="mt-8 flex items-start justify-center gap-8">
           <ActionOrb label={actions[1].label} Icon={actions[1].icon} />
