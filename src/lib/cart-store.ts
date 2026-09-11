@@ -43,7 +43,9 @@ export function useCart() {
     setSnapshot({ ...cart });
     const l = () => setSnapshot({ ...cart });
     listeners.add(l);
-    return () => listeners.delete(l);
+    return () => {
+      listeners.delete(l);
+    };
   }, []);
 
   const lines = Object.entries(snapshot)
