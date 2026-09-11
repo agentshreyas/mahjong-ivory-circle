@@ -36,7 +36,7 @@ export function StoreHeader({
         </div>
       </div>
 
-      <div className="mt-3 flex items-center gap-2 rounded-[11px] bg-white px-3 py-2.5 shadow-[0_6px_14px_-10px_rgba(0,0,0,0.5)]">
+      <div className="mt-3 flex items-center gap-2 rounded-[11px] bg-white px-3 py-2.5 shadow-[0_6px_14px_-10px_rgba(0,0,0,0.5)] ring-[var(--pastel)] transition-shadow focus-within:ring-2">
         <Search size={15} className="shrink-0 text-[var(--slate)]" />
         <input
           placeholder={searchPlaceholder}

@@ -20,27 +20,27 @@ export function BottomNav() {
           const active = path === t.to || path.startsWith(t.to + "/");
           const Icon = t.icon;
           return (
-            <Link key={t.to} to={t.to} className="flex flex-1 flex-col items-center">
+          <Link key={t.to} to={t.to} className="flex flex-1 flex-col items-center">
               <span
                 className={`h-[2px] w-8 rounded-b-full ${
-                  active ? "bg-[var(--emerald)]" : "bg-transparent"
+                  active ? "bg-[var(--pastel)]" : "bg-transparent"
                 }`}
               />
               <span className="relative mt-2">
                 <Icon
                   size={20}
                   strokeWidth={active ? 2.3 : 1.7}
-                  className={active ? "text-[var(--emerald)]" : "text-[var(--slate)]"}
+                  className={active ? "text-[var(--pastel)]" : "text-[var(--slate)]"}
                 />
                 {t.to === "/cart" && count > 0 && (
-                  <span className="absolute -right-2 -top-1.5 min-w-[15px] rounded-full bg-[var(--emerald)] px-1 text-center text-[9px] font-extrabold leading-[15px] text-white">
+                  <span className="absolute -right-2 -top-1.5 min-w-[15px] rounded-full bg-[var(--pastel)] px-1 text-center text-[9px] font-extrabold leading-[15px] text-[var(--emerald-deep)]">
                     {count}
                   </span>
                 )}
               </span>
               <span
                 className={`mt-1 text-[10px] font-bold tracking-[-0.01em] ${
-                  active ? "text-[var(--emerald)]" : "text-[var(--slate)]"
+                  active ? "text-[var(--pastel)]" : "text-[var(--slate)]"
                 }`}
               >
                 {t.label}

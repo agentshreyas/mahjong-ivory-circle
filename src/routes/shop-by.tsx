@@ -182,7 +182,7 @@ function ShopBy() {
             </p>
             <p className="text-[14px] font-extrabold text-white">₹{total}</p>
           </div>
-          <Link to="/cart" className="kicker rounded-[9px] bg-[var(--ground)] px-3.5 py-2.5 text-[var(--emerald-deep)]">
+          <Link to="/cart" className="kicker rounded-[9px] bg-[var(--pastel)] px-3.5 py-2.5 text-[var(--emerald-deep)]">
             Checkout
           </Link>
         </div>

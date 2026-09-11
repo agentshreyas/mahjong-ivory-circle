@@ -68,10 +68,10 @@ function HomeScreen() {
               Order #TNK4821 · 6 items · rider on the way
             </p>
             <div className="mt-2 h-[3px] w-full overflow-hidden rounded-full bg-[var(--hairline)]">
-              <div className="h-full w-[68%] rounded-full bg-[var(--emerald)]" />
+              <div className="h-full w-[68%] rounded-full bg-[var(--pastel)]" />
             </div>
           </div>
-          <span className="shrink-0 rounded-[8px] bg-[var(--emerald)] px-2.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.08em] text-white">
+          <span className="shrink-0 rounded-[8px] bg-[var(--emerald)] px-2.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.08em] text-[var(--pastel)]">
             Track
           </span>
         </div>
@@ -235,7 +235,7 @@ function HomeScreen() {
           </div>
           <Link
             to="/cart"
-            className="rounded-[9px] bg-white px-3.5 py-2 text-[10.5px] font-extrabold uppercase tracking-[0.08em] text-[var(--emerald)]"
+            className="rounded-[9px] bg-[var(--pastel)] px-3.5 py-2 text-[10.5px] font-extrabold uppercase tracking-[0.08em] text-[var(--emerald-deep)]"
           >
             Checkout
           </Link>

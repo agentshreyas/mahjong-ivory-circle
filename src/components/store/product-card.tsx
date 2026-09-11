@@ -19,7 +19,7 @@ export function AddButton({ product }: { product: Product }) {
   }
 
   return (
-    <div className="flex w-full items-center justify-between rounded-[9px] bg-[var(--emerald)] px-1.5 py-[6px] text-white">
+    <div className="flex w-full items-center justify-between rounded-[9px] bg-[var(--emerald)] px-1.5 py-[6px] text-[var(--pastel)]">
       <button
         aria-label="Decrease"
         onClick={() => setQty(product.id, n - 1)}
@@ -27,7 +27,7 @@ export function AddButton({ product }: { product: Product }) {
       >
         −
       </button>
-      <span className="text-[12px] font-extrabold">{n}</span>
+      <span className="text-[12px] font-extrabold text-white">{n}</span>
       <button
         aria-label="Increase"
         onClick={() => setQty(product.id, n + 1)}
