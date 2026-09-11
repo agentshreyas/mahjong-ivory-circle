@@ -9,9 +9,9 @@ import { useUser } from "@/lib/user-store";
 export const Route = createFileRoute("/cart")({
   head: () => ({
     meta: [
-      { title: "Your cart — GreenBasket" },
+      { title: "Your cart — Tata NutriKorner" },
       { name: "description", content: "Review your basket, savings and delivery address." },
-      { property: "og:title", content: "Your cart — GreenBasket" },
+      { property: "og:title", content: "Your cart — Tata NutriKorner" },
       { property: "og:description", content: "Review your basket, savings and delivery address." },
     ],
   }),
@@ -114,7 +114,7 @@ function Cart() {
               <p className="kicker text-[var(--pastel)]">Total</p>
               <p className="text-[14px] font-extrabold text-white">₹{total + 9}</p>
             </div>
-            <span className="kicker rounded-[9px] bg-[var(--pastel)] px-3.5 py-2.5 text-[var(--emerald-deep)]">
+            <span className="kicker rounded-[9px] bg-[var(--ground)] px-3.5 py-2.5 text-[var(--emerald-deep)]">
               Checkout
             </span>
           </div>

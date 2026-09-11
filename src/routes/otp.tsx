@@ -5,9 +5,9 @@ import { useUser } from "@/lib/user-store";
 export const Route = createFileRoute("/otp")({
   head: () => ({
     meta: [
-      { title: "Verify OTP — GreenBasket" },
+      { title: "Verify OTP — Tata NutriKorner" },
       { name: "description", content: "Enter the 4-digit code we sent to your phone." },
-      { property: "og:title", content: "Verify OTP — GreenBasket" },
+      { property: "og:title", content: "Verify OTP — Tata NutriKorner" },
       { property: "og:description", content: "Enter the 4-digit code we sent to your phone." },
     ],
   }),
@@ -35,7 +35,7 @@ function Otp() {
   }, []);
 
   return (
-    <div className="flex h-full flex-1 flex-col bg-[var(--pastel)]">
+    <div className="flex h-full flex-1 flex-col bg-[var(--ground)]">
       <div className="rounded-b-[37px] bg-[var(--emerald)] px-6 pb-10 pt-12">
         <p className="kicker text-[var(--pastel)]">Step 2 of 3</p>
         <h1 className="mt-2 text-[26px] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">

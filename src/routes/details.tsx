@@ -5,9 +5,9 @@ import { writeUser } from "@/lib/user-store";
 export const Route = createFileRoute("/details")({
   head: () => ({
     meta: [
-      { title: "Your delivery details — GreenBasket" },
+      { title: "Your delivery details — Tata NutriKorner" },
       { name: "description", content: "Add your name, pincode and address so we can deliver." },
-      { property: "og:title", content: "Your delivery details — GreenBasket" },
+      { property: "og:title", content: "Your delivery details — Tata NutriKorner" },
       { property: "og:description", content: "Add your name, pincode and address so we can deliver." },
     ],
   }),
@@ -57,7 +57,7 @@ function Details() {
   const ready = name.trim().length > 1 && pincode.length === 6;
 
   return (
-    <div className="flex h-full flex-1 flex-col bg-[var(--pastel)]">
+    <div className="flex h-full flex-1 flex-col bg-[var(--ground)]">
       <div className="rounded-b-[37px] bg-[var(--emerald)] px-6 pb-9 pt-12">
         <p className="kicker text-[var(--pastel)]">Step 3 of 3</p>
         <h1 className="mt-2 text-[26px] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">

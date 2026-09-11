@@ -15,12 +15,12 @@ import { useUser } from "@/lib/user-store";
 export const Route = createFileRoute("/profile")({
   head: () => ({
     meta: [
-      { title: "My profile — GreenBasket" },
+      { title: "My profile — Tata NutriKorner" },
       {
         name: "description",
         content: "Manage your address, orders, loyalty points and support in one place.",
       },
-      { property: "og:title", content: "My profile — GreenBasket" },
+      { property: "og:title", content: "My profile — Tata NutriKorner" },
       {
         property: "og:description",
         content: "Manage your address, orders, loyalty points and support in one place.",
@@ -110,7 +110,7 @@ function Profile() {
             Worth ₹210 · 3 coupons available
           </p>
           <div className="mt-3 flex gap-2">
-            {["FRESH50", "MILK10", "GB199"].map((c) => (
+            {["SAMPANN50", "TEA10", "TATA199"].map((c) => (
               <span
                 key={c}
                 className="kicker rounded-full bg-[var(--mint)] px-2.5 py-1 text-[var(--emerald-deep)]"
@@ -129,7 +129,7 @@ function Profile() {
           <div className="flex-1">
             <p className="text-[12.5px] font-extrabold text-[var(--ink)]">Help & support</p>
             <p className="text-[11px] font-semibold text-[var(--slate)]">
-              care@greenbasket.in · 1800 200 400
+              care@tatanutrikorner.in · 1800 200 400
             </p>
           </div>
         </div>

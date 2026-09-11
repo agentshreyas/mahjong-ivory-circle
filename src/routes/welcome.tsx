@@ -5,9 +5,9 @@ import { useUser } from "@/lib/user-store";
 export const Route = createFileRoute("/welcome")({
   head: () => ({
     meta: [
-      { title: "Welcome — GreenBasket" },
+      { title: "Welcome — Tata NutriKorner" },
       { name: "description", content: "You're in. Start shopping fresh groceries near you." },
-      { property: "og:title", content: "Welcome — GreenBasket" },
+      { property: "og:title", content: "Welcome — Tata NutriKorner" },
       { property: "og:description", content: "You're in. Start shopping fresh groceries near you." },
     ],
   }),
@@ -26,8 +26,8 @@ function Welcome() {
         Hi {first}, you&apos;re in.
       </h1>
       <p className="mt-3 max-w-[260px] text-[13px] font-semibold leading-relaxed text-[var(--mint)]">
-        We deliver to {user.pincode} in under 20 minutes. Fresh produce, dairy, staples and daily
-        essentials.
+        We deliver to {user.pincode} in under 10 minutes. Tata Sampann dals, Tata Salt, Tata Tea and
+        Himalayan water — plus daily essentials.
       </p>
       <button
         onClick={() => navigate({ to: "/home" })}

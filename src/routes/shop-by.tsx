@@ -11,12 +11,12 @@ import { Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/shop-by")({
   head: () => ({
     meta: [
-      { title: "Shop by category & brand — GreenBasket" },
+      { title: "Shop by category & brand — Tata NutriKorner" },
       {
         name: "description",
         content: "Browse every product available in your pincode by category or by brand.",
       },
-      { property: "og:title", content: "Shop by category & brand — GreenBasket" },
+      { property: "og:title", content: "Shop by category & brand — Tata NutriKorner" },
       {
         property: "og:description",
         content: "Browse every product available in your pincode by category or by brand.",
@@ -66,7 +66,7 @@ function ShopBy() {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search products"
+            placeholder="Search Tata products"
             className="w-full bg-transparent text-[13px] font-semibold text-[var(--ink)] outline-none placeholder:font-medium placeholder:text-[var(--slate)]"
           />
         </div>
@@ -74,7 +74,7 @@ function ShopBy() {
         {scoped && (
           <button
             onClick={() => setScoped(false)}
-            className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[var(--pastel)] px-2.5 py-1"
+            className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[var(--ground)] px-2.5 py-1"
           >
             <span className="kicker text-[var(--emerald-deep)]">in {activeLabel}</span>
             <X size={11} className="text-[var(--emerald-deep)]" />
@@ -95,7 +95,7 @@ function ShopBy() {
               key={t}
               onClick={() => setTab(t)}
               className={`kicker flex-1 rounded-[8px] py-2 ${
-                tab === t ? "bg-[var(--pastel)] text-[var(--emerald-deep)]" : "text-white/70"
+                tab === t ? "bg-[var(--ground)] text-[var(--emerald-deep)]" : "text-white/70"
               }`}
             >
               {t}
@@ -182,7 +182,7 @@ function ShopBy() {
             </p>
             <p className="text-[14px] font-extrabold text-white">₹{total}</p>
           </div>
-          <Link to="/cart" className="kicker rounded-[9px] bg-[var(--pastel)] px-3.5 py-2.5 text-[var(--emerald-deep)]">
+          <Link to="/cart" className="kicker rounded-[9px] bg-[var(--ground)] px-3.5 py-2.5 text-[var(--emerald-deep)]">
             Checkout
           </Link>
         </div>

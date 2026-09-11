@@ -6,10 +6,10 @@ import { writeUser } from "@/lib/user-store";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Sign in — GreenBasket" },
-      { name: "description", content: "Sign in with your phone number to shop on GreenBasket." },
-      { property: "og:title", content: "Sign in — GreenBasket" },
-      { property: "og:description", content: "Sign in with your phone number to shop on GreenBasket." },
+      { title: "Sign in — Tata NutriKorner" },
+      { name: "description", content: "Sign in with your phone number to shop on Tata NutriKorner." },
+      { property: "og:title", content: "Sign in — Tata NutriKorner" },
+      { property: "og:description", content: "Sign in with your phone number to shop on Tata NutriKorner." },
     ],
   }),
   component: Login,
@@ -21,11 +21,11 @@ function Login() {
   const valid = phone.replace(/\D/g, "").length === 10;
 
   return (
-    <div className="flex h-full flex-1 flex-col bg-[var(--pastel)]">
+    <div className="flex h-full flex-1 flex-col bg-[var(--ground)]">
       <div className="rounded-b-[37px] bg-[var(--emerald)] px-6 pb-10 pt-12">
-        <p className="kicker text-[var(--pastel)]">Welcome to GreenBasket</p>
+        <p className="kicker text-[var(--pastel)]">Welcome to Tata NutriKorner</p>
         <h1 className="mt-2 text-[27px] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">
-          Log in to shop
+          Log in to shop Tata
           <br />
           your neighbourhood
         </h1>

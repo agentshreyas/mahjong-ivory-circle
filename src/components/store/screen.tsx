@@ -9,7 +9,7 @@ export function Screen({
   hideNav?: boolean;
 }) {
   return (
-    <div className="flex min-h-full flex-1 flex-col bg-[var(--pastel)]">
+    <div className="flex min-h-full flex-1 flex-col bg-[var(--ground)]">
       <main className="flex-1">{children}</main>
       {!hideNav && <BottomNav />}
     </div>
