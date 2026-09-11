@@ -6,9 +6,9 @@ import { previouslyOrdered, trending } from "@/lib/store-data";
 export const Route = createFileRoute("/orders")({
   head: () => ({
     meta: [
-      { title: "My orders — GreenBasket" },
+      { title: "My orders — Tata NutriKorner" },
       { name: "description", content: "Track your live order and revisit previous baskets." },
-      { property: "og:title", content: "My orders — GreenBasket" },
+      { property: "og:title", content: "My orders — Tata NutriKorner" },
       { property: "og:description", content: "Track your live order and revisit previous baskets." },
     ],
   }),
@@ -34,7 +34,7 @@ function Orders() {
             <p className="kicker text-[var(--emerald)]">Arriving in 8 mins</p>
           </div>
           <p className="mt-1 text-[14px] font-extrabold tracking-[-0.02em] text-[var(--ink)]">
-            Order #GB4821 · 6 items · ₹742
+            Order #TNK4821 · 6 items · ₹742
           </p>
           <div className="mt-3 space-y-2.5">
             {steps.map((s, i) => {
@@ -68,8 +68,8 @@ function Orders() {
         </h2>
         <div className="mt-3 space-y-2.5">
           {[
-            { id: "GB4712", date: "12 Sep", items: previouslyOrdered, amount: 486 },
-            { id: "GB4590", date: "4 Sep", items: trending.slice(0, 3), amount: 1215 },
+            { id: "TNK4712", date: "12 Sep", items: previouslyOrdered, amount: 486 },
+            { id: "TNK4590", date: "4 Sep", items: trending.slice(0, 3), amount: 1215 },
           ].map((o) => (
             <div key={o.id} className="rounded-[16px] bg-white p-3.5">
               <div className="flex items-center justify-between">

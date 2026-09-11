@@ -78,13 +78,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "GreenBasket — Groceries delivered in minutes" },
+      { title: "Tata NutriKorner — Groceries delivered in minutes" },
       {
         name: "description",
         content:
-          "Fresh produce, dairy, staples and daily essentials delivered to your pincode in minutes.",
+          "Tata Sampann, Tata Salt, Tata Tea and Himalayan essentials delivered to your pincode in minutes.",
       },
-      { name: "author", content: "GreenBasket" },
+      { name: "author", content: "Tata NutriKorner" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

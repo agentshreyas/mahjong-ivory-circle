@@ -11,7 +11,7 @@ export function AddButton({ product }: { product: Product }) {
     return (
       <button
         onClick={() => setQty(product.id, 1)}
-        className="w-full rounded-[9px] border border-[var(--emerald)] bg-white py-1.5 text-[11px] font-extrabold uppercase tracking-[0.1em] text-[var(--emerald)] active:bg-[var(--soft)]"
+        className="w-full rounded-[9px] bg-[var(--soft)] py-[7px] text-[11px] font-extrabold uppercase tracking-[0.08em] text-[var(--emerald)] active:scale-[0.97]"
       >
         Add
       </button>
@@ -19,11 +19,11 @@ export function AddButton({ product }: { product: Product }) {
   }
 
   return (
-    <div className="flex w-full items-center justify-between rounded-[9px] bg-[var(--emerald)] px-2 py-1.5 text-white">
+    <div className="flex w-full items-center justify-between rounded-[9px] bg-[var(--emerald)] px-1.5 py-[6px] text-white">
       <button
         aria-label="Decrease"
         onClick={() => setQty(product.id, n - 1)}
-        className="px-1.5 text-[15px] font-extrabold leading-none"
+        className="px-1.5 text-[14px] font-extrabold leading-none"
       >
         −
       </button>
@@ -31,7 +31,7 @@ export function AddButton({ product }: { product: Product }) {
       <button
         aria-label="Increase"
         onClick={() => setQty(product.id, n + 1)}
-        className="px-1.5 text-[15px] font-extrabold leading-none"
+        className="px-1.5 text-[14px] font-extrabold leading-none"
       >
         +
       </button>
@@ -43,42 +43,47 @@ export function ProductCard({ product, wide }: { product: Product; wide?: boolea
   const off = discountOf(product);
   return (
     <div
-      className={`overflow-hidden rounded-[16px] bg-white ${wide ? "" : "w-[150px] shrink-0"}`}
+      className={`overflow-hidden rounded-[12px] border border-[var(--hairline)] bg-white ${
+        wide ? "" : "w-[142px] shrink-0"
+      }`}
     >
-      <div className="relative aspect-square w-full overflow-hidden">
+      <div className="relative aspect-square w-full overflow-hidden bg-[#f6f7f6]">
         <SmartImage
           src={product.image}
           alt={product.name}
           className="h-full w-full object-cover"
         />
         {off > 0 && (
-          <div className="absolute left-0 top-0 rounded-br-[10px] bg-[var(--emerald-deep)] px-1.5 py-1 text-center">
-            <p className="text-[11px] font-extrabold leading-none text-[var(--pastel)]">{off}%</p>
-            <p className="kicker mt-0.5 text-[7px] text-white/80">off</p>
-          </div>
+          <span className="absolute left-0 top-0 rounded-br-[9px] bg-[var(--tata-blue)] px-1.5 py-[3px] text-[9.5px] font-extrabold uppercase tracking-[0.06em] text-white">
+            {off}% off
+          </span>
         )}
+        <span className="absolute bottom-1.5 left-1.5 rounded-[5px] bg-white/92 px-1.5 py-[2px] text-[8.5px] font-extrabold uppercase tracking-[0.1em] text-[var(--slate)]">
+          9 min
+        </span>
       </div>
-      <div className="p-2.5">
-        <span className="inline-flex items-center gap-1 rounded-[6px] bg-[var(--soft)] px-1.5 py-0.5 text-[10px] font-extrabold text-[var(--emerald-deep)]">
-          <Star size={9} className="fill-current" /> {product.rating}
-        </span>
-        <span className="ml-1 text-[10px] font-semibold text-[var(--slate)]">
-          ({product.ratingCount})
-        </span>
-        <p className="mt-1 line-clamp-2 text-[12.5px] font-extrabold leading-tight tracking-[-0.02em] text-[var(--ink)]">
+      <div className="p-2">
+        <p className="line-clamp-2 min-h-[30px] text-[12px] font-bold leading-[1.25] tracking-[-0.01em] text-[var(--ink)]">
           {product.name}
         </p>
-        <p className="mt-0.5 text-[10.5px] font-semibold text-[var(--slate)]">{product.pack}</p>
-        <div className="mt-2 flex items-end justify-between gap-2">
-          <div>
-            <p className="text-[13px] font-extrabold text-[var(--ink)]">₹{product.price}</p>
+        <p className="mt-1 text-[10.5px] font-semibold text-[var(--slate)]">{product.pack}</p>
+        <p className="mt-1 flex items-center gap-1 text-[10px] font-bold text-[var(--slate)]">
+          <Star size={9} className="fill-[var(--emerald)] text-[var(--emerald)]" />
+          {product.rating}
+          <span className="font-semibold text-[var(--slate)]/70">({product.ratingCount})</span>
+        </p>
+        <div className="mt-2 flex items-center justify-between gap-2">
+          <div className="min-w-0">
+            <p className="text-[13px] font-extrabold leading-none text-[var(--ink)]">
+              ₹{product.price}
+            </p>
             {product.mrp > product.price && (
-              <p className="text-[10px] font-semibold text-[var(--slate)] line-through">
+              <p className="mt-0.5 text-[10px] font-semibold text-[var(--slate)] line-through">
                 ₹{product.mrp}
               </p>
             )}
           </div>
-          <div className="w-[62px]">
+          <div className="w-[60px] shrink-0">
             <AddButton product={product} />
           </div>
         </div>

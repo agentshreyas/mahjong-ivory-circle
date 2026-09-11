@@ -14,35 +14,37 @@ export function BottomNav() {
   const { count } = useCart();
 
   return (
-    <nav className="sticky bottom-0 z-30 border-t border-[var(--hairline)]/40 bg-[var(--emerald-deep)] px-2 pb-3 pt-1">
+    <nav className="sticky bottom-0 z-30 border-t border-[var(--hairline)] bg-white/95 px-2 pb-6 pt-0 backdrop-blur-md">
       <div className="flex items-stretch">
         {tabs.map((t) => {
           const active = path === t.to || path.startsWith(t.to + "/");
           const Icon = t.icon;
           return (
-            <Link key={t.to} to={t.to} className="flex flex-1 flex-col items-center gap-1 pt-2">
-              <span className="relative">
+            <Link key={t.to} to={t.to} className="flex flex-1 flex-col items-center">
+              <span
+                className={`h-[2px] w-8 rounded-b-full ${
+                  active ? "bg-[var(--emerald)]" : "bg-transparent"
+                }`}
+              />
+              <span className="relative mt-2">
                 <Icon
                   size={20}
-                  strokeWidth={active ? 2.4 : 1.8}
-                  className={active ? "text-[var(--pastel)]" : "text-white/60"}
+                  strokeWidth={active ? 2.3 : 1.7}
+                  className={active ? "text-[var(--emerald)]" : "text-[var(--slate)]"}
                 />
                 {t.to === "/cart" && count > 0 && (
-                  <span className="absolute -right-2 -top-1.5 min-w-[15px] rounded-full bg-[var(--pastel)] px-1 text-center text-[9px] font-extrabold leading-[15px] text-[var(--emerald-deep)]">
+                  <span className="absolute -right-2 -top-1.5 min-w-[15px] rounded-full bg-[var(--emerald)] px-1 text-center text-[9px] font-extrabold leading-[15px] text-white">
                     {count}
                   </span>
                 )}
               </span>
               <span
-                className={`kicker ${active ? "text-[var(--pastel)]" : "text-white/55"}`}
+                className={`mt-1 text-[10px] font-bold tracking-[-0.01em] ${
+                  active ? "text-[var(--emerald)]" : "text-[var(--slate)]"
+                }`}
               >
                 {t.label}
               </span>
-              <span
-                className={`mt-1 h-[2px] w-7 rounded-full ${
-                  active ? "bg-[var(--pastel)]" : "bg-transparent"
-                }`}
-              />
             </Link>
           );
         })}

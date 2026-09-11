@@ -1,17 +1,26 @@
-import { Baby, Cookie, CupSoda, Leaf, Milk, Sparkles, SprayCan, Wheat } from "lucide-react";
+import {
+  Bean,
+  Coffee,
+  Cookie,
+  Droplet,
+  Flame,
+  HeartPulse,
+  Salad,
+  Wheat,
+} from "lucide-react";
 
 const map = {
-  leaf: Leaf,
-  milk: Milk,
   wheat: Wheat,
+  beans: Bean,
+  flame: Flame,
+  cup: Coffee,
+  salt: Salad,
+  heart: HeartPulse,
+  droplet: Droplet,
   cookie: Cookie,
-  cup: CupSoda,
-  spray: SprayCan,
-  sparkles: Sparkles,
-  baby: Baby,
 } as const;
 
 export function CategoryIcon({ name, size = 22 }: { name: string; size?: number }) {
-  const Icon = map[name as keyof typeof map] ?? Leaf;
-  return <Icon size={size} strokeWidth={1.9} className="text-[var(--emerald)]" />;
+  const Icon = map[name as keyof typeof map] ?? Wheat;
+  return <Icon size={size} strokeWidth={1.8} className="text-[var(--emerald)]" />;
 }

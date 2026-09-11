@@ -40,6 +40,8 @@
   --color-ink: var(--ink);
   --color-slate: var(--slate);
   --color-warn: var(--warn);
+  --color-ground: var(--ground);
+  --color-tata-blue: var(--tata-blue);
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
@@ -52,13 +54,15 @@
   --emerald-deep: #07513a;
   --pastel: #80ef80;
   --mint: #bfe3b4;
-  --soft: #dfefd9;
-  --hairline: #e8efe4;
-  --ink: #10231b;
-  --slate: #6b7d73;
+  --soft: #eaf4e7;
+  --hairline: #e6eae7;
+  --ink: #16211c;
+  --slate: #77857d;
   --warn: #c9573f;
+  --ground: #f5f7f5;
+  --tata-blue: #486aae;
 
-  --background: var(--pastel);
+  --background: var(--ground);
   --foreground: var(--ink);
   --card: #ffffff;
   --card-foreground: var(--ink);
@@ -85,7 +89,7 @@
   }
 
   body {
-    background-color: #06251a;
+    background-color: #0c1512;
     color: var(--ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -107,8 +111,9 @@
 
 @utility card-soft {
   background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 10px 24px -14px rgba(7, 81, 58, 0.35);
+  border-radius: 14px;
+  border: 1px solid var(--hairline);
+  box-shadow: 0 8px 20px -16px rgba(16, 33, 28, 0.35);
 }
 
 @utility no-bar {
