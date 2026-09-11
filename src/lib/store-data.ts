@@ -15,15 +15,15 @@ const img = (q: string) =>
   `https://images.unsplash.com/${q}?auto=format&fit=crop&w=600&h=600&q=70`;
 
 export const categories = [
-  { id: "fruits-veg", name: "Fruits & Veg", emoji: "🥬" },
-  { id: "dairy-bakery", name: "Dairy & Bakery", emoji: "🥛" },
-  { id: "staples", name: "Atta, Rice & Dal", emoji: "🌾" },
-  { id: "snacks", name: "Snacks", emoji: "🍪" },
-  { id: "beverages", name: "Beverages", emoji: "🥤" },
-  { id: "home-care", name: "Home Care", emoji: "🧴" },
-  { id: "personal-care", name: "Personal Care", emoji: "🧼" },
-  { id: "baby", name: "Baby Care", emoji: "🍼" },
-];
+  { id: "fruits-veg", name: "Fruits & Veg", icon: "leaf" },
+  { id: "dairy-bakery", name: "Dairy & Bakery", icon: "milk" },
+  { id: "staples", name: "Atta, Rice & Dal", icon: "wheat" },
+  { id: "snacks", name: "Snacks", icon: "cookie" },
+  { id: "beverages", name: "Beverages", icon: "cup" },
+  { id: "home-care", name: "Home Care", icon: "spray" },
+  { id: "personal-care", name: "Personal Care", icon: "sparkles" },
+  { id: "baby", name: "Baby Care", icon: "baby" },
+] as const;
 
 export const brands = [
   { id: "amul", name: "Amul" },
