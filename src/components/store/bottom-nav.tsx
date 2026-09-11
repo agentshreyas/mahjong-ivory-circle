@@ -14,7 +14,7 @@ export function BottomNav() {
   const { count } = useCart();
 
   return (
-    <nav className="sticky bottom-0 z-30 border-t border-[var(--hairline)] bg-white/95 px-2 pb-3 pt-0 backdrop-blur-md">
+    <nav className="sticky bottom-0 z-30 border-t border-[var(--hairline)] bg-white/95 px-2 pb-6 pt-0 backdrop-blur-md">
       <div className="flex items-stretch">
         {tabs.map((t) => {
           const active = path === t.to || path.startsWith(t.to + "/");
