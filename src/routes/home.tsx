@@ -1,322 +1,234 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Screen } from "@/components/app/screen";
-import { Play, Bookmark, MapPin, ChevronRight } from "lucide-react";
-import feedTiles from "@/assets/feed-tiles.jpg";
-import feedGathering from "@/assets/feed-gathering.jpg";
-import lacquerCapsule from "@/assets/lacquer-capsule.jpg";
-import jadeTiles from "@/assets/jade-tiles.jpg";
-import ivoryCarvedTiles from "@/assets/ivory-carved-tiles.png.asset.json";
-import capsuleBanner from "@/assets/gaurav-gupta-capsule-banner.png.asset.json";
-import ggBanner from "@/assets/gg-banner.jpg";
-import community1 from "@/assets/community-1.jpg";
-import event1 from "@/assets/event-1.jpg";
-import event2 from "@/assets/event-2.jpg";
-import { useMember } from "@/lib/member-store";
+import { ChevronRight, Clock } from "lucide-react";
+import { Screen } from "@/components/store/screen";
+import { StoreHeader } from "@/components/store/store-header";
+import { ProductCard } from "@/components/store/product-card";
+import { SmartImage } from "@/components/store/smart-image";
+import { CategoryIcon } from "@/components/store/category-icon";
+import { categories, brands, trending, previouslyOrdered, products } from "@/lib/store-data";
+import { useCart } from "@/lib/cart-store";
+import bannerFresh from "@/assets/banner-fresh.jpg";
+import bannerGifting from "@/assets/banner-gifting.jpg";
+import bannerEssentials from "@/assets/banner-essentials.jpg";
 
 export const Route = createFileRoute("/home")({
-  head: () => ({ meta: [{ title: "Home · HSBC Mahjong Circle" }] }),
-  component: Home,
+  head: () => ({
+    meta: [
+      { title: "Home — GreenBasket groceries" },
+      {
+        name: "description",
+        content: "Reorder your essentials, shop trending deals and track your live order.",
+      },
+      { property: "og:title", content: "Home — GreenBasket groceries" },
+      {
+        property: "og:description",
+        content: "Reorder your essentials, shop trending deals and track your live order.",
+      },
+    ],
+  }),
+  component: HomeScreen,
 });
 
-function Home() {
-  const member = useMember();
-  const firstName = (member.name || "there").split(" ")[0];
-  const hasCity = !member.guest && !!member.city;
-  const city = member.city;
-  const cities = ["Mumbai", "Delhi", "Bengaluru"];
+function SectionHead({ title, action }: { title: string; action?: string }) {
+  return (
+    <div className="flex items-end justify-between px-4">
+      <h2 className="text-[16px] font-extrabold tracking-[-0.03em] text-[var(--emerald-deep)]">
+        {title}
+      </h2>
+      {action && (
+        <span className="kicker flex items-center gap-0.5 text-[var(--emerald)]">
+          {action} <ChevronRight size={11} />
+        </span>
+      )}
+    </div>
+  );
+}
+
+function Rail({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="no-bar mt-3 flex gap-3 overflow-x-auto px-4 pb-1">{children}</div>
+  );
+}
+
+function HomeScreen() {
+  const { total, count } = useCart();
+
   return (
     <Screen>
-      <div className="px-5 pt-2 pb-6">
-        <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">
-          Thursday · Monsoon edition
-        </p>
-        <h1 className="mt-1 font-display text-[28px] font-medium leading-tight text-[var(--ink)]">
-          Hi, {firstName}.
-        </h1>
-        <p className="mt-1 text-[13px] text-[var(--taupe)]">A short edit chosen for you tonight.</p>
+      <StoreHeader />
+
+      {/* Live order tracker */}
+      <div className="px-4 pt-4">
+        <div className="card-soft flex items-center gap-3 p-3">
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-[11px] bg-[var(--soft)]">
+            <Clock size={18} className="text-[var(--emerald)]" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="kicker text-[var(--emerald)]">Arriving in 8 mins</p>
+            <p className="mt-0.5 truncate text-[13px] font-extrabold tracking-[-0.02em] text-[var(--ink)]">
+              Order #GB4821 · 6 items
+            </p>
+            <div className="mt-2 h-[4px] w-full overflow-hidden rounded-full bg-[var(--soft)]">
+              <div className="h-full w-[68%] rounded-full bg-[var(--emerald)]" />
+            </div>
+          </div>
+          <span className="kicker shrink-0 rounded-[9px] bg-[var(--emerald)] px-2.5 py-2 text-white">
+            Track
+          </span>
+        </div>
       </div>
 
-      {/* 1. Gaurav Gupta banner (top) → Collection */}
-      <section className="px-5">
-        <div className="flex items-end justify-between">
-          <h2 className="font-display text-[18px] text-[var(--ink)]">
-            Exclusive collections
-          </h2>
+      {/* Category circles */}
+      <div className="no-bar mt-5 flex gap-4 overflow-x-auto px-4">
+        {categories.map((c) => (
           <Link
-            to="/collection"
-            className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]"
+            key={c.id}
+            to="/shop-by"
+            className="flex w-[62px] shrink-0 flex-col items-center gap-1.5"
           >
-            all pieces
-          </Link>
-        </div>
-        <div className="gold-rule mt-2" />
-      </section>
-      <Link
-        to="/collection"
-        className="mx-5 mt-4 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40"
-      >
-        <div className="relative h-48 w-full overflow-hidden">
-          <img
-            src={ggBanner}
-            alt="Gaurav Gupta capsule"
-            loading="lazy"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 p-4">
-            <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">
-              A Capsule · Atelier
-            </p>
-            <p className="mt-1 font-display text-[20px] leading-tight text-[var(--ivory)]">
-              Gaurav Gupta for the Circle
-            </p>
-            <p className="mt-1 flex items-center gap-1 text-[11px] text-[var(--ivory)]/80">
-              View the Collection <ChevronRight size={12} />
-            </p>
-          </div>
-        </div>
-      </Link>
-
-      {/* 2. Upcoming events in your city */}
-      <section className="px-5">
-        <div className="flex items-end justify-between">
-          <h2 className="font-display text-[18px] text-[var(--ink)]">
-            {hasCity ? `Upcoming in ${city}` : "Upcoming events"}
-          </h2>
-          <Link
-            to="/events"
-            search={{ tab: undefined }}
-            className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]"
-          >
-            All events
-          </Link>
-        </div>
-        <div className="gold-rule mt-2" />
-        <div className="mt-4 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {[
-            {
-              img: event1,
-              title: "An evening at Khotachiwadi",
-              date: "Sat · 22 Jun · 7pm",
-              venue: hasCity ? city : cities[0],
-            },
-            {
-              img: event2,
-              title: "The Long Table",
-              date: "Wed · 26 Jun · 6:30pm",
-              venue: hasCity ? city : cities[1],
-            },
-          ].map((e) => (
-            <Link
-              key={e.title}
-              to="/event-detail"
-              className="w-[240px] shrink-0 overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/50"
-            >
-              <img src={e.img} alt="" className="h-28 w-full object-cover" />
-              <div className="p-3">
-                <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">
-                  {e.date}
-                </p>
-                <p className="mt-1 font-display text-[14px] leading-tight text-[var(--ink)]">
-                  {e.title}
-                </p>
-                <p className="mt-1 flex items-center gap-1 text-[11px] text-[var(--taupe)]">
-                  <MapPin size={11} /> {e.venue}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. Exclusive collections → Collection */}
-      <section className="px-5">
-        <div className="flex items-end justify-between">
-          <h2 className="font-display text-[18px] text-[var(--ink)]">
-            Exclusive collections
-          </h2>
-          <Link
-            to="/collection"
-            className="text-[11px] uppercase tracking-[0.18em] text-[var(--taupe)]"
-          >
-            all pieces
-          </Link>
-        </div>
-        <div className="gold-rule mt-2" />
-      </section>
-      <div className="mx-5 mt-4 mb-6 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {[
-          {
-            to: "/collection",
-            img: lacquerCapsule,
-            tag: "Limited · 25 sets",
-            title: "The Lacquer Capsule",
-            subtitle: "Rosewood & Gold",
-          },
-          {
-            to: "/collection",
-            img: jadeTiles,
-            tag: "One of one",
-            title: "Jade Tiles, Set of 14",
-            subtitle: "Green Quartz",
-          },
-          {
-            to: "/collection",
-            img: ivoryCarvedTiles.url,
-            tag: "New arrival",
-            title: "Ivory Carved Tiles",
-            subtitle: "Handcrafted in India",
-          },
-        ].map((item) => (
-          <Link
-            key={item.title}
-            to={item.to}
-            className="block w-[75%] shrink-0 overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/30"
-          >
-            <div className="aspect-square w-full overflow-hidden">
-              <img
-                src={item.img}
-                alt={item.title}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="p-3">
-              <p className="text-[9px] uppercase tracking-[0.22em] text-[var(--gold)]">
-                {item.tag}
-              </p>
-              <p className="mt-1 font-display text-[14px] leading-tight text-[var(--ink)]">
-                {item.title}
-              </p>
-              <p className="mt-0.5 text-[11px] text-[var(--taupe)]">
-                {item.subtitle}
-              </p>
-            </div>
+            <span className="grid h-[58px] w-[58px] place-items-center rounded-full bg-[var(--soft)]">
+              <CategoryIcon name={c.icon} />
+            </span>
+            <span className="text-center text-[10px] font-bold leading-tight text-[var(--emerald-deep)]">
+              {c.name}
+            </span>
           </Link>
         ))}
       </div>
 
-      {/* Gaurav Gupta capsule banner */}
-      <Link
-        to="/collection"
-        className="mx-5 mt-2 mb-6 block overflow-hidden rounded-3xl border border-[var(--gold)]/40"
-      >
-        <div className="relative w-full overflow-hidden">
-          <img
-            src={capsuleBanner.url}
-            alt="Gaurav Gupta capsule for the Circle"
-            loading="lazy"
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </Link>
+      {/* Featured banners */}
+      <div className="no-bar mt-5 flex gap-3 overflow-x-auto px-4">
+        {[
+          { img: bannerFresh, kicker: "Fresh today", title: "Farm picks under ₹49" },
+          { img: bannerEssentials, kicker: "Monthly stock-up", title: "Up to 30% off staples" },
+          { img: bannerGifting, kicker: "Gifting", title: "Hampers, ready in 30 mins" },
+        ].map((b) => (
+          <div
+            key={b.title}
+            className="relative h-[128px] w-[280px] shrink-0 overflow-hidden rounded-[18px]"
+          >
+            <img
+              src={b.img}
+              alt={b.title}
+              loading="lazy"
+              width={1280}
+              height={720}
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--emerald-deep)]/85 via-[var(--emerald-deep)]/25 to-transparent" />
+            <div className="absolute inset-y-0 left-0 flex w-[62%] flex-col justify-center p-3.5">
+              <p className="kicker text-[var(--pastel)]">{b.kicker}</p>
+              <p className="mt-1 text-[16px] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">
+                {b.title}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
 
-      {/* 4. Magazine feed */}
-      <div className="mt-7 px-5">
-        <div className="flex items-end justify-between">
-          <h2 className="font-display text-[18px] text-[var(--ink)]">The Magazine</h2>
-        </div>
-        <div className="gold-rule mt-2" />
+      {/* Buy it again */}
+      <div className="mt-6">
+        <SectionHead title="Buy it again" action="All orders" />
+        <Rail>
+          {previouslyOrdered.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </Rail>
       </div>
-      <div className="space-y-6 px-5 pb-6 pt-5">
-        <Link to="/article" className="block">
-          <FeedArticle
-            img={community1}
-            kind="Heritage"
-            time="6 min read"
-            title="A short history of the bamboo tile — from Shanghai parlours to Bombay verandas"
-            author="Niharika Sen"
-          />
-        </Link>
-        <FeedVideo
-          img={feedTiles}
-          kind="Short film"
-          duration="2:14"
-          title="Why the West wind opens the round"
-          author="Editorial"
-        />
-        <Link to="/article" className="block">
-          <FeedArticle
-            img={feedGathering}
-            kind="Editor's letter"
-            time="3 min read"
-            title="Six drawing rooms quietly returned to the table this week"
-            author="Editorial"
-          />
-        </Link>
-        <FeedVideo
-          img={feedGathering}
-          kind="How to"
-          duration="1:42"
-          title="Etiquette at the table, in three small gestures"
-          author="Editorial"
-        />
-      </div>
-    </Screen>
-  );
-}
 
-function FeedVideo({
-  img,
-  kind,
-  duration,
-  title,
-  author,
-}: {
-  img: string;
-  kind: string;
-  duration: string;
-  title: string;
-  author: string;
-}) {
-  return (
-    <article>
-      <div className="relative h-56 w-full overflow-hidden rounded-2xl">
-        <img src={img} alt="" loading="lazy" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-        <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-[var(--ivory)]/90 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-[var(--ink)]">
-          <Play size={10} className="fill-current" /> {kind}
-        </div>
-        <div className="absolute right-3 top-3 rounded-full bg-black/40 px-2 py-0.5 text-[10px] text-[var(--ivory)] backdrop-blur">
-          {duration}
-        </div>
+      {/* Trending / bestsellers */}
+      <div className="mt-6">
+        <SectionHead title="Trending in 560001" action="See all" />
+        <Rail>
+          {trending.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </Rail>
       </div>
-      <div className="mt-3 flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h3 className="font-display text-[17px] leading-snug text-[var(--ink)]">{title}</h3>
-          <p className="mt-1 text-[11px] text-[var(--taupe)]">{author}</p>
-        </div>
-        <Bookmark size={16} className="shrink-0 text-[var(--taupe)]" strokeWidth={1.5} />
-      </div>
-    </article>
-  );
-}
 
-function FeedArticle({
-  img,
-  kind,
-  time,
-  title,
-  author,
-}: {
-  img: string;
-  kind: string;
-  time: string;
-  title: string;
-  author: string;
-}) {
-  return (
-    <article className="grid grid-cols-[112px_1fr] gap-4">
-      <div className="h-[112px] w-[112px] overflow-hidden rounded-2xl">
-        <img src={img} alt="" loading="lazy" className="h-full w-full object-cover" />
+      {/* Watch & shop */}
+      <div className="mt-6">
+        <SectionHead title="Watch & shop" />
+        <Rail>
+          {products.slice(8, 13).map((p) => (
+            <div key={p.id} className="w-[120px] shrink-0">
+              <div className="relative h-[170px] w-full overflow-hidden rounded-[14px]">
+                <SmartImage
+                  src={p.image}
+                  alt={p.name}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                  <p className="text-[10.5px] font-extrabold leading-tight text-white">{p.name}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Rail>
       </div>
-      <div className="min-w-0">
-        <p className="text-[9px] uppercase tracking-[0.22em] text-[var(--gold)]">
-          {kind} · {time}
+
+      {/* Brand circles */}
+      <div className="mt-6">
+        <SectionHead title="Shop by brand" action="All brands" />
+        <div className="no-bar mt-3 flex gap-4 overflow-x-auto px-4">
+          {brands.map((b) => (
+            <Link
+              key={b.id}
+              to="/shop-by"
+              className="flex w-[64px] shrink-0 flex-col items-center gap-1.5"
+            >
+              <span className="grid h-[58px] w-[58px] place-items-center rounded-full bg-white text-[13px] font-extrabold text-[var(--emerald-deep)]">
+                {b.name.slice(0, 2)}
+              </span>
+              <span className="text-center text-[10px] font-bold text-[var(--emerald-deep)]">
+                {b.name}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Offer strip */}
+      <div className="mt-6 px-4">
+        <div className="rounded-[16px] bg-[var(--soft)] p-4">
+          <p className="kicker text-[var(--emerald)]">Loyalty</p>
+          <p className="mt-1 text-[15px] font-extrabold tracking-[-0.03em] text-[var(--emerald-deep)]">
+            420 points · ₹210 off your next basket
+          </p>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="mt-7 bg-[var(--emerald-deep)] px-4 py-7">
+        <p className="text-[17px] font-extrabold tracking-[-0.03em] text-white">GreenBasket</p>
+        <p className="mt-1.5 text-[11.5px] font-semibold leading-relaxed text-[var(--mint)]">
+          Groceries, fresh produce and daily essentials delivered across your city.
         </p>
-        <h3 className="mt-1 font-display text-[16px] leading-snug text-[var(--ink)]">{title}</h3>
-        <p className="mt-2 text-[11px] text-[var(--taupe)]">{author}</p>
-      </div>
-    </article>
+        <div className="mt-4 grid grid-cols-2 gap-y-2">
+          {["About us", "Careers", "Help centre", "Terms of use", "Privacy policy", "Contact"].map(
+            (l) => (
+              <span key={l} className="text-[11.5px] font-semibold text-white/70">
+                {l}
+              </span>
+            ),
+          )}
+        </div>
+      </footer>
+
+      {/* Floating cart bar */}
+      {count > 0 && (
+        <div className="sticky bottom-[74px] z-20 mx-4 mb-2 flex items-center justify-between rounded-[14px] bg-[var(--emerald)] px-4 py-3 shadow-[0_14px_30px_-12px_rgba(7,81,58,0.7)]">
+          <div>
+            <p className="kicker text-[var(--pastel)]">
+              {count} item{count > 1 ? "s" : ""}
+            </p>
+            <p className="text-[14px] font-extrabold text-white">₹{total}</p>
+          </div>
+          <Link to="/cart" className="kicker rounded-[9px] bg-[var(--pastel)] px-3.5 py-2.5 text-[var(--emerald-deep)]">
+            Checkout
+          </Link>
+        </div>
+      )}
+    </Screen>
   );
 }

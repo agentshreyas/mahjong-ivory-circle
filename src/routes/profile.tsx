@@ -1,224 +1,154 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { Screen } from "@/components/app/screen";
-import { BellRing, BookmarkCheck, ChevronRight, Pencil, Sparkles } from "lucide-react";
-import profileMe from "@/assets/profile-avatar.webp.asset.json";
-import { useEffect, useState } from "react";
-import { useMember, writeMember } from "@/lib/member-store";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  ChevronRight,
+  Gift,
+  HelpCircle,
+  LogOut,
+  Mail,
+  MapPin,
+  Package,
+  Truck,
+} from "lucide-react";
+import { Screen } from "@/components/store/screen";
+import { useUser } from "@/lib/user-store";
 
 export const Route = createFileRoute("/profile")({
-  head: () => ({ meta: [{ title: "Profile · HSBC Mahjong Circle" }] }),
+  head: () => ({
+    meta: [
+      { title: "My profile — GreenBasket" },
+      {
+        name: "description",
+        content: "Manage your address, orders, loyalty points and support in one place.",
+      },
+      { property: "og:title", content: "My profile — GreenBasket" },
+      {
+        property: "og:description",
+        content: "Manage your address, orders, loyalty points and support in one place.",
+      },
+    ],
+  }),
   component: Profile,
 });
 
-const CITIES = ["Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Kolkata", "Chennai", "Pune"];
-
 function Profile() {
-  const navigate = useNavigate();
-  const member = useMember();
-  const [editing, setEditing] = useState(false);
-  const [mobile, setMobile] = useState(member.mobile);
-  const [email, setEmail] = useState(member.email);
-  const [name, setName] = useState(member.name);
-  const [city, setCity] = useState(member.city);
-
-  useEffect(() => {
-    setMobile(member.mobile);
-    setEmail(member.email);
-    setName(member.name);
-    setCity(member.city);
-  }, [member.mobile, member.email, member.name, member.city]);
-
-  if (member.guest) {
-    return (
-      <Screen>
-        <div className="flex flex-1 flex-col items-center justify-center px-8 py-16 text-center">
-          <div className="grid h-14 w-14 place-items-center rounded-full bg-[var(--sand)] text-[var(--gold)]">
-            <Sparkles size={22} />
-          </div>
-          <h1 className="mt-5 font-display text-[24px] leading-tight text-[var(--ink)]">
-            Sign up to see your profile.
-          </h1>
-          <p className="mt-3 text-[13px] leading-relaxed text-[var(--taupe)]">
-            Guests may browse the Circle, but profiles are reserved for members.
-          </p>
-          <button
-            onClick={() => {
-              writeMember({ guest: false });
-              navigate({ to: "/register" });
-            }}
-            className="mt-7 w-full max-w-[260px] rounded-2xl bg-[var(--hsbc)] py-3.5 text-[14px] font-medium text-[var(--ivory)] active:bg-[var(--hsbc-pressed)]"
-          >
-            Join the Circle
-          </button>
-        </div>
-      </Screen>
-    );
-  }
+  const user = useUser();
 
   return (
     <Screen>
-      <div className="px-6 pt-2">
-        <div className="flex flex-col items-center pt-2 text-center">
-          <div className="rounded-full border border-[var(--gold)]/60 p-1">
-            <img src={profileMe.url} alt="" className="h-24 w-24 rounded-full object-cover" />
-          </div>
-          <h1 className="mt-4 font-display text-[24px] leading-tight text-[var(--ink)]">
-            {member.name || "—"}
-          </h1>
-          <p className="mt-1 text-[12px] text-[var(--taupe)]">
-            {member.city || "City"} · Member since {member.memberSince}
-          </p>
+      <header className="bg-[var(--emerald)] px-4 pb-8 pt-5">
+        <h1 className="text-[20px] font-extrabold tracking-[-0.03em] text-white">My profile</h1>
+      </header>
 
-          {(member.styles.length > 0 || member.skill) && (
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
-              {member.styles.map((s) => {
-                const primary = s === member.primaryStyle;
-                return (
-                  <span
-                    key={s}
-                    className={`rounded-full border px-3 py-1 text-[11px] ${
-                      primary
-                        ? "border-[var(--gold)] bg-[var(--gold)]/15 text-[var(--ink)]"
-                        : "border-[var(--hairline)] bg-[var(--sand)]/60 text-[var(--ink)]"
-                    }`}
-                  >
-                    {primary && "★ "}
-                    {s}
-                  </span>
-                );
-              })}
-              {member.skill && (
-                <span className="rounded-full border border-[var(--hairline)] bg-[var(--ivory)] px-3 py-1 text-[11px] text-[var(--taupe)]">
-                  Skill · {member.skill}
-                </span>
-              )}
+      <div className="-mt-5 px-4">
+        <div className="card-soft p-4">
+          <div className="flex items-center gap-3">
+            <span className="grid h-12 w-12 place-items-center rounded-full bg-[var(--soft)] text-[17px] font-extrabold text-[var(--emerald-deep)]">
+              {(user.name || "G").slice(0, 1).toUpperCase()}
+            </span>
+            <div className="min-w-0">
+              <p className="text-[15px] font-extrabold tracking-[-0.02em] text-[var(--ink)]">
+                {user.name || "Guest"}
+              </p>
+              <p className="text-[11.5px] font-semibold text-[var(--slate)]">
+                +91 {user.phone || "—"}
+              </p>
             </div>
-          )}
+          </div>
+          <div className="mt-3 flex items-start gap-2 rounded-[11px] bg-[var(--soft)] p-3">
+            <MapPin size={14} className="mt-0.5 shrink-0 text-[var(--emerald)]" />
+            <div>
+              <p className="text-[12px] font-bold text-[var(--ink)]">{user.address}</p>
+              <p className="text-[11px] font-semibold text-[var(--slate)]">{user.pincode}</p>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div className="gold-rule my-6" />
-
-        {/* Personal details */}
-        <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-4">
-          <div className="flex items-center justify-between">
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">
-              Personal details
+      {/* Email confirm */}
+      <div className="mt-3 px-4">
+        <div className="flex items-center gap-3 rounded-[16px] bg-white p-3.5">
+          <Mail size={16} className="text-[var(--emerald)]" />
+          <div className="min-w-0 flex-1">
+            <p className="text-[12.5px] font-extrabold text-[var(--ink)]">
+              {user.email || "Add your email"}
             </p>
-            <button
-              onClick={() => {
-                if (editing) writeMember({ mobile, email, name, city });
-                setEditing(!editing);
-              }}
-              className="flex items-center gap-1 text-[11px] text-[var(--ink)] underline underline-offset-2"
-            >
-              {editing ? (
-                "Save"
-              ) : (
-                <>
-                  <Pencil size={11} /> Edit
-                </>
-              )}
-            </button>
+            <p className="text-[11px] font-semibold text-[var(--slate)]">
+              For invoices and order updates
+            </p>
           </div>
-          <div className="mt-3 space-y-3">
-            <div>
-              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
-                Name
-              </label>
-              {editing ? (
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="mt-1 w-full border-0 border-b border-[var(--hairline)] bg-transparent pb-1 text-[14px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
-                />
-              ) : (
-                <p className="mt-1 text-[14px] text-[var(--ink)]">{member.name || "—"}</p>
-              )}
-            </div>
-            <div>
-              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
-                City
-              </label>
-              {editing ? (
-                <select
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  className="mt-1 w-full appearance-none border-0 border-b border-[var(--hairline)] bg-transparent pb-1 text-[14px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
-                >
-                  <option value="">Select your city</option>
-                  {CITIES.map((c) => (
-                    <option key={c}>{c}</option>
-                  ))}
-                </select>
-              ) : (
-                <p className="mt-1 text-[14px] text-[var(--ink)]">{member.city || "—"}</p>
-              )}
-            </div>
-            <div>
-              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
-                Mobile
-              </label>
-              {editing ? (
-                <input
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
-                  className="mt-1 w-full border-0 border-b border-[var(--hairline)] bg-transparent pb-1 text-[14px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
-                />
-              ) : (
-                <p className="mt-1 text-[14px] text-[var(--ink)]">{member.mobile}</p>
-              )}
-            </div>
-            <div>
-              <label className="text-[10px] uppercase tracking-[0.18em] text-[var(--taupe)]">
-                Email
-              </label>
-              {editing ? (
-                <input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="mt-1 w-full border-0 border-b border-[var(--hairline)] bg-transparent pb-1 text-[14px] text-[var(--ink)] focus:border-[var(--gold)] focus:outline-none"
-                />
-              ) : (
-                <p className="mt-1 text-[14px] text-[var(--ink)]">{member.email}</p>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Quick links */}
-        <div className="mt-4 divide-y divide-[var(--hairline)] rounded-2xl border border-[var(--hairline)] bg-[var(--ivory)]">
-          <Link to="/my-bookings" className="flex items-center justify-between px-4 py-3.5">
-            <span className="flex items-center gap-3 text-[13.5px] text-[var(--ink)]">
-              <BookmarkCheck size={16} className="text-[var(--gold)]" /> My bookings
-            </span>
-            <ChevronRight size={16} className="text-[var(--taupe)]" />
-          </Link>
-          <Link to="/notifications" className="flex items-center justify-between px-4 py-3.5">
-            <span className="flex items-center gap-3 text-[13.5px] text-[var(--ink)]">
-              <BellRing size={16} className="text-[var(--gold)]" /> Manage notifications
-            </span>
-            <ChevronRight size={16} className="text-[var(--taupe)]" />
-          </Link>
-        </div>
-
-        {/* HSBC Premier click-out */}
-        <a
-          href="https://www.hsbc.co.in/premier/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-5 mb-8 block overflow-hidden rounded-2xl border border-[var(--hsbc)]/25 bg-[var(--ink)] p-5 text-[var(--ivory)]"
-        >
-          <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">HSBC Premier</p>
-          <p className="mt-2 font-display text-[18px] leading-snug">
-            Start your HSBC Premier journey.
-          </p>
-          <p className="mt-1 text-[12px] leading-relaxed text-[var(--ivory)]/70">
-            Global privileges, concierge and Circle-only invitations.
-          </p>
-          <span className="mt-3 inline-flex items-center gap-1 text-[12px] text-[var(--ivory)]">
-            Learn more <ChevronRight size={13} />
+          <span className="kicker rounded-[9px] bg-[var(--emerald)] px-2.5 py-2 text-white">
+            {user.email ? "Confirm" : "Add"}
           </span>
-        </a>
+        </div>
+      </div>
+
+      {/* Orders */}
+      <div className="mt-3 px-4">
+        <Link to="/orders" className="flex items-center gap-3 rounded-t-[16px] bg-white p-3.5">
+          <Package size={16} className="text-[var(--emerald)]" />
+          <span className="flex-1 text-[12.5px] font-extrabold text-[var(--ink)]">My orders</span>
+          <ChevronRight size={15} className="text-[var(--slate)]" />
+        </Link>
+        <div className="h-px bg-[var(--hairline)]" />
+        <Link to="/orders" className="flex items-center gap-3 rounded-b-[16px] bg-white p-3.5">
+          <Truck size={16} className="text-[var(--emerald)]" />
+          <span className="flex-1 text-[12.5px] font-extrabold text-[var(--ink)]">
+            Track current order
+          </span>
+          <span className="kicker text-[var(--emerald)]">8 mins</span>
+        </Link>
+      </div>
+
+      {/* Loyalty */}
+      <div className="mt-3 px-4">
+        <div className="rounded-[16px] bg-[var(--emerald-deep)] p-4">
+          <p className="kicker text-[var(--pastel)]">Loyalty & coupons</p>
+          <p className="mt-1.5 text-[22px] font-extrabold leading-none tracking-[-0.03em] text-white">
+            420 points
+          </p>
+          <p className="mt-1.5 text-[11.5px] font-semibold text-[var(--mint)]">
+            Worth ₹210 · 3 coupons available
+          </p>
+          <div className="mt-3 flex gap-2">
+            {["FRESH50", "MILK10", "GB199"].map((c) => (
+              <span
+                key={c}
+                className="kicker rounded-full bg-[var(--mint)] px-2.5 py-1 text-[var(--emerald-deep)]"
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Help */}
+      <div className="mt-3 px-4">
+        <div className="flex items-center gap-3 rounded-t-[16px] bg-white p-3.5">
+          <HelpCircle size={16} className="text-[var(--emerald)]" />
+          <div className="flex-1">
+            <p className="text-[12.5px] font-extrabold text-[var(--ink)]">Help & support</p>
+            <p className="text-[11px] font-semibold text-[var(--slate)]">
+              care@greenbasket.in · 1800 200 400
+            </p>
+          </div>
+        </div>
+        <div className="h-px bg-[var(--hairline)]" />
+        <div className="flex items-center gap-3 rounded-b-[16px] bg-white p-3.5">
+          <Gift size={16} className="text-[var(--emerald)]" />
+          <span className="flex-1 text-[12.5px] font-extrabold text-[var(--ink)]">
+            Refer a friend, get ₹100
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-3 px-4 pb-6">
+        <Link
+          to="/login"
+          className="flex items-center justify-center gap-2 rounded-[16px] bg-white p-3.5 text-[12.5px] font-extrabold text-[var(--warn)]"
+        >
+          <LogOut size={15} /> Log out
+        </Link>
       </div>
     </Screen>
   );
