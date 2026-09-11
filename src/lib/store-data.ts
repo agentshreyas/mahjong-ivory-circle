@@ -72,7 +72,7 @@ export const products: Product[] = [
     mrp: 30,
     rating: 4.8,
     ratingCount: "54k",
-    image: img("photo-1518110925495-7f4dcbeef2e5"),
+    image: img("photo-1615485290382-441e4d049cb5"),
   },
   {
     id: "p4",
