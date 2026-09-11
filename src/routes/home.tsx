@@ -4,6 +4,7 @@ import { Screen } from "@/components/store/screen";
 import { StoreHeader } from "@/components/store/store-header";
 import { ProductCard } from "@/components/store/product-card";
 import { SmartImage } from "@/components/store/smart-image";
+import { CategoryIcon } from "@/components/store/category-icon";
 import { categories, brands, trending, previouslyOrdered, products } from "@/lib/store-data";
 import { useCart } from "@/lib/cart-store";
 import bannerFresh from "@/assets/banner-fresh.jpg";
@@ -85,8 +86,8 @@ function HomeScreen() {
             to="/shop-by"
             className="flex w-[62px] shrink-0 flex-col items-center gap-1.5"
           >
-            <span className="grid h-[58px] w-[58px] place-items-center rounded-full bg-[var(--soft)] text-[24px]">
-              {c.emoji}
+            <span className="grid h-[58px] w-[58px] place-items-center rounded-full bg-[var(--soft)]">
+              <CategoryIcon name={c.icon} />
             </span>
             <span className="text-center text-[10px] font-bold leading-tight text-[var(--emerald-deep)]">
               {c.name}

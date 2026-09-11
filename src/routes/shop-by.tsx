@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Search, X } from "lucide-react";
 import { Screen } from "@/components/store/screen";
 import { ProductCard } from "@/components/store/product-card";
+import { CategoryIcon } from "@/components/store/category-icon";
 import { brands, categories, products } from "@/lib/store-data";
 import { useCart } from "@/lib/cart-store";
 import { Link } from "@tanstack/react-router";
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/shop-by")({
 
 function ShopBy() {
   const [tab, setTab] = useState<"categories" | "brands">("categories");
-  const [activeCat, setActiveCat] = useState(categories[0].id);
+  const [activeCat, setActiveCat] = useState<string>(categories[0].id);
   const [activeBrand, setActiveBrand] = useState(brands[0].name);
   const [query, setQuery] = useState("");
   const [scoped, setScoped] = useState(true);
@@ -117,8 +118,8 @@ function ShopBy() {
                       active ? "bg-white" : ""
                     }`}
                   >
-                    <span className="grid h-11 w-11 place-items-center rounded-[12px] bg-[var(--soft)] text-[19px]">
-                      {c.emoji}
+                    <span className="grid h-11 w-11 place-items-center rounded-[12px] bg-[var(--soft)]">
+                      <CategoryIcon name={c.icon} size={19} />
                     </span>
                     <span
                       className={`text-center text-[9.5px] font-extrabold leading-tight ${

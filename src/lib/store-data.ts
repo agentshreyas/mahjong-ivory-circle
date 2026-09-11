@@ -23,7 +23,7 @@ export const categories = [
   { id: "home-care", name: "Home Care", icon: "spray" },
   { id: "personal-care", name: "Personal Care", icon: "sparkles" },
   { id: "baby", name: "Baby Care", icon: "baby" },
-] as const;
+];
 
 export const brands = [
   { id: "amul", name: "Amul" },
