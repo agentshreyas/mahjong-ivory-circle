@@ -89,6 +89,9 @@ function PlayIndex() {
           <br />
           by Mahjong Circle
         </h2>
+        <p className="mt-1 text-center text-[11px] text-[var(--ink-soft)]">
+          Hope you enjoy the game
+        </p>
         <div className="mt-4 flex flex-col items-center">
           <ActionOrb
             label={actions[0].label}
