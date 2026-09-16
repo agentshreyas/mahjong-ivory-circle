@@ -116,7 +116,7 @@ function PlayIndex() {
         <div className="flex items-center gap-2">
           <BookOpen size={16} strokeWidth={1.5} className="text-[var(--gold)]" />
           <h2 className="font-display text-[18px] text-[var(--ink)]">
-            Don't know how to play ?
+            Don't know how to play ?<br />
             It's never too late to learn!
           </h2>
         </div>
