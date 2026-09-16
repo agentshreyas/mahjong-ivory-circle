@@ -116,11 +116,13 @@ function PlayIndex() {
         <div className="flex items-center gap-2">
           <BookOpen size={16} strokeWidth={1.5} className="text-[var(--gold)]" />
           <h2 className="font-display text-[18px] text-[var(--ink)]">
-            How to play
+            Don't know how to play ?
+            It's never too late to learn!
           </h2>
         </div>
         <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)]">
-          Pick a style
+          
+          PICK A STYLE
         </p>
         <p className="mt-3 text-[13px] leading-[1.65] text-[var(--taupe)]/90">
 
