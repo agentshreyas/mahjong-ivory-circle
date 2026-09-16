@@ -42,10 +42,10 @@ function ActionOrb({
 }) {
   const content = (
     <>
-      <span className="flex h-[104px] w-[104px] items-center justify-center rounded-full border border-[var(--hairline)] bg-[var(--sand)]/70 shadow-[0_10px_28px_-14px_rgba(0,0,0,0.28)]">
-        <Icon size={40} strokeWidth={1.25} className="text-[var(--hsbc)]" />
+      <span className="flex h-[80px] w-[80px] items-center justify-center rounded-full border border-[var(--hairline)] bg-[var(--sand)]/70 shadow-[0_10px_28px_-14px_rgba(0,0,0,0.28)]">
+        <Icon size={30} strokeWidth={1.25} className="text-[var(--hsbc)]" />
       </span>
-      <span className="text-[12px] tracking-[0.12em] uppercase text-[var(--ink)]">
+      <span className="text-[11px] tracking-[0.12em] uppercase text-[var(--ink)]">
         {label}
       </span>
     </>
@@ -55,7 +55,7 @@ function ActionOrb({
     return (
       <a
         href={to}
-        className="flex flex-col items-center gap-3 transition-transform active:scale-[0.97]"
+        className="flex flex-col items-center gap-2 transition-transform active:scale-[0.97]"
         aria-label={label}
       >
         {content}
@@ -66,7 +66,7 @@ function ActionOrb({
   return (
     <button
       type="button"
-      className="flex flex-col items-center gap-3 transition-transform active:scale-[0.97]"
+      className="flex flex-col items-center gap-2 transition-transform active:scale-[0.97]"
       aria-label={label}
     >
       {content}
@@ -79,7 +79,7 @@ function PlayIndex() {
     <Screen eyebrow="The Circle" title="Play">
 
       {/* Diamond arrangement */}
-      <section className="px-6 pt-8 pb-10">
+      <section className="px-6 pt-6 pb-6">
         <div className="flex justify-center">
           <ActionOrb
             label={actions[0].label}
@@ -87,7 +87,7 @@ function PlayIndex() {
             to={actions[0].to}
           />
         </div>
-        <div className="mt-8 flex items-start justify-center gap-8">
+        <div className="mt-5 flex items-start justify-center gap-6">
           <ActionOrb
             label={actions[1].label}
             Icon={actions[1].icon}
@@ -99,7 +99,7 @@ function PlayIndex() {
             to={actions[2].to}
           />
         </div>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-5 flex justify-center">
           <ActionOrb
             label={actions[3].label}
             Icon={actions[3].icon}
