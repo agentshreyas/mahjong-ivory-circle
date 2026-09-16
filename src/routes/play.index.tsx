@@ -122,6 +122,9 @@ function PlayIndex() {
         <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)]">
           Pick a style
         </p>
+        <p className="mt-3 text-[13px] leading-[1.65] text-[var(--taupe)]/90">
+          Don't know how to play mahjong? Never too late to learn.
+        </p>
 
         <div className="mt-5 grid grid-cols-2 gap-3">
           <a
