@@ -120,13 +120,6 @@ function PlayIndex() {
             It's never too late to learn!
           </h2>
         </div>
-        <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)]">
-          
-          PICK A STYLE
-        </p>
-        <p className="mt-3 text-[13px] leading-[1.65] text-[var(--taupe)]/90">
-
-        </p>
 
         <div className="mt-5 grid grid-cols-2 gap-3">
           <a
