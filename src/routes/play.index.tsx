@@ -77,11 +77,6 @@ function ActionOrb({
 function PlayIndex() {
   return (
     <Screen eyebrow="The Circle" title="Play">
-      <section className="px-6 pt-4 pb-2 text-center">
-        <p className="mx-auto max-w-[260px] text-[13px] leading-[1.65] text-[var(--taupe)]/90">
-          Set a table, take a seat, or gather the ones you play with most.
-        </p>
-      </section>
 
       {/* Diamond arrangement */}
       <section className="px-6 pt-8 pb-10">
