@@ -28,15 +28,8 @@ const actions = [
   { label: "Create Room", icon: PlusCircle, to: "/play/create-room" },
   { label: "Join Room", icon: LogIn, to: "/play/join-room" },
   { label: "My Circle", icon: Users, to: "/play/my-circle" },
+  { label: "Leaderboard", icon: Trophy, to: "/play/leaderboard" },
 ] as const;
-
-const leaderboard = [
-  { name: "Ananya R.", city: "Mumbai", points: 4820 },
-  { name: "Vikram S.", city: "Delhi", points: 4510 },
-  { name: "Meher K.", city: "Bengaluru", points: 4295 },
-  { name: "Rohan D.", city: "Mumbai", points: 3980 },
-  { name: "Ishita M.", city: "Kolkata", points: 3745 },
-];
 
 function ActionOrb({
   label,
@@ -90,7 +83,7 @@ function PlayIndex() {
         </p>
       </section>
 
-      {/* Triangle arrangement */}
+      {/* Diamond arrangement */}
       <section className="px-6 pt-8 pb-10">
         <div className="flex justify-center">
           <ActionOrb
@@ -105,7 +98,18 @@ function PlayIndex() {
             Icon={actions[1].icon}
             to={actions[1].to}
           />
-          <ActionOrb label={actions[2].label} Icon={actions[2].icon} />
+          <ActionOrb
+            label={actions[2].label}
+            Icon={actions[2].icon}
+            to={actions[2].to}
+          />
+        </div>
+        <div className="mt-8 flex justify-center">
+          <ActionOrb
+            label={actions[3].label}
+            Icon={actions[3].icon}
+            to={actions[3].to}
+          />
         </div>
       </section>
 
@@ -154,39 +158,3 @@ function PlayIndex() {
         </div>
       </section>
 
-      {/* Leaderboard */}
-      <section className="px-6 pt-8 pb-4">
-        <div className="flex items-center gap-2">
-          <Trophy size={16} strokeWidth={1.5} className="text-[var(--gold)]" />
-          <h2 className="font-display text-[18px] text-[var(--ink)]">
-            Top Circleites
-          </h2>
-        </div>
-        <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-[var(--taupe)]">
-          This month
-        </p>
-
-        <ol className="mt-5 divide-y divide-[var(--hairline)] overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--sand)]/40">
-          {leaderboard.map((p, i) => (
-            <li key={p.name} className="flex items-center gap-4 px-5 py-4">
-              <span
-                className={`w-5 text-[13px] tabular-nums ${
-                  i === 0 ? "text-[var(--hsbc)] font-medium" : "text-[var(--taupe)]"
-                }`}
-              >
-                {i + 1}
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-[14px] text-[var(--ink)]">{p.name}</p>
-                <p className="text-[11px] text-[var(--taupe)]">{p.city}</p>
-              </div>
-              <span className="text-[13px] tabular-nums text-[var(--ink)]">
-                {p.points.toLocaleString("en-IN")}
-              </span>
-            </li>
-          ))}
-        </ol>
-      </section>
-    </Screen>
-  );
-}
