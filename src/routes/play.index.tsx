@@ -157,4 +157,8 @@ function PlayIndex() {
           </div>
         </div>
       </section>
+    </Screen>
+  );
+}
+
 
