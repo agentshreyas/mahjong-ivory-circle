@@ -42,10 +42,10 @@ function ActionOrb({
 }) {
   const content = (
     <>
-      <span className="flex h-[80px] w-[80px] items-center justify-center rounded-full border border-[var(--hairline)] bg-[var(--sand)]/70 shadow-[0_10px_28px_-14px_rgba(0,0,0,0.28)]">
-        <Icon size={30} strokeWidth={1.25} className="text-[var(--hsbc)]" />
+      <span className="flex h-[62px] w-[62px] rotate-45 items-center justify-center rounded-[12px] border border-[var(--hairline)] bg-[var(--sand)]/70 shadow-[0_10px_28px_-14px_rgba(0,0,0,0.28)]">
+        <Icon size={24} strokeWidth={1.25} className="-rotate-45 text-[var(--hsbc)]" />
       </span>
-      <span className="text-[11px] tracking-[0.12em] uppercase text-[var(--ink)]">
+      <span className="-mt-1 text-[10px] tracking-[0.12em] uppercase text-[var(--ink)]">
         {label}
       </span>
     </>
@@ -85,24 +85,24 @@ function PlayIndex() {
           <br />
           by Mahjong Circle
         </h2>
-        <div className="mt-5 flex items-start justify-between">
-          <ActionOrb
-            label={actions[1].label}
-            Icon={actions[1].icon}
-            to={actions[1].to}
-          />
-          <ActionOrb
-            label={actions[2].label}
-            Icon={actions[2].icon}
-            to={actions[2].to}
-          />
-        </div>
-        <div className="mt-5 flex items-start justify-center gap-8">
+        <div className="mt-4 flex flex-col items-center">
           <ActionOrb
             label={actions[0].label}
             Icon={actions[0].icon}
             to={actions[0].to}
           />
+          <div className="mt-2 flex w-full items-start justify-between px-3">
+            <ActionOrb
+              label={actions[1].label}
+              Icon={actions[1].icon}
+              to={actions[1].to}
+            />
+            <ActionOrb
+              label={actions[2].label}
+              Icon={actions[2].icon}
+              to={actions[2].to}
+            />
+          </div>
           <ActionOrb
             label={actions[3].label}
             Icon={actions[3].icon}
