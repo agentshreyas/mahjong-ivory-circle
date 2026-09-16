@@ -9,25 +9,36 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WelcomeRouteImport } from './routes/welcome'
-import { Route as ShopByRouteImport } from './routes/shop-by'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as OtpRouteImport } from './routes/otp'
-import { Route as OrdersRouteImport } from './routes/orders'
-import { Route as LoginRouteImport } from './routes/login'
+import { Route as ProductRouteImport } from './routes/product'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PremierRouteImport } from './routes/premier'
+import { Route as PlayRouteImport } from './routes/play'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as MyBookingsRouteImport } from './routes/my-bookings'
+import { Route as LandingRouteImport } from './routes/landing'
 import { Route as HomeRouteImport } from './routes/home'
-import { Route as DetailsRouteImport } from './routes/details'
-import { Route as CartRouteImport } from './routes/cart'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as EventDetailRouteImport } from './routes/event-detail'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CollectionRouteImport } from './routes/collection'
+import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PlayIndexRouteImport } from './routes/play.index'
+import { Route as PlayMyCircleRouteImport } from './routes/play.my-circle'
+import { Route as PlayJoinRoomRouteImport } from './routes/play.join-room'
+import { Route as PlayCreateRoomRouteImport } from './routes/play.create-room'
 
-const WelcomeRoute = WelcomeRouteImport.update({
-  id: '/welcome',
-  path: '/welcome',
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ShopByRoute = ShopByRouteImport.update({
-  id: '/shop-by',
-  path: '/shop-by',
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -35,19 +46,39 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OtpRoute = OtpRouteImport.update({
-  id: '/otp',
-  path: '/otp',
+const ProductRoute = ProductRouteImport.update({
+  id: '/product',
+  path: '/product',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OrdersRoute = OrdersRouteImport.update({
-  id: '/orders',
-  path: '/orders',
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+const PremierRoute = PremierRouteImport.update({
+  id: '/premier',
+  path: '/premier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlayRoute = PlayRouteImport.update({
+  id: '/play',
+  path: '/play',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyBookingsRoute = MyBookingsRouteImport.update({
+  id: '/my-bookings',
+  path: '/my-bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingRoute = LandingRouteImport.update({
+  id: '/landing',
+  path: '/landing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -55,14 +86,29 @@ const HomeRoute = HomeRouteImport.update({
   path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DetailsRoute = DetailsRouteImport.update({
-  id: '/details',
-  path: '/details',
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CartRoute = CartRouteImport.update({
-  id: '/cart',
-  path: '/cart',
+const EventDetailRoute = EventDetailRouteImport.update({
+  id: '/event-detail',
+  path: '/event-detail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionRoute = CollectionRouteImport.update({
+  id: '/collection',
+  path: '/collection',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArticleRoute = ArticleRouteImport.update({
+  id: '/article',
+  path: '/article',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -70,110 +116,201 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlayIndexRoute = PlayIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PlayRoute,
+} as any)
+const PlayMyCircleRoute = PlayMyCircleRouteImport.update({
+  id: '/my-circle',
+  path: '/my-circle',
+  getParentRoute: () => PlayRoute,
+} as any)
+const PlayJoinRoomRoute = PlayJoinRoomRouteImport.update({
+  id: '/join-room',
+  path: '/join-room',
+  getParentRoute: () => PlayRoute,
+} as any)
+const PlayCreateRoomRoute = PlayCreateRoomRouteImport.update({
+  id: '/create-room',
+  path: '/create-room',
+  getParentRoute: () => PlayRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cart': typeof CartRoute
-  '/details': typeof DetailsRoute
+  '/article': typeof ArticleRoute
+  '/collection': typeof CollectionRoute
+  '/contact': typeof ContactRoute
+  '/event-detail': typeof EventDetailRoute
+  '/events': typeof EventsRoute
   '/home': typeof HomeRoute
-  '/login': typeof LoginRoute
-  '/orders': typeof OrdersRoute
-  '/otp': typeof OtpRoute
+  '/landing': typeof LandingRoute
+  '/my-bookings': typeof MyBookingsRoute
+  '/notifications': typeof NotificationsRoute
+  '/play': typeof PlayRouteWithChildren
+  '/premier': typeof PremierRoute
+  '/privacy': typeof PrivacyRoute
+  '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
-  '/shop-by': typeof ShopByRoute
-  '/welcome': typeof WelcomeRoute
+  '/register': typeof RegisterRoute
+  '/terms': typeof TermsRoute
+  '/play/create-room': typeof PlayCreateRoomRoute
+  '/play/join-room': typeof PlayJoinRoomRoute
+  '/play/my-circle': typeof PlayMyCircleRoute
+  '/play/': typeof PlayIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cart': typeof CartRoute
-  '/details': typeof DetailsRoute
+  '/article': typeof ArticleRoute
+  '/collection': typeof CollectionRoute
+  '/contact': typeof ContactRoute
+  '/event-detail': typeof EventDetailRoute
+  '/events': typeof EventsRoute
   '/home': typeof HomeRoute
-  '/login': typeof LoginRoute
-  '/orders': typeof OrdersRoute
-  '/otp': typeof OtpRoute
+  '/landing': typeof LandingRoute
+  '/my-bookings': typeof MyBookingsRoute
+  '/notifications': typeof NotificationsRoute
+  '/premier': typeof PremierRoute
+  '/privacy': typeof PrivacyRoute
+  '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
-  '/shop-by': typeof ShopByRoute
-  '/welcome': typeof WelcomeRoute
+  '/register': typeof RegisterRoute
+  '/terms': typeof TermsRoute
+  '/play/create-room': typeof PlayCreateRoomRoute
+  '/play/join-room': typeof PlayJoinRoomRoute
+  '/play/my-circle': typeof PlayMyCircleRoute
+  '/play': typeof PlayIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/cart': typeof CartRoute
-  '/details': typeof DetailsRoute
+  '/article': typeof ArticleRoute
+  '/collection': typeof CollectionRoute
+  '/contact': typeof ContactRoute
+  '/event-detail': typeof EventDetailRoute
+  '/events': typeof EventsRoute
   '/home': typeof HomeRoute
-  '/login': typeof LoginRoute
-  '/orders': typeof OrdersRoute
-  '/otp': typeof OtpRoute
+  '/landing': typeof LandingRoute
+  '/my-bookings': typeof MyBookingsRoute
+  '/notifications': typeof NotificationsRoute
+  '/play': typeof PlayRouteWithChildren
+  '/premier': typeof PremierRoute
+  '/privacy': typeof PrivacyRoute
+  '/product': typeof ProductRoute
   '/profile': typeof ProfileRoute
-  '/shop-by': typeof ShopByRoute
-  '/welcome': typeof WelcomeRoute
+  '/register': typeof RegisterRoute
+  '/terms': typeof TermsRoute
+  '/play/create-room': typeof PlayCreateRoomRoute
+  '/play/join-room': typeof PlayJoinRoomRoute
+  '/play/my-circle': typeof PlayMyCircleRoute
+  '/play/': typeof PlayIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/cart'
-    | '/details'
+    | '/article'
+    | '/collection'
+    | '/contact'
+    | '/event-detail'
+    | '/events'
     | '/home'
-    | '/login'
-    | '/orders'
-    | '/otp'
+    | '/landing'
+    | '/my-bookings'
+    | '/notifications'
+    | '/play'
+    | '/premier'
+    | '/privacy'
+    | '/product'
     | '/profile'
-    | '/shop-by'
-    | '/welcome'
+    | '/register'
+    | '/terms'
+    | '/play/create-room'
+    | '/play/join-room'
+    | '/play/my-circle'
+    | '/play/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/cart'
-    | '/details'
+    | '/article'
+    | '/collection'
+    | '/contact'
+    | '/event-detail'
+    | '/events'
     | '/home'
-    | '/login'
-    | '/orders'
-    | '/otp'
+    | '/landing'
+    | '/my-bookings'
+    | '/notifications'
+    | '/premier'
+    | '/privacy'
+    | '/product'
     | '/profile'
-    | '/shop-by'
-    | '/welcome'
+    | '/register'
+    | '/terms'
+    | '/play/create-room'
+    | '/play/join-room'
+    | '/play/my-circle'
+    | '/play'
   id:
     | '__root__'
     | '/'
-    | '/cart'
-    | '/details'
+    | '/article'
+    | '/collection'
+    | '/contact'
+    | '/event-detail'
+    | '/events'
     | '/home'
-    | '/login'
-    | '/orders'
-    | '/otp'
+    | '/landing'
+    | '/my-bookings'
+    | '/notifications'
+    | '/play'
+    | '/premier'
+    | '/privacy'
+    | '/product'
     | '/profile'
-    | '/shop-by'
-    | '/welcome'
+    | '/register'
+    | '/terms'
+    | '/play/create-room'
+    | '/play/join-room'
+    | '/play/my-circle'
+    | '/play/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CartRoute: typeof CartRoute
-  DetailsRoute: typeof DetailsRoute
+  ArticleRoute: typeof ArticleRoute
+  CollectionRoute: typeof CollectionRoute
+  ContactRoute: typeof ContactRoute
+  EventDetailRoute: typeof EventDetailRoute
+  EventsRoute: typeof EventsRoute
   HomeRoute: typeof HomeRoute
-  LoginRoute: typeof LoginRoute
-  OrdersRoute: typeof OrdersRoute
-  OtpRoute: typeof OtpRoute
+  LandingRoute: typeof LandingRoute
+  MyBookingsRoute: typeof MyBookingsRoute
+  NotificationsRoute: typeof NotificationsRoute
+  PlayRoute: typeof PlayRouteWithChildren
+  PremierRoute: typeof PremierRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ProductRoute: typeof ProductRoute
   ProfileRoute: typeof ProfileRoute
-  ShopByRoute: typeof ShopByRoute
-  WelcomeRoute: typeof WelcomeRoute
+  RegisterRoute: typeof RegisterRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/welcome': {
-      id: '/welcome'
-      path: '/welcome'
-      fullPath: '/welcome'
-      preLoaderRoute: typeof WelcomeRouteImport
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/shop-by': {
-      id: '/shop-by'
-      path: '/shop-by'
-      fullPath: '/shop-by'
-      preLoaderRoute: typeof ShopByRouteImport
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -183,25 +320,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/otp': {
-      id: '/otp'
-      path: '/otp'
-      fullPath: '/otp'
-      preLoaderRoute: typeof OtpRouteImport
+    '/product': {
+      id: '/product'
+      path: '/product'
+      fullPath: '/product'
+      preLoaderRoute: typeof ProductRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/orders': {
-      id: '/orders'
-      path: '/orders'
-      fullPath: '/orders'
-      preLoaderRoute: typeof OrdersRouteImport
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
+    '/premier': {
+      id: '/premier'
+      path: '/premier'
+      fullPath: '/premier'
+      preLoaderRoute: typeof PremierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/play': {
+      id: '/play'
+      path: '/play'
+      fullPath: '/play'
+      preLoaderRoute: typeof PlayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-bookings': {
+      id: '/my-bookings'
+      path: '/my-bookings'
+      fullPath: '/my-bookings'
+      preLoaderRoute: typeof MyBookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing': {
+      id: '/landing'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home': {
@@ -211,18 +376,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/details': {
-      id: '/details'
-      path: '/details'
-      fullPath: '/details'
-      preLoaderRoute: typeof DetailsRouteImport
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cart': {
-      id: '/cart'
-      path: '/cart'
-      fullPath: '/cart'
-      preLoaderRoute: typeof CartRouteImport
+    '/event-detail': {
+      id: '/event-detail'
+      path: '/event-detail'
+      fullPath: '/event-detail'
+      preLoaderRoute: typeof EventDetailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collection': {
+      id: '/collection'
+      path: '/collection'
+      fullPath: '/collection'
+      preLoaderRoute: typeof CollectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/article': {
+      id: '/article'
+      path: '/article'
+      fullPath: '/article'
+      preLoaderRoute: typeof ArticleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -232,20 +418,71 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/play/': {
+      id: '/play/'
+      path: '/'
+      fullPath: '/play/'
+      preLoaderRoute: typeof PlayIndexRouteImport
+      parentRoute: typeof PlayRoute
+    }
+    '/play/my-circle': {
+      id: '/play/my-circle'
+      path: '/my-circle'
+      fullPath: '/play/my-circle'
+      preLoaderRoute: typeof PlayMyCircleRouteImport
+      parentRoute: typeof PlayRoute
+    }
+    '/play/join-room': {
+      id: '/play/join-room'
+      path: '/join-room'
+      fullPath: '/play/join-room'
+      preLoaderRoute: typeof PlayJoinRoomRouteImport
+      parentRoute: typeof PlayRoute
+    }
+    '/play/create-room': {
+      id: '/play/create-room'
+      path: '/create-room'
+      fullPath: '/play/create-room'
+      preLoaderRoute: typeof PlayCreateRoomRouteImport
+      parentRoute: typeof PlayRoute
+    }
   }
 }
 
+interface PlayRouteChildren {
+  PlayCreateRoomRoute: typeof PlayCreateRoomRoute
+  PlayJoinRoomRoute: typeof PlayJoinRoomRoute
+  PlayMyCircleRoute: typeof PlayMyCircleRoute
+  PlayIndexRoute: typeof PlayIndexRoute
+}
+
+const PlayRouteChildren: PlayRouteChildren = {
+  PlayCreateRoomRoute: PlayCreateRoomRoute,
+  PlayJoinRoomRoute: PlayJoinRoomRoute,
+  PlayMyCircleRoute: PlayMyCircleRoute,
+  PlayIndexRoute: PlayIndexRoute,
+}
+
+const PlayRouteWithChildren = PlayRoute._addFileChildren(PlayRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CartRoute: CartRoute,
-  DetailsRoute: DetailsRoute,
+  ArticleRoute: ArticleRoute,
+  CollectionRoute: CollectionRoute,
+  ContactRoute: ContactRoute,
+  EventDetailRoute: EventDetailRoute,
+  EventsRoute: EventsRoute,
   HomeRoute: HomeRoute,
-  LoginRoute: LoginRoute,
-  OrdersRoute: OrdersRoute,
-  OtpRoute: OtpRoute,
+  LandingRoute: LandingRoute,
+  MyBookingsRoute: MyBookingsRoute,
+  NotificationsRoute: NotificationsRoute,
+  PlayRoute: PlayRouteWithChildren,
+  PremierRoute: PremierRoute,
+  PrivacyRoute: PrivacyRoute,
+  ProductRoute: ProductRoute,
   ProfileRoute: ProfileRoute,
-  ShopByRoute: ShopByRoute,
-  WelcomeRoute: WelcomeRoute,
+  RegisterRoute: RegisterRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

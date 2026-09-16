@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -11,7 +12,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { PhoneFrame } from "@/components/store/phone-frame";
+import { PhoneFrame } from "@/components/app/phone-frame";
+import { VoiceProvider } from "@/components/app/voice-context";
+import { VoiceOverlay } from "@/components/app/voice-overlay";
 
 function NotFoundComponent() {
   return (
@@ -78,15 +81,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Tata NutriKorner — Groceries delivered in minutes" },
+      { title: "HSBC Mahjong Circle" },
+      { name: "description", content: "A private members' circle for connoisseurs of the game." },
+      { name: "author", content: "HSBC Mahjong Circle" },
+      { property: "og:title", content: "HSBC Mahjong Circle" },
       {
-        name: "description",
-        content:
-          "Tata Sampann, Tata Salt, Tata Tea and Himalayan essentials delivered to your pincode in minutes.",
+        property: "og:description",
+        content: "A private members' circle for connoisseurs of the game.",
       },
-      { name: "author", content: "Tata NutriKorner" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "HSBC Mahjong Circle" },
+      {
+        name: "twitter:description",
+        content: "A private members' circle for connoisseurs of the game.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c9a883b7-ca20-49b8-9019-6ee3075b2eb7/id-preview-d32c3ef4--2baacd7e-08be-4723-97d6-d8844936e687.lovable.app-1783496780451.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c9a883b7-ca20-49b8-9019-6ee3075b2eb7/id-preview-d32c3ef4--2baacd7e-08be-4723-97d6-d8844936e687.lovable.app-1783496780451.png",
+      },
     ],
     links: [
       {
@@ -97,7 +116,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@300;400;500;600;700&display=swap",
       },
     ],
   }),
@@ -123,12 +142,26 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const marketingRoutes = ["/landing", "/privacy", "/terms", "/contact"];
+  const isMarketing = marketingRoutes.some((r) => pathname === r || pathname.startsWith(r + "/"));
+
+  if (isMarketing) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Outlet />
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PhoneFrame>
-        <Outlet />
-      </PhoneFrame>
+      <VoiceProvider>
+        <PhoneFrame>
+          <Outlet />
+          <VoiceOverlay />
+        </PhoneFrame>
+      </VoiceProvider>
     </QueryClientProvider>
   );
 }
