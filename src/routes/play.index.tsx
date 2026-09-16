@@ -113,25 +113,45 @@ function PlayIndex() {
 
       {/* How to play */}
       <section className="px-6 pt-8 pb-4">
-        <div className="flex items-center gap-2">
-          <BookOpen size={16} strokeWidth={1.5} className="text-[var(--gold)]" />
-          <h2 className="font-display text-[18px] text-[var(--ink)]">
-            Don't know how to play ?<br />
-            It's never too late to learn!
-          </h2>
-        </div>
+        <div className="relative overflow-hidden rounded-3xl border border-[var(--hsbc)]/40 bg-[var(--hsbc)] p-6 text-left shadow-[0_18px_40px_-18px_rgba(219,20,20,0.55)]">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.08]"
+            style={{
+              background:
+                "radial-gradient(circle at 85% 15%, rgba(255,255,255,0.9), transparent 45%), radial-gradient(circle at 10% 95%, rgba(0,0,0,0.8), transparent 50%)",
+            }}
+          />
+          <div className="relative">
+            <div className="flex items-center gap-2">
+              <BookOpen size={16} strokeWidth={1.5} className="text-white/80" />
+              <p className="text-[10px] uppercase tracking-[0.28em] text-white/70">
+                Learn
+              </p>
+            </div>
+            <h2 className="mt-3 font-display text-[19px] leading-[1.3] text-white">
+              Don't know how to play?
+              <br />
+              It's never too late to learn!
+            </h2>
 
-        <a
-          href="https://en.wikipedia.org/wiki/Mahjong"
-          target="_blank"
-          rel="noreferrer"
-          className="mt-5 flex items-center justify-between rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-4 transition-transform active:scale-[0.97]"
-        >
-          <span className="font-display text-[16px] text-[var(--ink)]">
-            Learn Mahjong
-          </span>
-          <ArrowUpRight size={18} strokeWidth={1.5} className="text-[var(--gold)]" />
-        </a>
+            <div className="mt-3 h-px w-full bg-white/25" />
+
+            <a
+              href="https://en.wikipedia.org/wiki/Mahjong"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 flex items-center justify-between rounded-2xl border border-white/30 bg-white/10 px-4 py-3.5 transition-transform active:scale-[0.97]"
+            >
+              <span className="font-display text-[16px] text-white">
+                Learn Mahjong
+              </span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+                <ArrowUpRight size={16} strokeWidth={1.75} className="text-white" />
+              </span>
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* Leaderboard */}
