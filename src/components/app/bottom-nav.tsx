@@ -29,7 +29,7 @@ const leftTabs = [
 ] as const;
 
 const rightTabs = [
-  { to: "/play", label: "Play", icon: MahjongTile },
+  { to: "/play", label: "Rooms", icon: MahjongTile },
   { to: "/profile", label: "Profile", icon: User },
 ] as const;
 
