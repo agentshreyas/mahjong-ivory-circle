@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Screen } from "@/components/app/screen";
-import { PlusCircle, LogIn, Users, Trophy, BookOpen } from "lucide-react";
+import { PlusCircle, LogIn, Users, Trophy, BookOpen, ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/play/")({
   head: () => ({
@@ -121,30 +121,17 @@ function PlayIndex() {
           </h2>
         </div>
 
-        <div className="mt-5 grid grid-cols-2 gap-3">
-          <a
-            href="/play/riichi"
-            className="group flex flex-col gap-2 rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-4 transition-transform active:scale-[0.97]"
-          >
-            <span className="font-display text-[16px] text-[var(--ink)]">
-              Riichi
-            </span>
-            <span className="text-[11px] leading-[1.5] text-[var(--taupe)]">
-              The Japanese classic — calls, yaku, and the dramatic riichi declaration.
-            </span>
-          </a>
-          <a
-            href="/play/hong-kong"
-            className="group flex flex-col gap-2 rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-4 transition-transform active:scale-[0.97]"
-          >
-            <span className="font-display text-[16px] text-[var(--ink)]">
-              Hong Kong
-            </span>
-            <span className="text-[11px] leading-[1.5] text-[var(--taupe)]">
-              Fast, scoring-based play with traditional fan combinations.
-            </span>
-          </a>
-        </div>
+        <a
+          href="https://en.wikipedia.org/wiki/Mahjong"
+          target="_blank"
+          rel="noreferrer"
+          className="mt-5 flex items-center justify-between rounded-2xl border border-[var(--hairline)] bg-[var(--sand)]/40 p-4 transition-transform active:scale-[0.97]"
+        >
+          <span className="font-display text-[16px] text-[var(--ink)]">
+            Learn Mahjong
+          </span>
+          <ArrowUpRight size={18} strokeWidth={1.5} className="text-[var(--gold)]" />
+        </a>
       </section>
 
       {/* Leaderboard */}
