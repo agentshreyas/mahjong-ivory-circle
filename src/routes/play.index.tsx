@@ -42,10 +42,10 @@ function ActionOrb({
 }) {
   const content = (
     <>
-      <span className="flex h-[104px] w-[104px] items-center justify-center rounded-full border border-[var(--hairline)] bg-[var(--sand)]/70 shadow-[0_10px_28px_-14px_rgba(0,0,0,0.28)]">
-        <Icon size={40} strokeWidth={1.25} className="text-[var(--hsbc)]" />
+      <span className="flex h-[80px] w-[80px] items-center justify-center rounded-full border border-[var(--hairline)] bg-[var(--sand)]/70 shadow-[0_10px_28px_-14px_rgba(0,0,0,0.28)]">
+        <Icon size={30} strokeWidth={1.25} className="text-[var(--hsbc)]" />
       </span>
-      <span className="text-[12px] tracking-[0.12em] uppercase text-[var(--ink)]">
+      <span className="text-[11px] tracking-[0.12em] uppercase text-[var(--ink)]">
         {label}
       </span>
     </>
