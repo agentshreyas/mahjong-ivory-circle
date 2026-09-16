@@ -84,7 +84,7 @@ function PlayIndex() {
 
       {/* Welcome + compact orb arrangement */}
       <section className="px-6 pt-4 pb-5">
-        <h2 className="font-display text-[19px] leading-[1.3] text-[var(--ink)]">
+        <h2 className="text-center font-display text-[19px] leading-[1.3] text-[var(--ink)]">
           Welcome to The Rooms
           <br />
           by Mahjong Circle
