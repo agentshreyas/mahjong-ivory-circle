@@ -78,16 +78,14 @@ function PlayIndex() {
   return (
     <Screen eyebrow="The Circle" title="Play">
 
-      {/* Diamond arrangement */}
-      <section className="px-6 pt-6 pb-6">
-        <div className="flex justify-center">
-          <ActionOrb
-            label={actions[0].label}
-            Icon={actions[0].icon}
-            to={actions[0].to}
-          />
-        </div>
-        <div className="mt-5 flex items-start justify-center gap-6">
+      {/* Welcome + compact orb arrangement */}
+      <section className="px-6 pt-4 pb-5">
+        <h2 className="font-display text-[19px] leading-[1.3] text-[var(--ink)]">
+          Welcome to The Rooms
+          <br />
+          by Mahjong Circle
+        </h2>
+        <div className="mt-5 flex items-start justify-between">
           <ActionOrb
             label={actions[1].label}
             Icon={actions[1].icon}
@@ -99,7 +97,12 @@ function PlayIndex() {
             to={actions[2].to}
           />
         </div>
-        <div className="mt-5 flex justify-center">
+        <div className="mt-5 flex items-start justify-center gap-8">
+          <ActionOrb
+            label={actions[0].label}
+            Icon={actions[0].icon}
+            to={actions[0].to}
+          />
           <ActionOrb
             label={actions[3].label}
             Icon={actions[3].icon}
