@@ -105,9 +105,9 @@ export function MahjongTileFace({
 
   return (
     <span
-      className={`relative flex h-[52px] w-[38px] shrink-0 items-center justify-center rounded-[8px] bg-gradient-to-b from-[#fffdf7] via-[var(--ivory)] to-[#f1e8d8] ${
+      className={`relative flex h-[52px] w-[38px] shrink-0 items-center justify-center rounded-[8px] bg-gradient-to-b from-white via-[#fffdf7] to-[#f5efe3] ${
         highlight
-          ? "border border-[var(--gold)] shadow-[0_8px_18px_-10px_rgba(183,150,92,0.7),inset_0_1px_0_rgba(255,255,255,0.9)]"
+          ? "border border-[var(--hsbc)] shadow-[0_8px_18px_-10px_rgba(219,0,17,0.6),inset_0_1px_0_rgba(255,255,255,0.9)]"
           : "border border-[var(--hairline)] shadow-[0_6px_14px_-9px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.9)]"
       }`}
     >
