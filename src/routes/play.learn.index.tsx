@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { MahjongTileFace, type TileSpec } from "@/components/app/mahjong-tile-face";
 
-export const Route = createFileRoute("/play/learn")({
+export const Route = createFileRoute("/play/learn/")({
   head: () => ({
     meta: [
       { title: "Taiwanese Mahjong: Basics — Mahjong Circle" },
