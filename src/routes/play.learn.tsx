@@ -203,7 +203,7 @@ function LearnMahjong() {
 
         {step === total - 1 ? (
           <Link
-            to="/play"
+            to="/play/learn/next"
             className="flex items-center gap-1.5 rounded-full bg-[var(--hsbc)] px-4 py-2 text-[12px] text-white transition-transform active:scale-[0.96]"
           >
             Finish
