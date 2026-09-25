@@ -6,20 +6,20 @@ import { MahjongTileFace, type TileSpec } from "@/components/app/mahjong-tile-fa
 export const Route = createFileRoute("/play/learn")({
   head: () => ({
     meta: [
-      { title: "Indian Heritage Mahjong: Basics — Mahjong Circle" },
+      { title: "Taiwanese Mahjong: Basics — Mahjong Circle" },
       {
         name: "description",
         content:
-          "A ten-step tutorial on Indian Heritage Mahjong: tiles, melds, the pair, fishing and claim priority.",
+          "A ten-step tutorial on Taiwanese Mahjong: tiles, melds, the pair, fishing and claim priority.",
       },
       {
         property: "og:title",
-        content: "Indian Heritage Mahjong: Basics — Mahjong Circle",
+        content: "Taiwanese Mahjong: Basics — Mahjong Circle",
       },
       {
         property: "og:description",
         content:
-          "A ten-step tutorial on Indian Heritage Mahjong: tiles, melds, the pair, fishing and claim priority.",
+          "A ten-step tutorial on Taiwanese Mahjong: tiles, melds, the pair, fishing and claim priority.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -47,7 +47,7 @@ type Slide = {
 const slides: Slide[] = [
   {
     title: "The Tiles",
-    body: "IHM uses 144 tiles: three suits (Bamboo, Characters, Dots) ranked 1–9, four Winds, three Dragons, and eight Joker tiles (Flowers & Seasons).",
+    body: "Taiwanese Mahjong uses 144 tiles: three suits (Bamboo, Characters, Dots) ranked 1–9, four Winds, three Dragons, and eight Joker tiles (Flowers & Seasons).",
     rows: [
       [b(1), b(5), b(9)],
       [c(1), c(5), c(9)],
