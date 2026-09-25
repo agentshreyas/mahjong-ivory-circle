@@ -53,7 +53,7 @@ const cards: {
       [dragon("red"), dragon("red"), dragon("red")],
     ],
     highlight: true,
-    to: "/play/learn",
+    to: "/play/learn/visual-guide",
   },
   {
     title: "Your first tile move",

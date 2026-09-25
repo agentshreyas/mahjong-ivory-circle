@@ -5,6 +5,7 @@ export type TileSpec = {
   rank?: number; // 1-9 for suits
   wind?: "E" | "S" | "W" | "N";
   dragon?: "red" | "green" | "white";
+  joker?: number; // 1-8 for Flowers & Seasons
 };
 
 const CHINESE = ["一", "二", "三", "四", "伍", "六", "七", "八", "九"];
@@ -95,12 +96,19 @@ export function MahjongTileFace({
       );
     corner = null;
   } else {
+    const jokerNumber = tile.joker ?? 1;
+    const jokerGlyphs = ["梅", "蘭", "菊", "竹", "春", "夏", "秋", "冬"];
     body = (
-      <span className="font-display text-[17px] leading-none text-[var(--gold)]">
-        J
+      <span className="flex flex-col items-center leading-none">
+        <span className="text-[14px] text-[var(--jade)]">
+          {jokerGlyphs[jokerNumber - 1]}
+        </span>
+        <span className="mt-1 text-[7px] uppercase text-[var(--hsbc)]">
+          {jokerNumber <= 4 ? "Flower" : "Season"}
+        </span>
       </span>
     );
-    corner = null;
+    corner = String(((jokerNumber - 1) % 4) + 1);
   }
 
   return (
