@@ -193,8 +193,8 @@ function LearnMahjong() {
             <span
               key={i}
               className={`h-[5px] rounded-full transition-all ${
-                i === step
-                  ? "w-[14px] bg-[var(--gold)]"
+              i === step
+                  ? "w-[14px] bg-[var(--hsbc)]"
                   : "w-[5px] bg-[var(--hairline)]"
               }`}
             />
@@ -213,7 +213,7 @@ function LearnMahjong() {
           <button
             type="button"
             onClick={() => setStep((s) => Math.min(total - 1, s + 1))}
-            className="flex items-center gap-1.5 rounded-full bg-[var(--gold)] px-4 py-2 text-[12px] text-[#2A2013] transition-transform active:scale-[0.96]"
+            className="flex items-center gap-1.5 rounded-full bg-[var(--hsbc)] px-4 py-2 text-[12px] text-white transition-transform active:scale-[0.96] hover:bg-[var(--hsbc-pressed)]"
           >
             Next
             <ArrowRight size={14} strokeWidth={1.75} />
