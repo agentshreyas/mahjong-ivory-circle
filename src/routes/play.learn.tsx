@@ -117,16 +117,16 @@ function LearnMahjong() {
   const progress = ((step + 1) / total) * 100;
 
   return (
-    <div className="flex min-h-full flex-col bg-[var(--ivory)]">
+    <div className="flex min-h-full flex-col bg-white">
       {/* Header */}
       <header className="px-6 pt-6 pb-4">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">
+            <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--hsbc)]">
               Tutorial
             </p>
             <h1 className="mt-1.5 font-display text-[21px] leading-[1.2] text-[var(--ink)]">
-              Indian Heritage Mahjong: Basics
+              Taiwanese Mahjong: Basics
             </h1>
           </div>
           <Link
@@ -139,19 +139,19 @@ function LearnMahjong() {
 
         <div className="mt-5 h-[3px] w-full overflow-hidden rounded-full bg-[var(--hairline)]">
           <div
-            className="h-full rounded-full bg-[var(--gold)] transition-all duration-300"
+            className="h-full rounded-full bg-[var(--hsbc)] transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
         <p className="mt-2 text-[11px] text-[var(--taupe)]">
-          Step <span className="text-[var(--ink)]">{step + 1}</span> of {total}
+          Step <span className="text-[var(--hsbc)]">{step + 1}</span> of {total}
         </p>
       </header>
 
       {/* Card */}
       <section className="flex-1 px-5 pb-4">
-        <div className="rounded-3xl border border-[var(--hairline)] bg-[#FFFCF5] p-6 shadow-[0_18px_44px_-24px_rgba(0,0,0,0.25)]">
-          <h2 className="font-display text-[19px] leading-[1.25] text-[var(--ink)]">
+        <div className="rounded-3xl border border-[var(--hairline)] bg-white p-6 shadow-[0_18px_44px_-24px_rgba(219,0,17,0.25)]">
+          <h2 className="font-display text-[19px] leading-[1.25] text-[var(--hsbc)]">
             {slide.title}
           </h2>
           <p className="mt-3 text-[13px] leading-[1.7] text-[var(--taupe)]">
