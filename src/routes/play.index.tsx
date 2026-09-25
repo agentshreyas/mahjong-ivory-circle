@@ -146,10 +146,8 @@ function PlayIndex() {
 
             <div className="mt-3 h-px w-full bg-white/25" />
 
-            <a
-              href="https://en.wikipedia.org/wiki/Mahjong"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/play/learn"
               className="mt-4 flex items-center justify-between rounded-2xl border border-white/30 bg-white/10 px-4 py-3.5 transition-transform active:scale-[0.97]"
             >
               <span className="font-display text-[16px] text-white">
@@ -158,7 +156,7 @@ function PlayIndex() {
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
                 <ArrowUpRight size={16} strokeWidth={1.75} className="text-white" />
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
