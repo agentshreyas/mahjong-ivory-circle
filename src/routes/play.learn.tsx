@@ -6,20 +6,20 @@ import { MahjongTileFace, type TileSpec } from "@/components/app/mahjong-tile-fa
 export const Route = createFileRoute("/play/learn")({
   head: () => ({
     meta: [
-      { title: "Indian Heritage Mahjong: Basics — Mahjong Circle" },
+      { title: "Taiwanese Mahjong: Basics — Mahjong Circle" },
       {
         name: "description",
         content:
-          "A ten-step tutorial on Indian Heritage Mahjong: tiles, melds, the pair, fishing and claim priority.",
+          "A ten-step tutorial on Taiwanese Mahjong: tiles, melds, the pair, fishing and claim priority.",
       },
       {
         property: "og:title",
-        content: "Indian Heritage Mahjong: Basics — Mahjong Circle",
+        content: "Taiwanese Mahjong: Basics — Mahjong Circle",
       },
       {
         property: "og:description",
         content:
-          "A ten-step tutorial on Indian Heritage Mahjong: tiles, melds, the pair, fishing and claim priority.",
+          "A ten-step tutorial on Taiwanese Mahjong: tiles, melds, the pair, fishing and claim priority.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -47,7 +47,7 @@ type Slide = {
 const slides: Slide[] = [
   {
     title: "The Tiles",
-    body: "IHM uses 144 tiles: three suits (Bamboo, Characters, Dots) ranked 1–9, four Winds, three Dragons, and eight Joker tiles (Flowers & Seasons).",
+    body: "Taiwanese Mahjong uses 144 tiles: three suits (Bamboo, Characters, Dots) ranked 1–9, four Winds, three Dragons, and eight Joker tiles (Flowers & Seasons).",
     rows: [
       [b(1), b(5), b(9)],
       [c(1), c(5), c(9)],
@@ -117,16 +117,16 @@ function LearnMahjong() {
   const progress = ((step + 1) / total) * 100;
 
   return (
-    <div className="flex min-h-full flex-col bg-[var(--ivory)]">
+    <div className="flex min-h-full flex-col bg-white">
       {/* Header */}
       <header className="px-6 pt-6 pb-4">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)]">
+            <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--hsbc)]">
               Tutorial
             </p>
             <h1 className="mt-1.5 font-display text-[21px] leading-[1.2] text-[var(--ink)]">
-              Indian Heritage Mahjong: Basics
+              Taiwanese Mahjong: Basics
             </h1>
           </div>
           <Link
@@ -139,19 +139,19 @@ function LearnMahjong() {
 
         <div className="mt-5 h-[3px] w-full overflow-hidden rounded-full bg-[var(--hairline)]">
           <div
-            className="h-full rounded-full bg-[var(--gold)] transition-all duration-300"
+            className="h-full rounded-full bg-[var(--hsbc)] transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
         <p className="mt-2 text-[11px] text-[var(--taupe)]">
-          Step <span className="text-[var(--ink)]">{step + 1}</span> of {total}
+          Step <span className="text-[var(--hsbc)]">{step + 1}</span> of {total}
         </p>
       </header>
 
       {/* Card */}
       <section className="flex-1 px-5 pb-4">
-        <div className="rounded-3xl border border-[var(--hairline)] bg-[#FFFCF5] p-6 shadow-[0_18px_44px_-24px_rgba(0,0,0,0.25)]">
-          <h2 className="font-display text-[19px] leading-[1.25] text-[var(--ink)]">
+        <div className="rounded-3xl border border-[var(--hairline)] bg-white p-6 shadow-[0_18px_44px_-24px_rgba(219,0,17,0.25)]">
+          <h2 className="font-display text-[19px] leading-[1.25] text-[var(--hsbc)]">
             {slide.title}
           </h2>
           <p className="mt-3 text-[13px] leading-[1.7] text-[var(--taupe)]">
@@ -193,8 +193,8 @@ function LearnMahjong() {
             <span
               key={i}
               className={`h-[5px] rounded-full transition-all ${
-                i === step
-                  ? "w-[14px] bg-[var(--gold)]"
+              i === step
+                  ? "w-[14px] bg-[var(--hsbc)]"
                   : "w-[5px] bg-[var(--hairline)]"
               }`}
             />
@@ -213,7 +213,7 @@ function LearnMahjong() {
           <button
             type="button"
             onClick={() => setStep((s) => Math.min(total - 1, s + 1))}
-            className="flex items-center gap-1.5 rounded-full bg-[var(--gold)] px-4 py-2 text-[12px] text-[#2A2013] transition-transform active:scale-[0.96]"
+            className="flex items-center gap-1.5 rounded-full bg-[var(--hsbc)] px-4 py-2 text-[12px] text-white transition-transform active:scale-[0.96] hover:bg-[var(--hsbc-pressed)]"
           >
             Next
             <ArrowRight size={14} strokeWidth={1.75} />
