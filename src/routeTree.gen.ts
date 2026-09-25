@@ -32,6 +32,7 @@ import { Route as PlayLeaderboardRouteImport } from './routes/play.leaderboard'
 import { Route as PlayJoinRoomRouteImport } from './routes/play.join-room'
 import { Route as PlayCreateRoomRouteImport } from './routes/play.create-room'
 import { Route as PlayLearnIndexRouteImport } from './routes/play.learn.index'
+import { Route as PlayLearnVisualGuideRouteImport } from './routes/play.learn.visual-guide'
 import { Route as PlayLearnNextRouteImport } from './routes/play.learn.next'
 
 const TermsRoute = TermsRouteImport.update({
@@ -149,6 +150,11 @@ const PlayLearnIndexRoute = PlayLearnIndexRouteImport.update({
   path: '/learn/',
   getParentRoute: () => PlayRoute,
 } as any)
+const PlayLearnVisualGuideRoute = PlayLearnVisualGuideRouteImport.update({
+  id: '/learn/visual-guide',
+  path: '/learn/visual-guide',
+  getParentRoute: () => PlayRoute,
+} as any)
 const PlayLearnNextRoute = PlayLearnNextRouteImport.update({
   id: '/learn/next',
   path: '/learn/next',
@@ -179,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/play/my-circle': typeof PlayMyCircleRoute
   '/play/': typeof PlayIndexRoute
   '/play/learn/next': typeof PlayLearnNextRoute
+  '/play/learn/visual-guide': typeof PlayLearnVisualGuideRoute
   '/play/learn/': typeof PlayLearnIndexRoute
 }
 export interface FileRoutesByTo {
@@ -204,6 +211,7 @@ export interface FileRoutesByTo {
   '/play/my-circle': typeof PlayMyCircleRoute
   '/play': typeof PlayIndexRoute
   '/play/learn/next': typeof PlayLearnNextRoute
+  '/play/learn/visual-guide': typeof PlayLearnVisualGuideRoute
   '/play/learn': typeof PlayLearnIndexRoute
 }
 export interface FileRoutesById {
@@ -231,6 +239,7 @@ export interface FileRoutesById {
   '/play/my-circle': typeof PlayMyCircleRoute
   '/play/': typeof PlayIndexRoute
   '/play/learn/next': typeof PlayLearnNextRoute
+  '/play/learn/visual-guide': typeof PlayLearnVisualGuideRoute
   '/play/learn/': typeof PlayLearnIndexRoute
 }
 export interface FileRouteTypes {
@@ -259,6 +268,7 @@ export interface FileRouteTypes {
     | '/play/my-circle'
     | '/play/'
     | '/play/learn/next'
+    | '/play/learn/visual-guide'
     | '/play/learn/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
     | '/play/my-circle'
     | '/play'
     | '/play/learn/next'
+    | '/play/learn/visual-guide'
     | '/play/learn'
   id:
     | '__root__'
@@ -310,6 +321,7 @@ export interface FileRouteTypes {
     | '/play/my-circle'
     | '/play/'
     | '/play/learn/next'
+    | '/play/learn/visual-guide'
     | '/play/learn/'
   fileRoutesById: FileRoutesById
 }
@@ -496,6 +508,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayLearnIndexRouteImport
       parentRoute: typeof PlayRoute
     }
+    '/play/learn/visual-guide': {
+      id: '/play/learn/visual-guide'
+      path: '/learn/visual-guide'
+      fullPath: '/play/learn/visual-guide'
+      preLoaderRoute: typeof PlayLearnVisualGuideRouteImport
+      parentRoute: typeof PlayRoute
+    }
     '/play/learn/next': {
       id: '/play/learn/next'
       path: '/learn/next'
@@ -513,6 +532,7 @@ interface PlayRouteChildren {
   PlayMyCircleRoute: typeof PlayMyCircleRoute
   PlayIndexRoute: typeof PlayIndexRoute
   PlayLearnNextRoute: typeof PlayLearnNextRoute
+  PlayLearnVisualGuideRoute: typeof PlayLearnVisualGuideRoute
   PlayLearnIndexRoute: typeof PlayLearnIndexRoute
 }
 
@@ -523,6 +543,7 @@ const PlayRouteChildren: PlayRouteChildren = {
   PlayMyCircleRoute: PlayMyCircleRoute,
   PlayIndexRoute: PlayIndexRoute,
   PlayLearnNextRoute: PlayLearnNextRoute,
+  PlayLearnVisualGuideRoute: PlayLearnVisualGuideRoute,
   PlayLearnIndexRoute: PlayLearnIndexRoute,
 }
 
